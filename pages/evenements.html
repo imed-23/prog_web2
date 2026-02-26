@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calendrier des événements gaming du campus. Dates, lieux, prix et inscriptions.">
+    <title>Événements - Gaming Campus</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <!-- HEADER - include PHP : header.php -->
+    <header id="site-header">
+        <div class="header-container">
+            <a href="../index.html" class="logo" aria-label="Accueil Gaming Campus">
+                <span class="logo-icon">🎮</span>
+                <span class="logo-text">Gaming Campus</span>
+            </a>
+            <nav aria-label="Navigation principale">
+                <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+                <ul id="main-nav" class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="tournois.html" class="nav-link">Tournois</a></li>
+                    <li><a href="classement.html" class="nav-link">Classement</a></li>
+                    <li><a href="evenements.html" class="nav-link active" aria-current="page">Événements</a></li>
+                    <li><a href="participants.html" class="nav-link">Participants</a></li>
+                    <li><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="connexion.html" class="btn btn-outline">Connexion</a>
+                <a href="inscription.html" class="btn btn-primary">Inscription</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main id="main-content">
+
+        <!-- ======== EN-TÊTE ======== -->
+        <section class="page-hero" aria-label="En-tête événements">
+            <div class="section-container">
+                <nav aria-label="Fil d'Ariane" class="breadcrumb">
+                    <ol>
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li aria-current="page">Événements</li>
+                    </ol>
+                </nav>
+                <h1>📅 Événements</h1>
+                <p class="page-description">Tous les événements gaming du campus. LAN parties, soirées e-sport, conférences et plus encore.</p>
+            </div>
+        </section>
+
+        <!-- ======== CALENDRIER INTERACTIF ======== -->
+        <section id="calendrier" aria-labelledby="titre-calendrier">
+            <div class="section-container">
+                <h2 id="titre-calendrier">📅 Calendrier - Février 2026</h2>
+
+                <div class="calendar-navigation">
+                    <button class="btn btn-outline" aria-label="Mois précédent">← Janvier</button>
+                    <span class="calendar-current-month"><strong>Février 2026</strong></span>
+                    <button class="btn btn-outline" aria-label="Mois suivant">Mars →</button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="calendar-table" aria-label="Calendrier événements février 2026">
+                        <thead>
+                            <tr>
+                                <th scope="col" abbr="Lundi">Lun</th>
+                                <th scope="col" abbr="Mardi">Mar</th>
+                                <th scope="col" abbr="Mercredi">Mer</th>
+                                <th scope="col" abbr="Jeudi">Jeu</th>
+                                <th scope="col" abbr="Vendredi">Ven</th>
+                                <th scope="col" abbr="Samedi">Sam</th>
+                                <th scope="col" abbr="Dimanche">Dim</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td class="calendar-event"><span>5</span> <a href="#evt-fortnite" class="calendar-event-link">🎮 Fortnite BR</a></td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td class="calendar-event"><span>10</span> <a href="#evt-cs2" class="calendar-event-link">🎮 CS2 Éclair</a></td>
+                                <td>11</td>
+                                <td class="calendar-today">12</td>
+                                <td>13</td>
+                                <td>14</td>
+                                <td class="calendar-event"><span>15</span> <a href="#evt-lol" class="calendar-event-link">🎮 LoL Rift</a></td>
+                            </tr>
+                            <tr>
+                                <td>16</td>
+                                <td>17</td>
+                                <td>18</td>
+                                <td>19</td>
+                                <td class="calendar-event"><span>20</span> <a href="#evt-valorant" class="calendar-event-link">🎮 Valorant</a></td>
+                                <td>21</td>
+                                <td>22</td>
+                            </tr>
+                            <tr>
+                                <td>23</td>
+                                <td>24</td>
+                                <td class="calendar-event"><span>25</span> <a href="#evt-cs2-night" class="calendar-event-link">🎮 CS2 Night</a></td>
+                                <td>26</td>
+                                <td>27</td>
+                                <td class="calendar-event"><span>28</span> <a href="#evt-lan" class="calendar-event-link">🏟️ LAN Party</a></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== LISTE DES ÉVÉNEMENTS ======== -->
+        <section id="liste-evenements" aria-labelledby="titre-evenements">
+            <div class="section-container">
+                <h2 id="titre-evenements">🎯 Événements à venir</h2>
+
+                <div class="events-list">
+                    <!-- Événement 1 -->
+                    <article class="event-card" id="evt-lol">
+                        <div class="event-date">
+                            <time datetime="2026-02-15">
+                                <span class="event-day">15</span>
+                                <span class="event-month">Fév</span>
+                            </time>
+                        </div>
+                        <div class="event-body">
+                            <h3 class="event-title">League of Legends - Rift Rivals</h3>
+                            <ul class="event-details">
+                                <li>⏰ 14h00 - 22h00</li>
+                                <li>📍 Salle E-sport - Bâtiment A</li>
+                                <li>👥 16 équipes max</li>
+                                <li>🏆 500€ de cashprize</li>
+                            </ul>
+                            <p class="event-description">Le tournoi phare du semestre ! 16 équipes, du Bo3 au Bo5 en finale.</p>
+                        </div>
+                        <div class="event-actions">
+                            <a href="tournoi-detail.html" class="btn btn-primary">Détails</a>
+                        </div>
+                    </article>
+
+                    <!-- Événement 2 -->
+                    <article class="event-card" id="evt-valorant">
+                        <div class="event-date">
+                            <time datetime="2026-02-20">
+                                <span class="event-day">20</span>
+                                <span class="event-month">Fév</span>
+                            </time>
+                        </div>
+                        <div class="event-body">
+                            <h3 class="event-title">Valorant - Campus Showdown</h3>
+                            <ul class="event-details">
+                                <li>⏰ 18h00 - 23h00</li>
+                                <li>📍 Amphi B - Campus Principal</li>
+                                <li>👥 16 équipes max</li>
+                                <li>🏆 300€ de cashprize</li>
+                            </ul>
+                            <p class="event-description">Le showdown Valorant de la saison. Prouve ta valeur sur les maps compétitives.</p>
+                        </div>
+                        <div class="event-actions">
+                            <a href="tournoi-detail.html" class="btn btn-primary">Détails</a>
+                        </div>
+                    </article>
+
+                    <!-- Événement 3 -->
+                    <article class="event-card" id="evt-cs2-night">
+                        <div class="event-date">
+                            <time datetime="2026-02-25">
+                                <span class="event-day">25</span>
+                                <span class="event-month">Fév</span>
+                            </time>
+                        </div>
+                        <div class="event-body">
+                            <h3 class="event-title">CS2 - Night Tournament</h3>
+                            <ul class="event-details">
+                                <li>⏰ 20h00 - 02h00</li>
+                                <li>📍 Salle E-sport - Bâtiment A</li>
+                                <li>👥 8 équipes max</li>
+                                <li>🏆 200€ de cashprize</li>
+                            </ul>
+                            <p class="event-description">Tournoi nocturne intense ! 8 équipes, élimination directe, ambiance LAN.</p>
+                        </div>
+                        <div class="event-actions">
+                            <a href="tournoi-detail.html" class="btn btn-primary">Détails</a>
+                        </div>
+                    </article>
+
+                    <!-- Événement 4 : LAN Party -->
+                    <article class="event-card" id="evt-lan">
+                        <div class="event-date">
+                            <time datetime="2026-02-28">
+                                <span class="event-day">28</span>
+                                <span class="event-month">Fév</span>
+                            </time>
+                        </div>
+                        <div class="event-body">
+                            <h3 class="event-title">🏟️ Grande LAN Party du Campus</h3>
+                            <ul class="event-details">
+                                <li>⏰ 10h00 - 00h00</li>
+                                <li>📍 Gymnase du Campus</li>
+                                <li>👥 100 places</li>
+                                <li>🏆 Lots divers + nourriture offerte</li>
+                            </ul>
+                            <p class="event-description">La grande LAN Party de fin de mois ! Ramène ton PC, on s'occupe du réseau, de la bouffe et de l'ambiance. Tous les jeux sont les bienvenus.</p>
+                        </div>
+                        <div class="event-actions">
+                            <a href="#" class="btn btn-primary">S'inscrire</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>🎮 Gaming Campus</h3>
+                <p>La plateforme officielle de tournois gaming du campus.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Navigation</h3>
+                <ul class="footer-nav">
+                    <li><a href="../index.html">Accueil</a></li>
+                    <li><a href="tournois.html">Tournois</a></li>
+                    <li><a href="classement.html">Classement</a></li>
+                    <li><a href="evenements.html">Événements</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Mon Compte</h3>
+                <ul class="footer-nav">
+                    <li><a href="connexion.html">Connexion</a></li>
+                    <li><a href="inscription.html">Inscription</a></li>
+                    <li><a href="espace-membre.html">Espace Membre</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Nous suivre</h3>
+                <ul class="social-links">
+                    <li><a href="#" rel="noopener noreferrer" target="_blank">🎧 Discord</a></li>
+                    <li><a href="#" rel="noopener noreferrer" target="_blank">🐦 Twitter</a></li>
+                    <li><a href="#" rel="noopener noreferrer" target="_blank">📷 Instagram</a></li>
+                    <li><a href="#" rel="noopener noreferrer" target="_blank">▶️ YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Gaming Campus - BDE. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

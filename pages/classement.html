@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Classement général des joueurs et équipes. Top joueurs, statistiques et badges de rang.">
+    <title>Classement - Gaming Campus</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <!-- HEADER - include PHP : header.php -->
+    <header id="site-header">
+        <div class="header-container">
+            <a href="../index.html" class="logo" aria-label="Accueil Gaming Campus">
+                <span class="logo-icon">🎮</span>
+                <span class="logo-text">Gaming Campus</span>
+            </a>
+            <nav aria-label="Navigation principale">
+                <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+                <ul id="main-nav" class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="tournois.html" class="nav-link">Tournois</a></li>
+                    <li><a href="classement.html" class="nav-link active" aria-current="page">Classement</a></li>
+                    <li><a href="evenements.html" class="nav-link">Événements</a></li>
+                    <li><a href="participants.html" class="nav-link">Participants</a></li>
+                    <li><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="connexion.html" class="btn btn-outline">Connexion</a>
+                <a href="inscription.html" class="btn btn-primary">Inscription</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main id="main-content">
+
+        <!-- ======== EN-TÊTE ======== -->
+        <section class="page-hero" aria-label="En-tête classement">
+            <div class="section-container">
+                <nav aria-label="Fil d'Ariane" class="breadcrumb">
+                    <ol>
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li aria-current="page">Classement</li>
+                    </ol>
+                </nav>
+                <h1>🏆 Classement Général</h1>
+                <p class="page-description">Le leaderboard du campus. Consulte les meilleurs joueurs, leurs stats et leur progression.</p>
+            </div>
+        </section>
+
+        <!-- ======== PODIUM TOP 3 ======== -->
+        <section id="podium" aria-labelledby="titre-podium">
+            <div class="section-container">
+                <h2 id="titre-podium">🏅 Podium</h2>
+
+                <div class="podium-grid">
+                    <!-- 2ème place -->
+                    <article class="podium-card podium-silver">
+                        <span class="podium-rank">🥈</span>
+                        <img src="../img/placeholder-avatar.jpg" alt="Avatar DragonFire" class="podium-avatar" loading="lazy">
+                        <h3>DragonFire</h3>
+                        <p class="podium-team">Les Dragons</p>
+                        <div class="podium-stats">
+                            <span class="stat"><strong>21</strong> victoires</span>
+                            <span class="stat"><strong>2 180</strong> points</span>
+                        </div>
+                    </article>
+
+                    <!-- 1ère place -->
+                    <article class="podium-card podium-gold">
+                        <span class="podium-rank">🥇</span>
+                        <img src="../img/placeholder-avatar.jpg" alt="Avatar NightSlayer" class="podium-avatar" loading="lazy">
+                        <h3>NightSlayer</h3>
+                        <p class="podium-team">Team Phoenix</p>
+                        <div class="podium-stats">
+                            <span class="stat"><strong>24</strong> victoires</span>
+                            <span class="stat"><strong>2 450</strong> points</span>
+                        </div>
+                    </article>
+
+                    <!-- 3ème place -->
+                    <article class="podium-card podium-bronze">
+                        <span class="podium-rank">🥉</span>
+                        <img src="../img/placeholder-avatar.jpg" alt="Avatar ShadowX" class="podium-avatar" loading="lazy">
+                        <h3>ShadowX</h3>
+                        <p class="podium-team">Shadow Gaming</p>
+                        <div class="podium-stats">
+                            <span class="stat"><strong>19</strong> victoires</span>
+                            <span class="stat"><strong>1 950</strong> points</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== CLASSEMENT COMPLET ======== -->
+        <section id="classement-complet" aria-labelledby="titre-classement-complet">
+            <div class="section-container">
+                <h2 id="titre-classement-complet">📊 Classement Complet</h2>
+
+                <!-- Filtres de classement -->
+                <div class="classement-filters">
+                    <div class="filter-tabs" role="tablist" aria-label="Filtrer par jeu">
+                        <button role="tab" aria-selected="true" class="tab-btn active">Tous les jeux</button>
+                        <button role="tab" aria-selected="false" class="tab-btn">League of Legends</button>
+                        <button role="tab" aria-selected="false" class="tab-btn">Valorant</button>
+                        <button role="tab" aria-selected="false" class="tab-btn">CS2</button>
+                    </div>
+                </div>
+
+                <!-- Tableau complet -->
+                <div class="table-responsive">
+                    <table class="leaderboard-table leaderboard-full" aria-label="Classement complet des joueurs">
+                        <thead>
+                            <tr>
+                                <th scope="col">Rang</th>
+                                <th scope="col">Joueur</th>
+                                <th scope="col">Équipe</th>
+                                <th scope="col">Jeu principal</th>
+                                <th scope="col">Matchs joués</th>
+                                <th scope="col">Victoires</th>
+                                <th scope="col">Défaites</th>
+                                <th scope="col">Win Rate</th>
+                                <th scope="col">Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="rank-gold">
+                                <td><span class="rank-badge">🥇 1</span></td>
+                                <td>
+                                    <div class="player-cell">
+                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
+                                        <a href="profil.html">NightSlayer</a>
+                                    </div>
+                                </td>
+                                <td>Team Phoenix</td>
+                                <td>League of Legends</td>
+                                <td>30</td>
+                                <td>24</td>
+                                <td>6</td>
+                                <td><strong>80%</strong></td>
+                                <td><strong>2 450</strong></td>
+                            </tr>
+                            <tr class="rank-silver">
+                                <td><span class="rank-badge">🥈 2</span></td>
+                                <td>
+                                    <div class="player-cell">
+                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
+                                        <a href="profil.html">DragonFire</a>
+                                    </div>
+                                </td>
+                                <td>Les Dragons</td>
+                                <td>League of Legends</td>
+                                <td>28</td>
+                                <td>21</td>
+                                <td>7</td>
+                                <td><strong>75%</strong></td>
+                                <td><strong>2 180</strong></td>
+                            </tr>
+                            <tr class="rank-bronze">
+                                <td><span class="rank-badge">🥉 3</span></td>
+                                <td>
+                                    <div class="player-cell">
+                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
+                                        <a href="profil.html">ShadowX</a>
+                                    </div>
+                                </td>
+                                <td>Shadow Gaming</td>
+                                <td>Valorant</td>
+                                <td>26</td>
+                                <td>19</td>
+                                <td>7</td>
+                                <td><strong>73%</strong></td>
+                                <td><strong>1 950</strong></td>
+                            </tr>
+                            <tr>
+                                <td><span class="rank-badge">4</span></td>
+                                <td>
+                                    <div class="player-cell">
+                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
+                                        <a href="profil.html">CyberWolf</a>
+                                    </div>
+                                </td>
+                                <td>Cyber Wolves</td>
+                                <td>CS2</td>
+                                <td>25</td>
+                                <td>17</td>
+                                <td>8</td>
+                                <td><strong>68%</strong></td>
+                                <td><strong>1 720</strong></td>
+                            </tr>
+                            <tr>
+                                <td><span class="rank-badge">5</span></td>
+                                <td>
+                                    <div class="player-cell">
+                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
+                                        <a href="profil.html">BlazeMaster</a>
+                                    </div>
+                                </td>
+                                <td>Inferno Squad</td>
+                                <td>Valorant</td>
+                                <td>22</td>
+                                <td>15</td>
+                                <td>7</td>
+                                <td><strong>68%</strong></td>
+                                <td><strong>1 580</strong></td>
+                            </tr>
+                            <tr>
+                                <td><span class="rank-badge">6</span></td>
+                                <td>
+                                    <div class="player-cell">
+                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
+                                        <a href="profil.html">FrostByte</a>
+                                    </div>
+                                </td>
+                                <td>Arctic Fox</td>
+                                <td>League of Legends</td>
+                                <td>20</td>
+                                <td>14</td>
+                                <td>6</td>
+                                <td><strong>70%</strong></td>
+                                <td><strong>1 420</strong></td>
+                            </tr>
+                            <tr>
+                                <td><span class="rank-badge">7</span></td>
+                                <td>
+                                    <div class="player-cell">
+                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
+                                        <a href="profil.html">StormRider</a>
+                                    </div>
+                                </td>
+                                <td>Thunder Squad</td>
+                                <td>CS2</td>
+                                <td>18</td>
+                                <td>12</td>
+                                <td>6</td>
+                                <td><strong>67%</strong></td>
+                                <td><strong>1 280</strong></td>
+                            </tr>
+                            <tr>
+                                <td><span class="rank-badge">8</span></td>
+                                <td>
+                                    <div class="player-cell">
+                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
+                                        <a href="profil.html">NeonViper</a>
+                                    </div>
+                                </td>
+                                <td>Venom Esport</td>
+                                <td>Valorant</td>
+                                <td>19</td>
+                                <td>11</td>
+                                <td>8</td>
+                                <td><strong>58%</strong></td>
+                                <td><strong>1 100</strong></td>
+                            </tr>
+                            <tr>
+                                <td><span class="rank-badge">9</span></td>
+                                <td>
+                                    <div class="player-cell">
+                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
+                                        <a href="profil.html">DarkKnight</a>
+                                    </div>
+                                </td>
+                                <td>Night Owls</td>
+                                <td>League of Legends</td>
+                                <td>16</td>
+                                <td>10</td>
+                                <td>6</td>
+                                <td><strong>63%</strong></td>
+                                <td><strong>980</strong></td>
+                            </tr>
+                            <tr>
+                                <td><span class="rank-badge">10</span></td>
+                                <td>
+                                    <div class="player-cell">
+                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
+                                        <a href="profil.html">PixelSniper</a>
+                                    </div>
+                                </td>
+                                <td>Pixel Army</td>
+                                <td>CS2</td>
+                                <td>15</td>
+                                <td>9</td>
+                                <td>6</td>
+                                <td><strong>60%</strong></td>
+                                <td><strong>890</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <nav class="pagination" aria-label="Pagination du classement">
+                    <ul>
+                        <li><a href="#" class="pagination-link active" aria-current="page">1</a></li>
+                        <li><a href="#" class="pagination-link">2</a></li>
+                        <li><a href="#" class="pagination-link">3</a></li>
+                        <li><a href="#" class="pagination-link pagination-next" aria-label="Page suivante">→</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>🎮 Gaming Campus</h3>
+                <p>La plateforme officielle de tournois gaming du campus.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Navigation</h3>
+                <ul class="footer-nav">
+                    <li><a href="../index.html">Accueil</a></li>
+                    <li><a href="tournois.html">Tournois</a></li>
+                    <li><a href="classement.html">Classement</a></li>
+                    <li><a href="evenements.html">Événements</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Mon Compte</h3>
+                <ul class="footer-nav">
+                    <li><a href="connexion.html">Connexion</a></li>
+                    <li><a href="inscription.html">Inscription</a></li>
+                    <li><a href="espace-membre.html">Espace Membre</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Nous suivre</h3>
+                <ul class="social-links">
+                    <li><a href="#" rel="noopener noreferrer" target="_blank">🎧 Discord</a></li>
+                    <li><a href="#" rel="noopener noreferrer" target="_blank">🐦 Twitter</a></li>
+                    <li><a href="#" rel="noopener noreferrer" target="_blank">📷 Instagram</a></li>
+                    <li><a href="#" rel="noopener noreferrer" target="_blank">▶️ YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Gaming Campus - BDE. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
