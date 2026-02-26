@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plateforme de Tournois Gaming Campus - Consultez les tournois, inscrivez votre équipe et suivez les classements.">
+    <meta name="author" content="BDE Gaming Campus">
+    <title>Gaming Campus - Plateforme de Tournois</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- HEADER - À convertir en include PHP : header.php -->
+    <!-- ============================================ -->
+    <header id="site-header">
+        <div class="header-container">
+            <a href="index.html" class="logo" aria-label="Accueil Gaming Campus">
+                <span class="logo-icon">🎮</span>
+                <span class="logo-text">Gaming Campus</span>
+            </a>
+
+            <!-- Navigation principale -->
+            <nav aria-label="Navigation principale">
+                <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+
+                <ul id="main-nav" class="nav-list">
+                    <li><a href="index.html" class="nav-link active" aria-current="page">Accueil</a></li>
+                    <li><a href="pages/tournois.html" class="nav-link">Tournois</a></li>
+                    <li><a href="pages/classement.html" class="nav-link">Classement</a></li>
+                    <li><a href="pages/evenements.html" class="nav-link">Événements</a></li>
+                    <li><a href="pages/participants.html" class="nav-link">Participants</a></li>
+                    <li><a href="pages/blog.html" class="nav-link">Blog</a></li>
+                    <li><a href="pages/faq.html" class="nav-link">FAQ</a></li>
+                    <li><a href="pages/contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Actions utilisateur -->
+            <div class="header-actions">
+                <a href="pages/connexion.html" class="btn btn-outline">Connexion</a>
+                <a href="pages/inscription.html" class="btn btn-primary">Inscription</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- CONTENU PRINCIPAL -->
+    <!-- ============================================ -->
+    <main id="main-content">
+
+        <!-- ======== SECTION HERO ======== -->
+        <section id="hero" class="hero-section" aria-label="Bannière principale">
+            <div class="hero-content">
+                <h1>Rejoins la compétition <span class="text-accent">Gaming Campus</span></h1>
+                <p class="hero-subtitle">Consulte les tournois à venir, inscris ton équipe et grimpe dans le classement. La prochaine victoire est à portée de clic.</p>
+                <div class="hero-actions">
+                    <a href="pages/tournois.html" class="btn btn-primary btn-lg">Voir les Tournois</a>
+                    <a href="pages/inscription.html" class="btn btn-outline btn-lg">Créer un Compte</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">12</span>
+                        <span class="stat-label">Tournois actifs</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">256</span>
+                        <span class="stat-label">Joueurs inscrits</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">48</span>
+                        <span class="stat-label">Équipes</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== SECTION TOURNOIS EN COURS ======== -->
+        <section id="tournois-en-cours" aria-labelledby="titre-tournois-en-cours">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 id="titre-tournois-en-cours">🎮 Tournois en Cours</h2>
+                    <a href="pages/tournois.html" class="section-link">Voir tous les tournois →</a>
+                </div>
+
+                <div class="cards-grid">
+                    <!-- Carte Tournoi 1 -->
+                    <article class="card card-tournoi">
+                        <div class="card-badge badge-en-cours">En cours</div>
+                        <img src="img/placeholder-game.jpg" alt="League of Legends" class="card-image" loading="lazy">
+                        <div class="card-body">
+                            <h3 class="card-title">League of Legends - Rift Rivals</h3>
+                            <ul class="card-info-list">
+                                <li class="card-info">
+                                    <span class="info-icon">📅</span>
+                                    <time datetime="2026-02-15T14:00">15 Février 2026 - 14h00</time>
+                                </li>
+                                <li class="card-info">
+                                    <span class="info-icon">👥</span>
+                                    <span>12 / 16 équipes inscrites</span>
+                                </li>
+                                <li class="card-info">
+                                    <span class="info-icon">🏆</span>
+                                    <span>500€ de cashprize</span>
+                                </li>
+                            </ul>
+                            <div class="card-places">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="75% des places occupées">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                                <span class="places-restantes">4 places restantes</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="pages/tournoi-detail.html" class="btn btn-primary btn-block">Voir les détails</a>
+                        </div>
+                    </article>
+
+                    <!-- Carte Tournoi 2 -->
+                    <article class="card card-tournoi">
+                        <div class="card-badge badge-a-venir">À venir</div>
+                        <img src="img/placeholder-game.jpg" alt="Valorant" class="card-image" loading="lazy">
+                        <div class="card-body">
+                            <h3 class="card-title">Valorant - Campus Showdown</h3>
+                            <ul class="card-info-list">
+                                <li class="card-info">
+                                    <span class="info-icon">📅</span>
+                                    <time datetime="2026-02-20T18:00">20 Février 2026 - 18h00</time>
+                                </li>
+                                <li class="card-info">
+                                    <span class="info-icon">👥</span>
+                                    <span>6 / 16 équipes inscrites</span>
+                                </li>
+                                <li class="card-info">
+                                    <span class="info-icon">🏆</span>
+                                    <span>300€ de cashprize</span>
+                                </li>
+                            </ul>
+                            <div class="card-places">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100" aria-label="37% des places occupées">
+                                    <div class="progress-fill" style="width: 37%"></div>
+                                </div>
+                                <span class="places-restantes">10 places restantes</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="pages/tournoi-detail.html" class="btn btn-primary btn-block">Voir les détails</a>
+                        </div>
+                    </article>
+
+                    <!-- Carte Tournoi 3 -->
+                    <article class="card card-tournoi">
+                        <div class="card-badge badge-termine">Terminé</div>
+                        <img src="img/placeholder-game.jpg" alt="Counter-Strike 2" class="card-image" loading="lazy">
+                        <div class="card-body">
+                            <h3 class="card-title">CS2 - Tournoi Éclair</h3>
+                            <ul class="card-info-list">
+                                <li class="card-info">
+                                    <span class="info-icon">📅</span>
+                                    <time datetime="2026-02-10T16:00">10 Février 2026 - 16h00</time>
+                                </li>
+                                <li class="card-info">
+                                    <span class="info-icon">👥</span>
+                                    <span>8 / 8 équipes inscrites</span>
+                                </li>
+                                <li class="card-info">
+                                    <span class="info-icon">🏆</span>
+                                    <span>200€ de cashprize</span>
+                                </li>
+                            </ul>
+                            <div class="card-places">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" aria-label="100% des places occupées">
+                                    <div class="progress-fill" style="width: 100%"></div>
+                                </div>
+                                <span class="places-restantes places-complet">Complet</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="pages/tournoi-detail.html" class="btn btn-outline btn-block">Voir les résultats</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== SECTION PROCHAINS MATCHS ======== -->
+        <section id="prochains-matchs" aria-labelledby="titre-prochains-matchs">
+            <div class="section-container">
+                <h2 id="titre-prochains-matchs">⏱️ Prochains Matchs</h2>
+
+                <div class="matchs-list">
+                    <!-- Match 1 -->
+                    <article class="match-card">
+                        <div class="match-date">
+                            <time datetime="2026-02-15T14:00">
+                                <span class="match-day">15</span>
+                                <span class="match-month">Fév</span>
+                                <span class="match-hour">14h00</span>
+                            </time>
+                        </div>
+                        <div class="match-teams">
+                            <div class="team team-a">
+                                <img src="img/placeholder-avatar.jpg" alt="Avatar équipe Phoenix" class="team-avatar" loading="lazy">
+                                <span class="team-name">Team Phoenix</span>
+                            </div>
+                            <div class="match-vs">
+                                <span>VS</span>
+                            </div>
+                            <div class="team team-b">
+                                <img src="img/placeholder-avatar.jpg" alt="Avatar équipe Dragons" class="team-avatar" loading="lazy">
+                                <span class="team-name">Les Dragons</span>
+                            </div>
+                        </div>
+                        <div class="match-info">
+                            <span class="match-game">League of Legends</span>
+                            <span class="match-round">Demi-finale</span>
+                        </div>
+                        <div class="match-countdown" data-target="2026-02-15T14:00:00" aria-label="Compte à rebours avant le match">
+                            <div class="countdown-item">
+                                <span class="countdown-number">03</span>
+                                <span class="countdown-label">Jours</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-number">06</span>
+                                <span class="countdown-label">Heures</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-number">24</span>
+                                <span class="countdown-label">Minutes</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Match 2 -->
+                    <article class="match-card">
+                        <div class="match-date">
+                            <time datetime="2026-02-20T18:00">
+                                <span class="match-day">20</span>
+                                <span class="match-month">Fév</span>
+                                <span class="match-hour">18h00</span>
+                            </time>
+                        </div>
+                        <div class="match-teams">
+                            <div class="team team-a">
+                                <img src="img/placeholder-avatar.jpg" alt="Avatar équipe Wolves" class="team-avatar" loading="lazy">
+                                <span class="team-name">Cyber Wolves</span>
+                            </div>
+                            <div class="match-vs">
+                                <span>VS</span>
+                            </div>
+                            <div class="team team-b">
+                                <img src="img/placeholder-avatar.jpg" alt="Avatar équipe Shadow" class="team-avatar" loading="lazy">
+                                <span class="team-name">Shadow Gaming</span>
+                            </div>
+                        </div>
+                        <div class="match-info">
+                            <span class="match-game">Valorant</span>
+                            <span class="match-round">Quart de finale</span>
+                        </div>
+                        <div class="match-countdown" data-target="2026-02-20T18:00:00" aria-label="Compte à rebours avant le match">
+                            <div class="countdown-item">
+                                <span class="countdown-number">08</span>
+                                <span class="countdown-label">Jours</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-number">12</span>
+                                <span class="countdown-label">Heures</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-number">45</span>
+                                <span class="countdown-label">Minutes</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== SECTION CLASSEMENT APERÇU ======== -->
+        <section id="classement-apercu" aria-labelledby="titre-classement">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 id="titre-classement">🏆 Classement - Top 5</h2>
+                    <a href="pages/classement.html" class="section-link">Voir le classement complet →</a>
+                </div>
+
+                <table class="leaderboard-table" aria-label="Top 5 du classement général">
+                    <thead>
+                        <tr>
+                            <th scope="col">Rang</th>
+                            <th scope="col">Joueur</th>
+                            <th scope="col">Équipe</th>
+                            <th scope="col">Victoires</th>
+                            <th scope="col">Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="rank-gold">
+                            <td><span class="rank-badge">🥇 1</span></td>
+                            <td>
+                                <div class="player-cell">
+                                    <img src="img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
+                                    <span>NightSlayer</span>
+                                </div>
+                            </td>
+                            <td>Team Phoenix</td>
+                            <td>24</td>
+                            <td><strong>2 450</strong></td>
+                        </tr>
+                        <tr class="rank-silver">
+                            <td><span class="rank-badge">🥈 2</span></td>
+                            <td>
+                                <div class="player-cell">
+                                    <img src="img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
+                                    <span>DragonFire</span>
+                                </div>
+                            </td>
+                            <td>Les Dragons</td>
+                            <td>21</td>
+                            <td><strong>2 180</strong></td>
+                        </tr>
+                        <tr class="rank-bronze">
+                            <td><span class="rank-badge">🥉 3</span></td>
+                            <td>
+                                <div class="player-cell">
+                                    <img src="img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
+                                    <span>ShadowX</span>
+                                </div>
+                            </td>
+                            <td>Shadow Gaming</td>
+                            <td>19</td>
+                            <td><strong>1 950</strong></td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge">4</span></td>
+                            <td>
+                                <div class="player-cell">
+                                    <img src="img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
+                                    <span>CyberWolf</span>
+                                </div>
+                            </td>
+                            <td>Cyber Wolves</td>
+                            <td>17</td>
+                            <td><strong>1 720</strong></td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge">5</span></td>
+                            <td>
+                                <div class="player-cell">
+                                    <img src="img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
+                                    <span>BlazeMaster</span>
+                                </div>
+                            </td>
+                            <td>Inferno Squad</td>
+                            <td>15</td>
+                            <td><strong>1 580</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ======== SECTION CTA INSCRIPTION ======== -->
+        <section id="cta-inscription" class="cta-section" aria-labelledby="titre-cta">
+            <div class="section-container">
+                <h2 id="titre-cta">Prêt à entrer dans l'arène ?</h2>
+                <p>Crée ton compte, forme ton équipe et inscris-toi au prochain tournoi. Les places partent vite !</p>
+                <div class="cta-actions">
+                    <a href="pages/inscription.html" class="btn btn-primary btn-lg">Créer mon compte</a>
+                    <a href="pages/tournois.html" class="btn btn-outline btn-lg">Explorer les tournois</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================ -->
+    <!-- FOOTER - À convertir en include PHP : footer.php -->
+    <!-- ============================================ -->
+    <footer id="site-footer">
+        <div class="footer-container">
+
+            <!-- Colonne 1 : À propos -->
+            <div class="footer-col">
+                <h3>🎮 Gaming Campus</h3>
+                <p>La plateforme officielle de tournois gaming du campus. Organisée par le BDE pour les joueurs, par les joueurs.</p>
+            </div>
+²
+            <!-- Colonne 2 : Navigation rapide -->
+            <div class="footer-col">
+                <h3>Navigation</h3>
+                <ul class="footer-nav">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="pages/tournois.html">Tournois</a></li>
+                    <li><a href="pages/classement.html">Classement</a></li>
+                    <li><a href="pages/evenements.html">Événements</a></li>
+                    <li><a href="pages/blog.html">Blog</a></li>
+                </ul>
+            </div>
+
+            <!-- Colonne 3 : Compte -->
+            <div class="footer-col">²
+                <h3>Mon Compte</h3>
+                <ul class="footer-nav">
+                    <li><a href="pages/connexion.html">Connexion</a></li>
+                    <li><a href="pages/inscription.html">Inscription</a></li>
+                    <li><a href="pages/espace-membre.html">Espace Membre</a></li>
+                    <li><a href="pages/faq.html">FAQ</a></li>
+                    <li><a href="pages/contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Colonne 4 : Réseaux sociaux -->
+            <div class="footer-col">
+                <h3>Nous suivre</h3>
+                <ul class="social-links">
+                    <li><a href="#" aria-label="Discord Gaming Campus" rel="noopener noreferrer" target="_blank">🎧 Discord</a></li>
+                    <li><a href="#" aria-label="Twitter Gaming Campus" rel="noopener noreferrer" target="_blank">🐦 Twitter</a></li>
+                    <li><a href="#" aria-label="Instagram Gaming Campus" rel="noopener noreferrer" target="_blank">📷 Instagram</a></li>
+                    <li><a href="#" aria-label="YouTube Gaming Campus" rel="noopener noreferrer" target="_blank">▶️ YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Gaming Campus - BDE. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
