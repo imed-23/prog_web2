@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Profil joueur Gaming Campus - Statistiques, historique des participations, trophées et rang.">
+    <title>Profil de NightSlayer - Gaming Campus</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <!-- HEADER - include PHP : header.php -->
+    <header id="site-header">
+        <div class="header-container">
+            <a href="../index.html" class="logo" aria-label="Accueil Gaming Campus">
+                <span class="logo-icon">🎮</span>
+                <span class="logo-text">Gaming Campus</span>
+            </a>
+            <nav aria-label="Navigation principale">
+                <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+                <ul id="main-nav" class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="tournois.html" class="nav-link">Tournois</a></li>
+                    <li><a href="classement.html" class="nav-link">Classement</a></li>
+                    <li><a href="evenements.html" class="nav-link">Événements</a></li>
+                    <li><a href="participants.html" class="nav-link">Participants</a></li>
+                    <li><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="connexion.html" class="btn btn-outline">Connexion</a>
+                <a href="inscription.html" class="btn btn-primary">Inscription</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main id="main-content">
+
+        <!-- ======== EN-TÊTE PROFIL ======== -->
+        <section class="page-hero profil-hero" aria-label="En-tête profil">
+            <div class="section-container">
+                <nav aria-label="Fil d'Ariane" class="breadcrumb">
+                    <ol>
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="participants.html">Participants</a></li>
+                        <li aria-current="page">NightSlayer</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <!-- ======== CARTE PROFIL ======== -->
+        <section id="profil-carte" aria-labelledby="profil-pseudo">
+            <div class="section-container">
+                <div class="profil-header-card">
+                    <div class="profil-avatar-wrapper">
+                        <img src="../img/placeholder-avatar.jpg" alt="Avatar de NightSlayer" class="profil-avatar" loading="lazy">
+                        <span class="profil-rank-badge">🥇 #1</span>
+                    </div>
+                    <div class="profil-info">
+                        <h1 id="profil-pseudo">NightSlayer</h1>
+                        <p class="profil-real-name">Imed Kemouche</p>
+                        <p class="profil-team">🛡️ Team Phoenix</p>
+                        <p class="profil-jeu">🎮 Jeu principal : League of Legends</p>
+                        <div class="profil-level">
+                            <span class="level-badge">⭐ Diamond</span>
+                            <span class="level-points">2 450 points</span>
+                        </div>
+                        <p class="profil-member-since">Membre depuis <time datetime="2025-09-01">Septembre 2025</time></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== STATISTIQUES ======== -->
+        <section id="profil-stats" aria-labelledby="titre-stats">
+            <div class="section-container">
+                <h2 id="titre-stats">📊 Statistiques</h2>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-icon">🎮</span>
+                        <span class="stat-number">30</span>
+                        <span class="stat-label">Matchs joués</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">✅</span>
+                        <span class="stat-number">24</span>
+                        <span class="stat-label">Victoires</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">❌</span>
+                        <span class="stat-number">6</span>
+                        <span class="stat-label">Défaites</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">📈</span>
+                        <span class="stat-number">80%</span>
+                        <span class="stat-label">Win Rate</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">🏆</span>
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Tournois gagnés</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">📊</span>
+                        <span class="stat-number">2 450</span>
+                        <span class="stat-label">Points totaux</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== TROPHÉES ======== -->
+        <section id="profil-trophees" aria-labelledby="titre-trophees">
+            <div class="section-container">
+                <h2 id="titre-trophees">🏆 Trophées & Accomplissements</h2>
+
+                <div class="trophees-grid">
+                    <div class="trophee-card">
+                        <span class="trophee-icon">🥇</span>
+                        <h3>Champion LoL S1</h3>
+                        <p>1ère place - Rift Rivals Saison 1</p>
+                        <time datetime="2025-12-15">Déc 2025</time>
+                    </div>
+                    <div class="trophee-card">
+                        <span class="trophee-icon">🥇</span>
+                        <h3>Champion CS2</h3>
+                        <p>1ère place - CS2 Tournoi Éclair</p>
+                        <time datetime="2026-02-10">Fév 2026</time>
+                    </div>
+                    <div class="trophee-card">
+                        <span class="trophee-icon">🥈</span>
+                        <h3>Vice-Champion Valorant</h3>
+                        <p>2ème place - Valorant Cup</p>
+                        <time datetime="2025-11-20">Nov 2025</time>
+                    </div>
+                    <div class="trophee-card">
+                        <span class="trophee-icon">🔥</span>
+                        <h3>10 victoires d'affilée</h3>
+                        <p>Série de 10 victoires consécutives</p>
+                        <time datetime="2026-01-15">Jan 2026</time>
+                    </div>
+                    <div class="trophee-card">
+                        <span class="trophee-icon">⭐</span>
+                        <h3>N°1 du classement</h3>
+                        <p>Atteindre la 1ère place du leaderboard</p>
+                        <time datetime="2026-02-01">Fév 2026</time>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== HISTORIQUE DES PARTICIPATIONS ======== -->
+        <section id="profil-historique" aria-labelledby="titre-historique">
+            <div class="section-container">
+                <h2 id="titre-historique">📜 Historique des participations</h2>
+
+                <div class="table-responsive">
+                    <table class="history-table" aria-label="Historique des tournois de NightSlayer">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tournoi</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Jeu</th>
+                                <th scope="col">Équipe</th>
+                                <th scope="col">Résultat</th>
+                                <th scope="col">Position</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="tournoi-detail.html">CS2 Tournoi Éclair</a></td>
+                                <td><time datetime="2026-02-10">10 Fév 2026</time></td>
+                                <td>Counter-Strike 2</td>
+                                <td>Team Phoenix</td>
+                                <td><span class="result-win">Victoire</span></td>
+                                <td>🥇 1er</td>
+                            </tr>
+                            <tr>
+                                <td><a href="tournoi-detail.html">Rift Rivals S1</a></td>
+                                <td><time datetime="2025-12-15">15 Déc 2025</time></td>
+                                <td>League of Legends</td>
+                                <td>Team Phoenix</td>
+                                <td><span class="result-win">Victoire</span></td>
+                                <td>🥇 1er</td>
+                            </tr>
+                            <tr>
+                                <td><a href="tournoi-detail.html">Valorant Cup</a></td>
+                                <td><time datetime="2025-11-20">20 Nov 2025</time></td>
+                                <td>Valorant</td>
+                                <td>Team Phoenix</td>
+                                <td><span class="result-loss">Défaite</span></td>
+                                <td>🥈 2ème</td>
+                            </tr>
+                            <tr>
+                                <td><a href="tournoi-detail.html">LoL Campus Open</a></td>
+                                <td><time datetime="2025-10-10">10 Oct 2025</time></td>
+                                <td>League of Legends</td>
+                                <td>Team Phoenix</td>
+                                <td><span class="result-win">Victoire</span></td>
+                                <td>🥇 1er</td>
+                            </tr>
+                            <tr>
+                                <td><a href="tournoi-detail.html">Tournoi d'accueil</a></td>
+                                <td><time datetime="2025-09-15">15 Sep 2025</time></td>
+                                <td>Multi-jeux</td>
+                                <td>Team Phoenix</td>
+                                <td><span class="result-win">Victoire</span></td>
+                                <td>🥉 3ème</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>🎮 Gaming Campus</h3>
+                <p>La plateforme officielle de tournois gaming du campus.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Navigation</h3>
+                <ul class="footer-nav">
+                    <li><a href="../index.html">Accueil</a></li>
+                    <li><a href="tournois.html">Tournois</a></li>
+                    <li><a href="classement.html">Classement</a></li>
+                    <li><a href="evenements.html">Événements</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Mon Compte</h3>
+                <ul class="footer-nav">
+                    <li><a href="connexion.html">Connexion</a></li>
+                    <li><a href="inscription.html">Inscription</a></li>
+                    <li><a href="espace-membre.html">Espace Membre</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Nous suivre</h3>
+                <ul class="social-links">
+                    <li><a href="#" rel="noopener noreferrer" target="_blank">🎧 Discord</a></li>
+                    <li><a href="#" rel="noopener noreferrer" target="_blank">🐦 Twitter</a></li>
+                    <li><a href="#" rel="noopener noreferrer" target="_blank">📷 Instagram</a></li>
+                    <li><a href="#" rel="noopener noreferrer" target="_blank">▶️ YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Gaming Campus - BDE. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

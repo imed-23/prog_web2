@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Espace membre Gaming Campus - Gère ton profil, tes équipes et tes inscriptions aux tournois.">
+    <title>Espace Membre - Gaming Campus</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <!-- HEADER - include PHP : header.php (version connectée) -->
+    <header id="site-header">
+        <div class="header-container">
+            <a href="../index.html" class="logo" aria-label="Accueil Gaming Campus">
+                <span class="logo-icon">🎮</span>
+                <span class="logo-text">Gaming Campus</span>
+            </a>
+            <nav aria-label="Navigation principale">
+                <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+                <ul id="main-nav" class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="tournois.html" class="nav-link">Tournois</a></li>
+                    <li><a href="classement.html" class="nav-link">Classement</a></li>
+                    <li><a href="evenements.html" class="nav-link">Événements</a></li>
+                    <li><a href="participants.html" class="nav-link">Participants</a></li>
+                    <li><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <!-- Version connectée du header -->
+            <div class="header-actions header-actions-logged">
+                <div class="user-menu">
+                    <img src="../img/placeholder-avatar.jpg" alt="Avatar" class="user-avatar-sm">
+                    <span class="user-pseudo">NightSlayer</span>
+                </div>
+                <a href="connexion.html" class="btn btn-outline btn-sm">Déconnexion</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main id="main-content">
+
+        <!-- ======== EN-TÊTE ESPACE MEMBRE ======== -->
+        <section class="page-hero" aria-label="En-tête espace membre">
+            <div class="section-container">
+                <nav aria-label="Fil d'Ariane" class="breadcrumb">
+                    <ol>
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li aria-current="page">Espace Membre</li>
+                    </ol>
+                </nav>
+                <h1>👋 Bienvenue, NightSlayer !</h1>
+                <p class="page-description">Gère ton profil, tes équipes et tes inscriptions aux tournois depuis ton espace personnel.</p>
+            </div>
+        </section>
+
+        <!-- ======== NAVIGATION ESPACE MEMBRE ======== -->
+        <nav class="member-nav" aria-label="Navigation espace membre">
+            <div class="section-container">
+                <ul class="member-nav-list">
+                    <li><a href="#dashboard" class="member-nav-link active">📊 Tableau de bord</a></li>
+                    <li><a href="#mes-reservations" class="member-nav-link">📋 Mes réservations</a></li>
+                    <li><a href="#mon-profil" class="member-nav-link">👤 Mon profil</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- ======== TABLEAU DE BORD ======== -->
+        <section id="dashboard" aria-labelledby="titre-dashboard">
+            <div class="section-container">
+                <h2 id="titre-dashboard">📊 Tableau de bord</h2>
+
+                <!-- Résumé rapide -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-icon">🎮</span>
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">Tournois inscrits</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">👥</span>
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">Équipe active</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">🏆</span>
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Tournois gagnés</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">⭐</span>
+                        <span class="stat-number">#1</span>
+                        <span class="stat-label">Classement</span>
+                    </div>
+                </div>
+
+                <!-- Prochains tournois inscrits -->
+                <div class="dashboard-section">
+                    <h3>⏱️ Tes prochains tournois</h3>
+                    <div class="cards-grid">
+                        <article class="card card-tournoi card-compact">
+                            <div class="card-badge badge-en-cours">En cours</div>
+                            <div class="card-body">
+                                <h4 class="card-title">League of Legends - Rift Rivals</h4>
+                                <ul class="card-info-list">
+                                    <li class="card-info">
+                                        <span class="info-icon">📅</span>
+                                        <time datetime="2026-02-15T14:00">15 Fév 2026 - 14h00</time>
+                                    </li>
+                                    <li class="card-info">
+                                        <span class="info-icon">🛡️</span>
+                                        <span>Équipe : Team Phoenix</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-footer">
+                                <a href="tournoi-detail.html" class="btn btn-outline btn-sm">Détails</a>
+                            </div>
+                        </article>
+
+                        <article class="card card-tournoi card-compact">
+                            <div class="card-badge badge-a-venir">À venir</div>
+                            <div class="card-body">
+                                <h4 class="card-title">Valorant - Campus Showdown</h4>
+                                <ul class="card-info-list">
+                                    <li class="card-info">
+                                        <span class="info-icon">📅</span>
+                                        <time datetime="2026-02-20T18:00">20 Fév 2026 - 18h00</time>
+                                    </li>
+                                    <li class="card-info">
+                                        <span class="info-icon">🛡️</span>
+                                        <span>Équipe : Team Phoenix</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-footer">
+                                <a href="tournoi-detail.html" class="btn btn-outline btn-sm">Détails</a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== MES RÉSERVATIONS ======== -->
+        <section id="mes-reservations" aria-labelledby="titre-reservations">
+            <div class="section-container">
+                <h2 id="titre-reservations">📋 Mes réservations</h2>
+
+                <div class="table-responsive">
+                    <table class="reservations-table" aria-label="Mes réservations de tournois">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tournoi</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Équipe</th>
+                                <th scope="col">Statut</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="tournoi-detail.html">LoL - Rift Rivals</a></td>
+                                <td><time datetime="2026-02-15">15 Fév 2026</time></td>
+                                <td>Team Phoenix</td>
+                                <td><span class="status-badge status-confirmed">Confirmée</span></td>
+                                <td>
+                                    <a href="tournoi-detail.html" class="btn btn-outline btn-sm">Voir</a>
+                                    <!-- Bouton annulation : disponible uniquement 24h avant -->
+                                    <!--
+                                    <button type="button" class="btn btn-danger btn-sm">Annuler</button>
+                                    -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="tournoi-detail.html">Valorant - Campus Showdown</a></td>
+                                <td><time datetime="2026-02-20">20 Fév 2026</time></td>
+                                <td>Team Phoenix</td>
+                                <td><span class="status-badge status-confirmed">Confirmée</span></td>
+                                <td>
+                                    <a href="tournoi-detail.html" class="btn btn-outline btn-sm">Voir</a>
+                                    <button type="button" class="btn btn-danger btn-sm">Annuler</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="tournoi-detail.html">CS2 - Tournoi Éclair</a></td>
+                                <td><time datetime="2026-02-10">10 Fév 2026</time></td>
+                                <td>Team Phoenix</td>
+                                <td><span class="status-badge status-termine">Terminé</span></td>
+                                <td>
+                                    <a href="tournoi-detail.html" class="btn btn-outline btn-sm">Résultats</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== MON PROFIL (ÉDITION) ======== -->
+        <section id="mon-profil" aria-labelledby="titre-mon-profil">
+            <div class="section-container">
+                <h2 id="titre-mon-profil">👤 Mon profil</h2>
+
+                <form class="profil-form" method="post" action="espace-membre.html" enctype="multipart/form-data" novalidate>
+                    <!-- Avatar -->
+                    <div class="form-group form-group-avatar">
+                        <label>Avatar</label>
+                        <div class="avatar-upload">
+                            <img src="../img/placeholder-avatar.jpg" alt="Mon avatar actuel" class="current-avatar" loading="lazy">
+                            <div class="avatar-upload-actions">
+                                <label for="avatar-file" class="btn btn-outline btn-sm">Changer l'avatar</label>
+                                <input type="file" id="avatar-file" name="avatar" accept="image/png, image/jpeg, image/webp" class="sr-only">
+                                <small class="form-help">JPG, PNG ou WebP. Max 2 Mo.</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pseudo -->
+                    <div class="form-group">
+                        <label for="edit-pseudo">Pseudo</label>
+                        <input type="text" id="edit-pseudo" name="pseudo" value="NightSlayer" minlength="3" maxlength="20">
+                    </div>
+
+                    <!-- Nom complet -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edit-prenom">Prénom</label>
+                            <input type="text" id="edit-prenom" name="prenom" value="Imed">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-nom">Nom</label>
+                            <input type="text" id="edit-nom" name="nom" value="Kemouche">
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="edit-email">Adresse email</label>
+                        <input type="email" id="edit-email" name="email" value="imed.kemouche@campus.fr">
+                    </div>
+
+                    <!-- Jeu principal -->
+                    <div class="form-group">
+                        <label for="edit-jeu">Jeu principal</label>
+                        <select id="edit-jeu" name="jeu_principal">
+                            <option value="lol" selected>League of Legends</option>
+                            <option value="valorant">Valorant</option>
+                            <option value="cs2">Counter-Strike 2</option>
+                            <option value="fortnite">Fortnite</option>
+                            <option value="rocket-league">Rocket League</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                </form>
+
+                <!-- Changement de mot de passe (séparé) -->
+                <div class="password-section">
+                    <h3>🔒 Changer le mot de passe</h3>
+                    <form class="password-form" method="post" action="espace-membre.html" novalidate>
+                        <div class="form-group">
+                            <label for="current-password">Mot de passe actuel <span class="required">*</span></label>
+                            <input type="password" id="current-password" name="current_password" required autocomplete="current-password">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-password">Nouveau mot de passe <span class="required">*</span></label>
+                            <input type="password" id="new-password" name="new_password" required minlength="8" autocomplete="new-password">
+                            <small class="form-help">Au moins 8 caractères, avec une majuscule et un chiffre.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-new-password">Confirmer le nouveau mot de passe <span class="required">*</span></label>
+                            <input type="password" id="confirm-new-password" name="confirm_new_password" required minlength="8" autocomplete="new-password">
+                        </div>
+                        <button type="submit" class="btn btn-outline">Changer le mot de passe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>🎮 Gaming Campus</h3>
+                <p>La plateforme officielle de tournois gaming du campus.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Navigation</h3>
+                <ul class="footer-nav">
+                    <li><a href="../index.html">Accueil</a></li>
+                    <li><a href="tournois.html">Tournois</a></li>
+                    <li><a href="classement.html">Classement</a></li>
+                    <li><a href="evenements.html">Événements</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Mon Compte</h3>
+                <ul class="footer-nav">
+                    <li><a href="espace-membre.html">Espace Membre</a></li>
+                    <li><a href="profil.html">Mon Profil Public</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Nous suivre</h3>
+                <ul class="social-links">
+                    <li><a href="#" rel="noopener noreferrer" target="_blank">🎧 Discord</a></li>
+                    <li><a href="#" rel="noopener noreferrer" target="_blank">🐦 Twitter</a></li>
+                    <li><a href="#" rel="noopener noreferrer" target="_blank">📷 Instagram</a></li>
+                    <li><a href="#" rel="noopener noreferrer" target="_blank">▶️ YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Gaming Campus - BDE. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
