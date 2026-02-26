@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gestion des tournois - Administration Gaming Campus">
+    <title>Admin - Gestion des Tournois - Gaming Campus</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+    <!-- HEADER ADMIN -->
+    <header id="site-header" class="header-admin">
+        <div class="header-container">
+            <a href="../../index.html" class="logo" aria-label="Accueil Gaming Campus">
+                <span class="logo-icon">🎮</span>
+                <span class="logo-text">Gaming Campus</span>
+                <span class="logo-admin-badge">Admin</span>
+            </a>
+            <nav aria-label="Navigation administration">
+                <ul id="admin-nav" class="nav-list">
+                    <li><a href="dashboard.html" class="nav-link">📊 Dashboard</a></li>
+                    <li><a href="tournois.html" class="nav-link active" aria-current="page">🎮 Tournois</a></li>
+                    <li><a href="utilisateurs.html" class="nav-link">👥 Utilisateurs</a></li>
+                    <li><a href="reservations.html" class="nav-link">📋 Réservations</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions header-actions-logged">
+                <a href="../../index.html" class="btn btn-outline btn-sm">← Retour au site</a>
+                <div class="user-menu">
+                    <img src="../../img/placeholder-avatar.jpg" alt="" class="user-avatar-sm">
+                    <span class="user-pseudo">Admin BDE</span>
+                </div>
+                <a href="../connexion.html" class="btn btn-outline btn-sm">Déconnexion</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main id="main-content">
+
+        <section class="page-hero" aria-label="En-tête gestion tournois">
+            <div class="section-container">
+                <h1>🎮 Gestion des Tournois</h1>
+                <p class="page-description">Ajouter, modifier ou supprimer des tournois. Gérer les dates et les places.</p>
+            </div>
+        </section>
+
+        <!-- ======== FORMULAIRE AJOUT TOURNOI ======== -->
+        <section id="ajouter-tournoi" aria-labelledby="titre-ajouter">
+            <div class="section-container">
+                <h2 id="titre-ajouter">➕ Ajouter un nouveau tournoi</h2>
+
+                <form class="admin-form" method="post" action="tournois.html" enctype="multipart/form-data" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tournoi-nom">Nom du tournoi <span class="required">*</span></label>
+                            <input type="text" id="tournoi-nom" name="nom" required placeholder="Ex: LoL - Rift Rivals">
+                        </div>
+                        <div class="form-group">
+                            <label for="tournoi-jeu">Jeu <span class="required">*</span></label>
+                            <select id="tournoi-jeu" name="jeu" required>
+                                <option value="">Choisir un jeu</option>
+                                <option value="lol">League of Legends</option>
+                                <option value="valorant">Valorant</option>
+                                <option value="cs2">Counter-Strike 2</option>
+                                <option value="fortnite">Fortnite</option>
+                                <option value="rocket-league">Rocket League</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tournoi-date">Date et heure <span class="required">*</span></label>
+                            <input type="datetime-local" id="tournoi-date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tournoi-lieu">Lieu <span class="required">*</span></label>
+                            <input type="text" id="tournoi-lieu" name="lieu" required placeholder="Ex: Salle E-sport - Bâtiment A">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tournoi-places">Nombre de places (équipes) <span class="required">*</span></label>
+                            <input type="number" id="tournoi-places" name="places" required min="2" max="64" placeholder="Ex: 16">
+                        </div>
+                        <div class="form-group">
+                            <label for="tournoi-format">Format</label>
+                            <select id="tournoi-format" name="format">
+                                <option value="5v5">5v5</option>
+                                <option value="3v3">3v3</option>
+                                <option value="2v2">2v2</option>
+                                <option value="1v1">1v1</option>
+                                <option value="battle-royale">Battle Royale</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tournoi-cashprize">Cashprize (€)</label>
+                        <input type="number" id="tournoi-cashprize" name="cashprize" min="0" placeholder="Ex: 500">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tournoi-description">Description</label>
+                        <textarea id="tournoi-description" name="description" rows="5" placeholder="Description du tournoi, règles, format..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tournoi-image">Image du tournoi</label>
+                        <input type="file" id="tournoi-image" name="image" accept="image/png, image/jpeg, image/webp">
+                        <small class="form-help">JPG, PNG ou WebP. Recommandé : 800x400px</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg">Créer le tournoi</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- ======== LISTE DES TOURNOIS (ADMIN) ======== -->
+        <section id="liste-tournois-admin" aria-labelledby="titre-liste-admin">
+            <div class="section-container">
+                <h2 id="titre-liste-admin">📋 Tous les tournois</h2>
+
+                <div class="table-responsive">
+                    <table class="admin-table" aria-label="Liste de tous les tournois">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nom</th>
+                                <th scope="col">Jeu</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Places</th>
+                                <th scope="col">Réservées</th>
+                                <th scope="col">Disponibles</th>
+                                <th scope="col">Statut</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>LoL - Rift Rivals</td>
+                                <td>League of Legends</td>
+                                <td><time datetime="2026-02-15">15/02/2026</time></td>
+                                <td>16</td>
+                                <td>12</td>
+                                <td>4</td>
+                                <td><span class="status-badge status-en-cours">En cours</span></td>
+                                <td class="actions-cell">
+                                    <button type="button" class="btn btn-outline btn-sm" title="Ajouter des places">➕ Places</button>
+                                    <button type="button" class="btn btn-outline btn-sm" title="Retirer des places">➖ Places</button>
+                                    <button type="button" class="btn btn-danger btn-sm" title="Supprimer le tournoi">🗑️ Suppr.</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Valorant - Showdown</td>
+                                <td>Valorant</td>
+                                <td><time datetime="2026-02-20">20/02/2026</time></td>
+                                <td>16</td>
+                                <td>6</td>
+                                <td>10</td>
+                                <td><span class="status-badge status-a-venir">À venir</span></td>
+                                <td class="actions-cell">
+                                    <button type="button" class="btn btn-outline btn-sm">➕ Places</button>
+                                    <button type="button" class="btn btn-outline btn-sm">➖ Places</button>
+                                    <button type="button" class="btn btn-danger btn-sm">🗑️ Suppr.</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>CS2 - Night Tournament</td>
+                                <td>Counter-Strike 2</td>
+                                <td><time datetime="2026-02-25">25/02/2026</time></td>
+                                <td>8</td>
+                                <td>2</td>
+                                <td>6</td>
+                                <td><span class="status-badge status-a-venir">À venir</span></td>
+                                <td class="actions-cell">
+                                    <button type="button" class="btn btn-outline btn-sm">➕ Places</button>
+                                    <button type="button" class="btn btn-outline btn-sm">➖ Places</button>
+                                    <button type="button" class="btn btn-danger btn-sm">🗑️ Suppr.</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Rocket League - Cup</td>
+                                <td>Rocket League</td>
+                                <td><time datetime="2026-03-01">01/03/2026</time></td>
+                                <td>12</td>
+                                <td>0</td>
+                                <td>12</td>
+                                <td><span class="status-badge status-a-venir">À venir</span></td>
+                                <td class="actions-cell">
+                                    <button type="button" class="btn btn-outline btn-sm">➕ Places</button>
+                                    <button type="button" class="btn btn-outline btn-sm">➖ Places</button>
+                                    <button type="button" class="btn btn-danger btn-sm">🗑️ Suppr.</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>CS2 - Tournoi Éclair</td>
+                                <td>Counter-Strike 2</td>
+                                <td><time datetime="2026-02-10">10/02/2026</time></td>
+                                <td>8</td>
+                                <td>8</td>
+                                <td>0</td>
+                                <td><span class="status-badge status-termine">Terminé</span></td>
+                                <td class="actions-cell">
+                                    <button type="button" class="btn btn-danger btn-sm">🗑️ Suppr.</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER ADMIN -->
+    <footer id="site-footer" class="footer-admin">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Gaming Campus - BDE. Interface d'administration.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
