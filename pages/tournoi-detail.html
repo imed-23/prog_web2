@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Détails du tournoi League of Legends - Rift Rivals. Dates, équipes inscrites, places restantes et inscription.">
+    <title>League of Legends - Rift Rivals - Gaming Campus</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <!-- HEADER - include PHP : header.php -->
+    <header id="site-header">
+        <div class="header-container">
+            <a href="../index.html" class="logo" aria-label="Accueil Gaming Campus">
+                <span class="logo-icon">🎮</span>
+                <span class="logo-text">Gaming Campus</span>
+            </a>
+            <nav aria-label="Navigation principale">
+                <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+                <ul id="main-nav" class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="tournois.html" class="nav-link active">Tournois</a></li>
+                    <li><a href="classement.html" class="nav-link">Classement</a></li>
+                    <li><a href="evenements.html" class="nav-link">Événements</a></li>
+                    <li><a href="participants.html" class="nav-link">Participants</a></li>
+                    <li><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="connexion.html" class="btn btn-outline">Connexion</a>
+                <a href="inscription.html" class="btn btn-primary">Inscription</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main id="main-content">
+
+        <!-- ======== EN-TÊTE TOURNOI ======== -->
+        <section class="page-hero tournoi-hero" aria-label="En-tête du tournoi">
+            <div class="section-container">
+                <nav aria-label="Fil d'Ariane" class="breadcrumb">
+                    <ol>
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="tournois.html">Tournois</a></li>
+                        <li aria-current="page">League of Legends - Rift Rivals</li>
+                    </ol>
+                </nav>
+                <div class="card-badge badge-en-cours">En cours</div>
+                <h1>League of Legends - Rift Rivals</h1>
+                <p class="page-description">Le plus grand tournoi LoL du campus. 16 équipes s'affrontent pour la gloire et 500€ de cashprize.</p>
+            </div>
+        </section>
+
+        <!-- ======== INFOS PRINCIPALES DU TOURNOI ======== -->
+        <section id="tournoi-infos" aria-labelledby="titre-infos-tournoi">
+            <div class="section-container">
+                <h2 id="titre-infos-tournoi" class="sr-only">Informations du tournoi</h2>
+
+                <div class="tournoi-detail-grid">
+
+                    <!-- Colonne gauche : Détails -->
+                    <div class="tournoi-detail-main">
+                        <!-- Image banner -->
+                        <figure class="tournoi-banner">
+                            <img src="../img/placeholder-game.jpg" alt="Bannière League of Legends - Rift Rivals" loading="lazy">
+                        </figure>
+
+                        <!-- Description -->
+                        <div class="tournoi-description">
+                            <h3>À propos du tournoi</h3>
+                            <p>Le Rift Rivals est LE tournoi phare du semestre ! Réunissant les meilleures équipes du campus, ce tournoi promet des matchs intenses sur la Faille de l'Invocateur.</p>
+                            <p>Chaque équipe est composée de 5 joueurs. Les matchs se déroulent en Best-of-3 pour les phases de poules, puis en Best-of-5 à partir des demi-finales.</p>
+
+                            <h4>Règles du tournoi</h4>
+                            <ul>
+                                <li>Équipes de 5 joueurs (+ 1 remplaçant autorisé)</li>
+                                <li>Mode : Faille de l'Invocateur - Draft Tournament</li>
+                                <li>Phases de poules : Bo3</li>
+                                <li>Demi-finales et Finale : Bo5</li>
+                                <li>Anti-triche obligatoire</li>
+                                <li>Présence en salle obligatoire pour les finales</li>
+                            </ul>
+
+                            <h4>Répartition des prix</h4>
+                            <dl class="prizes-list">
+                                <dt>🥇 1ère place</dt>
+                                <dd>300€ + Trophée</dd>
+                                <dt>🥈 2ème place</dt>
+                                <dd>150€</dd>
+                                <dt>🥉 3ème place</dt>
+                                <dd>50€</dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <!-- Colonne droite : Sidebar infos rapides -->
+                    <aside class="tournoi-detail-sidebar">
+                        <div class="sidebar-card">
+                            <h3>Informations rapides</h3>
+                            <dl class="info-details">
+                                <dt>📅 Date</dt>
+                                <dd><time datetime="2026-02-15T14:00">15 Février 2026 - 14h00</time></dd>
+
+                                <dt>📍 Lieu</dt>
+                                <dd>Salle E-sport - Bâtiment A</dd>
+
+                                <dt>🎮 Jeu</dt>
+                                <dd>League of Legends</dd>
+
+                                <dt>👥 Format</dt>
+                                <dd>5v5 - 16 équipes max</dd>
+
+                                <dt>🏆 Cashprize</dt>
+                                <dd>500€</dd>
+
+                                <dt>📊 Statut</dt>
+                                <dd><span class="status-badge status-en-cours">En cours</span></dd>
+                            </dl>
+                        </div>
+
+                        <div class="sidebar-card">
+                            <h3>Places disponibles</h3>
+                            <div class="card-places">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                                <p class="places-detail"><strong>12</strong> / 16 équipes inscrites</p>
+                                <p class="places-restantes">4 places restantes</p>
+                            </div>
+                            <!-- Bouton d'inscription (visible pour les membres connectés) -->
+                            <a href="inscription.html" class="btn btn-primary btn-block btn-lg">Inscrire mon équipe</a>
+                        </div>
+
+                        <div class="sidebar-card">
+                            <h3>Organisateur</h3>
+                            <p>BDE Gaming Campus</p>
+                            <p>Contact : <a href="mailto:bde@gamingcampus.fr">bde@gamingcampus.fr</a></p>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== ÉQUIPES INSCRITES ======== -->
+        <section id="equipes-inscrites" aria-labelledby="titre-equipes">
+            <div class="section-container">
+                <h2 id="titre-equipes">👥 Équipes inscrites (12/16)</h2>
+
+                <div class="cards-grid cards-grid-sm">
+                    <article class="card card-equipe">
+                        <div class="card-body">
+                            <img src="../img/placeholder-avatar.jpg" alt="Logo Team Phoenix" class="equipe-avatar" loading="lazy">
+                            <h3 class="card-title">Team Phoenix</h3>
+                            <p class="equipe-capitaine">Capitaine : <strong>NightSlayer</strong></p>
+                            <p class="equipe-membres">5 joueurs</p>
+                        </div>
+                    </article>
+
+                    <article class="card card-equipe">
+                        <div class="card-body">
+                            <img src="../img/placeholder-avatar.jpg" alt="Logo Les Dragons" class="equipe-avatar" loading="lazy">
+                            <h3 class="card-title">Les Dragons</h3>
+                            <p class="equipe-capitaine">Capitaine : <strong>DragonFire</strong></p>
+                            <p class="equipe-membres">5 joueurs</p>
+                        </div>
+                    </article>
+
+                    <article class="card card-equipe">
+                        <div class="card-body">
+                            <img src="../img/placeholder-avatar.jpg" alt="Logo Shadow Gaming" class="equipe-avatar" loading="lazy">
+                            <h3 class="card-title">Shadow Gaming</h3>
+                            <p class="equipe-capitaine">Capitaine : <strong>ShadowX</strong></p>
+                            <p class="equipe-membres">5 joueurs</p>
+                        </div>
+                    </article>
+
+                    <article class="card card-equipe">
+                        <div class="card-body">
+                            <img src="../img/placeholder-avatar.jpg" alt="Logo Cyber Wolves" class="equipe-avatar" loading="lazy">
+                            <h3 class="card-title">Cyber Wolves</h3>
+                            <p class="equipe-capitaine">Capitaine : <strong>CyberWolf</strong></p>
+                            <p class="equipe-membres">5 joueurs</p>
+                        </div>
+                    </article>
+
+                    <article class="card card-equipe">
+                        <div class="card-body">
+                            <img src="../img/placeholder-avatar.jpg" alt="Logo Inferno Squad" class="equipe-avatar" loading="lazy">
+                            <h3 class="card-title">Inferno Squad</h3>
+                            <p class="equipe-capitaine">Capitaine : <strong>BlazeMaster</strong></p>
+                            <p class="equipe-membres">5 joueurs</p>
+                        </div>
+                    </article>
+
+                    <article class="card card-equipe">
+                        <div class="card-body">
+                            <img src="../img/placeholder-avatar.jpg" alt="Logo Arctic Fox" class="equipe-avatar" loading="lazy">
+                            <h3 class="card-title">Arctic Fox</h3>
+                            <p class="equipe-capitaine">Capitaine : <strong>FrostByte</strong></p>
+                            <p class="equipe-membres">5 joueurs</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== BRACKET / ARBRE DU TOURNOI ======== -->
+        <section id="bracket-tournoi" aria-labelledby="titre-bracket">
+            <div class="section-container">
+                <h2 id="titre-bracket">📊 Arbre du Tournoi</h2>
+                <p class="section-description">L'arbre du tournoi sera affiché ici dès le début des matchs.</p>
+
+                <div class="bracket-placeholder">
+                    <p>🔒 L'arbre du tournoi sera généré automatiquement au début de la phase éliminatoire.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER - include PHP : footer.php -->
+    <footer id="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>🎮 Gaming Campus</h3>
+                <p>La plateforme officielle de tournois gaming du campus.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Navigation</h3>
+                <ul class="footer-nav">
+                    <li><a href="../index.html">Accueil</a></li>
+                    <li><a href="tournois.html">Tournois</a></li>
+                    <li><a href="classement.html">Classement</a></li>
+                    <li><a href="evenements.html">Événements</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Mon Compte</h3>
+                <ul class="footer-nav">
+                    <li><a href="connexion.html">Connexion</a></li>
+                    <li><a href="inscription.html">Inscription</a></li>
+                    <li><a href="espace-membre.html">Espace Membre</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Nous suivre</h3>
+                <ul class="social-links">
+                    <li><a href="#" aria-label="Discord" rel="noopener noreferrer" target="_blank">🎧 Discord</a></li>
+                    <li><a href="#" aria-label="Twitter" rel="noopener noreferrer" target="_blank">🐦 Twitter</a></li>
+                    <li><a href="#" aria-label="Instagram" rel="noopener noreferrer" target="_blank">📷 Instagram</a></li>
+                    <li><a href="#" aria-label="YouTube" rel="noopener noreferrer" target="_blank">▶️ YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Gaming Campus - BDE. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
