@@ -6,6 +6,7 @@
     <meta name="description" content="Tableau de bord administration - Gaming Campus">
     <title>Admin - Tableau de bord - Gaming Campus</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/admin.css">
 </head>
 <body>
 
@@ -28,7 +29,7 @@
             <div class="header-actions header-actions-logged">
                 <a href="../../index.html" class="btn btn-outline btn-sm">← Retour au site</a>
                 <div class="user-menu">
-                    <img src="../../img/placeholder-avatar.jpg" alt="" class="user-avatar-sm">
+                    <div class="user-avatar-sm user-avatar-empty" aria-hidden="true">👤</div>
                     <span class="user-pseudo">Admin BDE</span>
                 </div>
                 <a href="../connexion.html" class="btn btn-outline btn-sm">Déconnexion</a>
@@ -54,36 +55,36 @@
                 <div class="stats-grid stats-grid-admin">
                     <div class="stat-card stat-card-primary">
                         <span class="stat-icon">🎮</span>
-                        <span class="stat-number">12</span>
+                        <span class="stat-number">0</span>
                         <span class="stat-label">Tournois totaux</span>
-                        <small>4 actifs · 2 à venir · 6 terminés</small>
+                        <small>Aucun tournoi créé</small>
                     </div>
                     <div class="stat-card stat-card-success">
                         <span class="stat-icon">👥</span>
-                        <span class="stat-number">256</span>
+                        <span class="stat-number">0</span>
                         <span class="stat-label">Joueurs inscrits</span>
-                        <small>+18 cette semaine</small>
+                        <small>Aucun joueur inscrit</small>
                     </div>
                     <div class="stat-card stat-card-warning">
                         <span class="stat-icon">📋</span>
-                        <span class="stat-number">48</span>
+                        <span class="stat-number">0</span>
                         <span class="stat-label">Réservations actives</span>
-                        <small>6 en attente</small>
+                        <small>Aucune réservation</small>
                     </div>
                     <div class="stat-card stat-card-info">
                         <span class="stat-icon">🪑</span>
-                        <span class="stat-number">34</span>
+                        <span class="stat-number">—</span>
                         <span class="stat-label">Places disponibles</span>
-                        <small>Sur 82 au total</small>
+                        <small>Aucun tournoi créé</small>
                     </div>
                     <div class="stat-card">
                         <span class="stat-icon">🛡️</span>
-                        <span class="stat-number">48</span>
+                        <span class="stat-number">0</span>
                         <span class="stat-label">Équipes</span>
                     </div>
                     <div class="stat-card">
                         <span class="stat-icon">👤</span>
-                        <span class="stat-number">3</span>
+                        <span class="stat-number">1</span>
                         <span class="stat-label">Administrateurs</span>
                     </div>
                 </div>
@@ -108,43 +109,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Les données seront chargées depuis la base de données -->
                             <tr>
-                                <td><a href="tournois.html">LoL - Rift Rivals</a></td>
-                                <td><time datetime="2026-02-15">15 Fév</time></td>
-                                <td>16</td>
-                                <td>12</td>
-                                <td><strong>4</strong></td>
-                                <td>
-                                    <div class="progress-bar progress-bar-sm" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-fill" style="width: 75%"></div>
+                                <td colspan="6" class="empty-state-cell">
+                                    <div class="empty-state">
+                                        <span class="empty-state-icon">🪑</span>
+                                        <p>Aucun tournoi créé pour le moment.</p>
+                                        <a href="tournois.html" class="btn btn-primary btn-sm">➕ Créer un tournoi</a>
                                     </div>
-                                    75%
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="tournois.html">Valorant - Showdown</a></td>
-                                <td><time datetime="2026-02-20">20 Fév</time></td>
-                                <td>16</td>
-                                <td>6</td>
-                                <td><strong>10</strong></td>
-                                <td>
-                                    <div class="progress-bar progress-bar-sm" role="progressbar" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-fill" style="width: 37%"></div>
-                                    </div>
-                                    37%
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="tournois.html">CS2 - Night Tournament</a></td>
-                                <td><time datetime="2026-02-25">25 Fév</time></td>
-                                <td>8</td>
-                                <td>2</td>
-                                <td><strong>6</strong></td>
-                                <td>
-                                    <div class="progress-bar progress-bar-sm" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                        <div class="progress-fill" style="width: 25%"></div>
-                                    </div>
-                                    25%
                                 </td>
                             </tr>
                         </tbody>
@@ -171,39 +143,12 @@
                 <h2 id="titre-activites">🕐 Dernières activités</h2>
 
                 <ul class="activity-feed">
+                    <!-- Les dernières activités seront affichées ici automatiquement -->
                     <li class="activity-item">
-                        <span class="activity-icon">📋</span>
+                        <span class="activity-icon">ℹ️</span>
                         <div class="activity-content">
-                            <p><strong>Team Phoenix</strong> s'est inscrite au tournoi <strong>Valorant - Campus Showdown</strong></p>
-                            <time datetime="2026-02-12T10:30">Aujourd'hui à 10h30</time>
-                        </div>
-                    </li>
-                    <li class="activity-item">
-                        <span class="activity-icon">👤</span>
-                        <div class="activity-content">
-                            <p>Nouveau capitaine inscrit : <strong>PixelSniper</strong></p>
-                            <time datetime="2026-02-12T09:15">Aujourd'hui à 09h15</time>
-                        </div>
-                    </li>
-                    <li class="activity-item">
-                        <span class="activity-icon">🏆</span>
-                        <div class="activity-content">
-                            <p>Tournoi <strong>CS2 - Tournoi Éclair</strong> terminé. Vainqueur : <strong>Team Phoenix</strong></p>
-                            <time datetime="2026-02-10T22:00">10 Fév à 22h00</time>
-                        </div>
-                    </li>
-                    <li class="activity-item">
-                        <span class="activity-icon">❌</span>
-                        <div class="activity-content">
-                            <p><strong>Cyber Wolves</strong> a annulé sa réservation pour <strong>CS2 - Night Tournament</strong></p>
-                            <time datetime="2026-02-10T14:00">10 Fév à 14h00</time>
-                        </div>
-                    </li>
-                    <li class="activity-item">
-                        <span class="activity-icon">🎮</span>
-                        <div class="activity-content">
-                            <p>Nouveau tournoi créé : <strong>CS2 - Night Tournament</strong> (8 places)</p>
-                            <time datetime="2026-02-09T16:00">9 Fév à 16h00</time>
+                            <p>Aucune activité enregistrée pour le moment.</p>
+                            <small class="empty-state-sub">Les inscriptions, réservations et changements apparaîtront ici.</small>
                         </div>
                     </li>
                 </ul>

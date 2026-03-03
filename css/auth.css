@@ -1,0 +1,81 @@
+/* ============================================
+   AUTH.CSS — Pages connexion & inscription
+   ============================================ */
+
+/* Auth page background glow */
+.auth-section {
+    background:
+        radial-gradient(ellipse at 50% 30%, rgba(230, 57, 70, 0.04) 0%, transparent 60%),
+        var(--bg-color);
+}
+
+/* Auth card border glow on focus-within */
+.auth-card:focus-within {
+    border-color: var(--border-glow);
+    box-shadow: 0 0 30px rgba(230, 57, 70, 0.08);
+}
+
+/* Submit button full glow */
+.auth-form .btn-primary:hover {
+    box-shadow: var(--shadow-glow-strong);
+}
+
+/* ── Avatar upload ── */
+.form-group-avatar .avatar-upload {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.avatar-preview-wrapper {
+    flex-shrink: 0;
+}
+
+.avatar-preview {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color, rgba(255,255,255,0.12));
+    background: rgba(255,255,255,0.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.2s;
+}
+
+.avatar-preview:hover {
+    border-color: var(--primary-color, #e63946);
+}
+
+.avatar-preview-placeholder {
+    font-size: 2.5rem;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+}
+
+.avatar-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.avatar-upload-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.avatar-upload-actions label.btn {
+    cursor: pointer;
+    width: fit-content;
+}
+
+/* Utility: hidden */
+.hidden {
+    display: none !important;
+}

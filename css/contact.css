@@ -1,0 +1,31 @@
+/* ============================================
+   CONTACT.CSS — Page contact spécifique
+   ============================================ */
+
+/* Contact form wrapper */
+.contact-form-wrapper {
+    max-width: 100%;
+}
+
+/* Sidebar cards spacing */
+.contact-info .sidebar-card + .sidebar-card {
+    margin-top: 0;
+}
+
+/* Social links in contact page */
+.social-links-vertical a {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.social-links-vertical li:last-child a {
+    border-bottom: none;
+}
+
+/* Address styling */
+.contact-info address p {
+    margin-bottom: var(--spacing-xs);
+}

@@ -6,6 +6,7 @@
     <meta name="description" content="Détails du tournoi League of Legends - Rift Rivals. Dates, équipes inscrites, places restantes et inscription.">
     <title>League of Legends - Rift Rivals - Gaming Campus</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tournois.css">
 </head>
 <body>
 
@@ -70,7 +71,7 @@
                     <div class="tournoi-detail-main">
                         <!-- Image banner -->
                         <figure class="tournoi-banner">
-                            <img src="../img/placeholder-game.jpg" alt="Bannière League of Legends - Rift Rivals" loading="lazy">
+                            <img src="../img/lol_cover.webp" alt="Bannière League of Legends - Rift Rivals" loading="lazy">
                         </figure>
 
                         <!-- Description -->
@@ -152,62 +153,16 @@
         <!-- ======== ÉQUIPES INSCRITES ======== -->
         <section id="equipes-inscrites" aria-labelledby="titre-equipes">
             <div class="section-container">
-                <h2 id="titre-equipes">👥 Équipes inscrites (12/16)</h2>
+                <h2 id="titre-equipes">👥 Équipes inscrites</h2>
 
-                <div class="cards-grid cards-grid-sm">
-                    <article class="card card-equipe">
-                        <div class="card-body">
-                            <img src="../img/placeholder-avatar.jpg" alt="Logo Team Phoenix" class="equipe-avatar" loading="lazy">
-                            <h3 class="card-title">Team Phoenix</h3>
-                            <p class="equipe-capitaine">Capitaine : <strong>NightSlayer</strong></p>
-                            <p class="equipe-membres">5 joueurs</p>
-                        </div>
-                    </article>
-
-                    <article class="card card-equipe">
-                        <div class="card-body">
-                            <img src="../img/placeholder-avatar.jpg" alt="Logo Les Dragons" class="equipe-avatar" loading="lazy">
-                            <h3 class="card-title">Les Dragons</h3>
-                            <p class="equipe-capitaine">Capitaine : <strong>DragonFire</strong></p>
-                            <p class="equipe-membres">5 joueurs</p>
-                        </div>
-                    </article>
-
-                    <article class="card card-equipe">
-                        <div class="card-body">
-                            <img src="../img/placeholder-avatar.jpg" alt="Logo Shadow Gaming" class="equipe-avatar" loading="lazy">
-                            <h3 class="card-title">Shadow Gaming</h3>
-                            <p class="equipe-capitaine">Capitaine : <strong>ShadowX</strong></p>
-                            <p class="equipe-membres">5 joueurs</p>
-                        </div>
-                    </article>
-
-                    <article class="card card-equipe">
-                        <div class="card-body">
-                            <img src="../img/placeholder-avatar.jpg" alt="Logo Cyber Wolves" class="equipe-avatar" loading="lazy">
-                            <h3 class="card-title">Cyber Wolves</h3>
-                            <p class="equipe-capitaine">Capitaine : <strong>CyberWolf</strong></p>
-                            <p class="equipe-membres">5 joueurs</p>
-                        </div>
-                    </article>
-
-                    <article class="card card-equipe">
-                        <div class="card-body">
-                            <img src="../img/placeholder-avatar.jpg" alt="Logo Inferno Squad" class="equipe-avatar" loading="lazy">
-                            <h3 class="card-title">Inferno Squad</h3>
-                            <p class="equipe-capitaine">Capitaine : <strong>BlazeMaster</strong></p>
-                            <p class="equipe-membres">5 joueurs</p>
-                        </div>
-                    </article>
-
-                    <article class="card card-equipe">
-                        <div class="card-body">
-                            <img src="../img/placeholder-avatar.jpg" alt="Logo Arctic Fox" class="equipe-avatar" loading="lazy">
-                            <h3 class="card-title">Arctic Fox</h3>
-                            <p class="equipe-capitaine">Capitaine : <strong>FrostByte</strong></p>
-                            <p class="equipe-membres">5 joueurs</p>
-                        </div>
-                    </article>
+                <!-- Les équipes inscrites seront chargées depuis la base de données -->
+                <div class="cards-grid cards-grid-sm" id="liste-equipes">
+                    <div class="empty-state empty-state-full">
+                        <span class="empty-state-icon">🛡️</span>
+                        <p>Aucune équipe inscrite pour le moment.</p>
+                        <p class="empty-state-sub">Les équipes s'afficheront ici dès leur inscription à ce tournoi.</p>
+                        <a href="inscription.html" class="btn btn-primary btn-sm">Inscrire mon équipe</a>
+                    </div>
                 </div>
             </div>
         </section>

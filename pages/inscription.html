@@ -6,6 +6,7 @@
     <meta name="description" content="Créer un compte sur Gaming Campus. Inscris-toi pour rejoindre les tournois et inscrire ton équipe.">
     <title>Inscription - Gaming Campus</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
 </head>
 <body>
 
@@ -53,12 +54,33 @@
                         <p>Rejoins la communauté gaming du campus et inscris ton équipe aux tournois !</p>
                     </div>
 
-                    <form class="auth-form" method="post" action="inscription.html" novalidate>
+                    <form class="auth-form" method="post" action="inscription.html" enctype="multipart/form-data" novalidate>
+
+                        <!-- Avatar / Photo de profil -->
+                        <div class="form-group form-group-avatar">
+                            <label>Avatar / Photo de profil</label>
+                            <div class="avatar-upload">
+                                <div class="avatar-preview-wrapper">
+                                    <div class="avatar-preview" id="avatar-preview" aria-label="Aperçu de ton avatar">
+                                        <span class="avatar-preview-placeholder" id="avatar-placeholder">👤</span>
+                                        <img id="avatar-preview-img" src="" alt="Aperçu de ton avatar" class="hidden" loading="lazy">
+                                    </div>
+                                </div>
+                                <div class="avatar-upload-actions">
+                                    <label for="avatar-file" class="btn btn-outline">
+                                        📷 Choisir une image
+                                    </label>
+                                    <input type="file" id="avatar-file" name="avatar" accept="image/png, image/jpeg, image/webp, image/gif" class="sr-only">
+                                    <small class="form-help">JPG, PNG, WebP ou GIF. Max 2 Mo. Format carré recommandé.</small>
+                                    <button type="button" id="avatar-remove-btn" class="btn btn-sm btn-outline hidden" aria-label="Supprimer l'avatar">✕ Supprimer</button>
+                                </div>
+                            </div>
+                        </div>
 
                         <!-- Pseudo -->
                         <div class="form-group">
                             <label for="pseudo">Pseudo (nom de joueur) <span class="required" aria-label="obligatoire">*</span></label>
-                            <input type="text" id="pseudo" name="pseudo" required placeholder="Ex: NightSlayer" autocomplete="username" minlength="3" maxlength="20">
+                            <input type="text" id="pseudo" name="pseudo" required placeholder="Ton pseudo" autocomplete="username" minlength="3" maxlength="20">
                             <small class="form-help">Entre 3 et 20 caractères. Ce sera ton identifiant public.</small>
                         </div>
 
@@ -66,11 +88,11 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="prenom">Prénom <span class="required" aria-label="obligatoire">*</span></label>
-                                <input type="text" id="prenom" name="prenom" required placeholder="Imed" autocomplete="given-name">
+                                <input type="text" id="prenom" name="prenom" required placeholder="Ton prénom" autocomplete="given-name">
                             </div>
                             <div class="form-group">
                                 <label for="nom">Nom <span class="required" aria-label="obligatoire">*</span></label>
-                                <input type="text" id="nom" name="nom" required placeholder="Kemouche" autocomplete="family-name">
+                                <input type="text" id="nom" name="nom" required placeholder="Ton nom" autocomplete="family-name">
                             </div>
                         </div>
 
@@ -169,6 +191,46 @@
             <p>&copy; 2026 Gaming Campus - BDE. Tous droits réservés.</p>
         </div>
     </footer>
+    <script>
+        /* ── Avatar upload preview ── */
+        (function () {
+            const fileInput   = document.getElementById('avatar-file');
+            const previewImg  = document.getElementById('avatar-preview-img');
+            const placeholder = document.getElementById('avatar-placeholder');
+            const removeBtn   = document.getElementById('avatar-remove-btn');
 
+            if (!fileInput) return;
+
+            fileInput.addEventListener('change', function () {
+                const file = this.files[0];
+                if (!file) return;
+
+                /* Validate size (2 MB) */
+                if (file.size > 2 * 1024 * 1024) {
+                    alert('L\'image est trop lourde. Maximum 2 Mo.');
+                    this.value = '';
+                    return;
+                }
+
+                /* Show preview */
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    previewImg.src = e.target.result;
+                    previewImg.classList.remove('hidden');
+                    placeholder.classList.add('hidden');
+                    removeBtn.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            });
+
+            removeBtn.addEventListener('click', function () {
+                fileInput.value = '';
+                previewImg.src = '';
+                previewImg.classList.add('hidden');
+                placeholder.classList.remove('hidden');
+                removeBtn.classList.add('hidden');
+            });
+        })();
+    </script>
 </body>
 </html>

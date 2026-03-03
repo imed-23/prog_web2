@@ -6,6 +6,7 @@
     <meta name="description" content="Classement général des joueurs et équipes. Top joueurs, statistiques et badges de rang.">
     <title>Classement - Gaming Campus</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/classement.css">
 </head>
 <body>
 
@@ -62,43 +63,52 @@
             <div class="section-container">
                 <h2 id="titre-podium">🏅 Podium</h2>
 
+                <!-- Le podium sera rempli automatiquement depuis la base de données -->
                 <div class="podium-grid">
                     <!-- 2ème place -->
                     <article class="podium-card podium-silver">
                         <span class="podium-rank">🥈</span>
-                        <img src="../img/placeholder-avatar.jpg" alt="Avatar DragonFire" class="podium-avatar" loading="lazy">
-                        <h3>DragonFire</h3>
-                        <p class="podium-team">Les Dragons</p>
+                        <div class="podium-avatar podium-avatar-empty" aria-hidden="true">
+                            <span class="avatar-placeholder-icon">👤</span>
+                        </div>
+                        <h3 class="podium-name-placeholder">—</h3>
+                        <p class="podium-team podium-team-placeholder">Aucune équipe</p>
                         <div class="podium-stats">
-                            <span class="stat"><strong>21</strong> victoires</span>
-                            <span class="stat"><strong>2 180</strong> points</span>
+                            <span class="stat"><strong>—</strong> victoires</span>
+                            <span class="stat"><strong>—</strong> points</span>
                         </div>
                     </article>
 
                     <!-- 1ère place -->
                     <article class="podium-card podium-gold">
                         <span class="podium-rank">🥇</span>
-                        <img src="../img/placeholder-avatar.jpg" alt="Avatar NightSlayer" class="podium-avatar" loading="lazy">
-                        <h3>NightSlayer</h3>
-                        <p class="podium-team">Team Phoenix</p>
+                        <div class="podium-avatar podium-avatar-empty" aria-hidden="true">
+                            <span class="avatar-placeholder-icon">👤</span>
+                        </div>
+                        <h3 class="podium-name-placeholder">—</h3>
+                        <p class="podium-team podium-team-placeholder">Aucune équipe</p>
                         <div class="podium-stats">
-                            <span class="stat"><strong>24</strong> victoires</span>
-                            <span class="stat"><strong>2 450</strong> points</span>
+                            <span class="stat"><strong>—</strong> victoires</span>
+                            <span class="stat"><strong>—</strong> points</span>
                         </div>
                     </article>
 
                     <!-- 3ème place -->
                     <article class="podium-card podium-bronze">
                         <span class="podium-rank">🥉</span>
-                        <img src="../img/placeholder-avatar.jpg" alt="Avatar ShadowX" class="podium-avatar" loading="lazy">
-                        <h3>ShadowX</h3>
-                        <p class="podium-team">Shadow Gaming</p>
+                        <div class="podium-avatar podium-avatar-empty" aria-hidden="true">
+                            <span class="avatar-placeholder-icon">👤</span>
+                        </div>
+                        <h3 class="podium-name-placeholder">—</h3>
+                        <p class="podium-team podium-team-placeholder">Aucune équipe</p>
                         <div class="podium-stats">
-                            <span class="stat"><strong>19</strong> victoires</span>
-                            <span class="stat"><strong>1 950</strong> points</span>
+                            <span class="stat"><strong>—</strong> victoires</span>
+                            <span class="stat"><strong>—</strong> points</span>
                         </div>
                     </article>
                 </div>
+
+                <p class="empty-state-note">🔒 Le podium sera mis à jour automatiquement dès que des joueurs s'inscrivent et participent aux tournois.</p>
             </div>
         </section>
 
@@ -117,182 +127,49 @@
                     </div>
                 </div>
 
-                <!-- Tableau complet -->
+                <!-- Tableau complet - données chargées depuis la base de données -->
                 <div class="table-responsive">
-                    <table class="leaderboard-table leaderboard-full" aria-label="Classement complet des joueurs">
+                    <table id="leaderboard-table" class="leaderboard-table leaderboard-full" aria-label="Classement complet des joueurs">
                         <thead>
                             <tr>
-                                <th scope="col">Rang</th>
+                                <th scope="col" class="sortable" data-col="0" data-type="number" aria-sort="ascending">
+                                    Rang <span class="sort-icon" aria-hidden="true">↕</span>
+                                </th>
                                 <th scope="col">Joueur</th>
-                                <th scope="col">Équipe</th>
-                                <th scope="col">Jeu principal</th>
-                                <th scope="col">Matchs joués</th>
-                                <th scope="col">Victoires</th>
-                                <th scope="col">Défaites</th>
-                                <th scope="col">Win Rate</th>
-                                <th scope="col">Points</th>
+                                <th scope="col" class="sortable" data-col="2" data-type="text">
+                                    Équipe <span class="sort-icon" aria-hidden="true">↕</span>
+                                </th>
+                                <th scope="col" class="sortable" data-col="3" data-type="text">
+                                    Jeu principal <span class="sort-icon" aria-hidden="true">↕</span>
+                                </th>
+                                <th scope="col" class="sortable" data-col="4" data-type="number">
+                                    Matchs joués <span class="sort-icon" aria-hidden="true">↕</span>
+                                </th>
+                                <th scope="col" class="sortable" data-col="5" data-type="number">
+                                    Victoires <span class="sort-icon" aria-hidden="true">↕</span>
+                                </th>
+                                <th scope="col" class="sortable" data-col="6" data-type="number">
+                                    Défaites <span class="sort-icon" aria-hidden="true">↕</span>
+                                </th>
+                                <th scope="col" class="sortable" data-col="7" data-type="percent">
+                                    Win Rate <span class="sort-icon" aria-hidden="true">↕</span>
+                                </th>
+                                <th scope="col" class="sortable" data-col="8" data-type="number">
+                                    Points <span class="sort-icon" aria-hidden="true">↕</span>
+                                </th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="rank-gold">
-                                <td><span class="rank-badge">🥇 1</span></td>
-                                <td>
-                                    <div class="player-cell">
-                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
-                                        <a href="profil.html">NightSlayer</a>
+                        <tbody id="leaderboard-body">
+                            <!-- Les joueurs seront affichés ici une fois inscrits et ayant participé à des tournois -->
+                            <tr class="empty-state-row">
+                                <td colspan="9" class="empty-state-cell">
+                                    <div class="empty-state">
+                                        <span class="empty-state-icon">🏆</span>
+                                        <p>Aucun joueur classé pour le moment.</p>
+                                        <p class="empty-state-sub">Le classement se mettra à jour automatiquement après les premiers tournois.</p>
+                                        <a href="inscription.html" class="btn btn-primary btn-sm">Créer mon compte</a>
                                     </div>
                                 </td>
-                                <td>Team Phoenix</td>
-                                <td>League of Legends</td>
-                                <td>30</td>
-                                <td>24</td>
-                                <td>6</td>
-                                <td><strong>80%</strong></td>
-                                <td><strong>2 450</strong></td>
-                            </tr>
-                            <tr class="rank-silver">
-                                <td><span class="rank-badge">🥈 2</span></td>
-                                <td>
-                                    <div class="player-cell">
-                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
-                                        <a href="profil.html">DragonFire</a>
-                                    </div>
-                                </td>
-                                <td>Les Dragons</td>
-                                <td>League of Legends</td>
-                                <td>28</td>
-                                <td>21</td>
-                                <td>7</td>
-                                <td><strong>75%</strong></td>
-                                <td><strong>2 180</strong></td>
-                            </tr>
-                            <tr class="rank-bronze">
-                                <td><span class="rank-badge">🥉 3</span></td>
-                                <td>
-                                    <div class="player-cell">
-                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
-                                        <a href="profil.html">ShadowX</a>
-                                    </div>
-                                </td>
-                                <td>Shadow Gaming</td>
-                                <td>Valorant</td>
-                                <td>26</td>
-                                <td>19</td>
-                                <td>7</td>
-                                <td><strong>73%</strong></td>
-                                <td><strong>1 950</strong></td>
-                            </tr>
-                            <tr>
-                                <td><span class="rank-badge">4</span></td>
-                                <td>
-                                    <div class="player-cell">
-                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
-                                        <a href="profil.html">CyberWolf</a>
-                                    </div>
-                                </td>
-                                <td>Cyber Wolves</td>
-                                <td>CS2</td>
-                                <td>25</td>
-                                <td>17</td>
-                                <td>8</td>
-                                <td><strong>68%</strong></td>
-                                <td><strong>1 720</strong></td>
-                            </tr>
-                            <tr>
-                                <td><span class="rank-badge">5</span></td>
-                                <td>
-                                    <div class="player-cell">
-                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
-                                        <a href="profil.html">BlazeMaster</a>
-                                    </div>
-                                </td>
-                                <td>Inferno Squad</td>
-                                <td>Valorant</td>
-                                <td>22</td>
-                                <td>15</td>
-                                <td>7</td>
-                                <td><strong>68%</strong></td>
-                                <td><strong>1 580</strong></td>
-                            </tr>
-                            <tr>
-                                <td><span class="rank-badge">6</span></td>
-                                <td>
-                                    <div class="player-cell">
-                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
-                                        <a href="profil.html">FrostByte</a>
-                                    </div>
-                                </td>
-                                <td>Arctic Fox</td>
-                                <td>League of Legends</td>
-                                <td>20</td>
-                                <td>14</td>
-                                <td>6</td>
-                                <td><strong>70%</strong></td>
-                                <td><strong>1 420</strong></td>
-                            </tr>
-                            <tr>
-                                <td><span class="rank-badge">7</span></td>
-                                <td>
-                                    <div class="player-cell">
-                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
-                                        <a href="profil.html">StormRider</a>
-                                    </div>
-                                </td>
-                                <td>Thunder Squad</td>
-                                <td>CS2</td>
-                                <td>18</td>
-                                <td>12</td>
-                                <td>6</td>
-                                <td><strong>67%</strong></td>
-                                <td><strong>1 280</strong></td>
-                            </tr>
-                            <tr>
-                                <td><span class="rank-badge">8</span></td>
-                                <td>
-                                    <div class="player-cell">
-                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
-                                        <a href="profil.html">NeonViper</a>
-                                    </div>
-                                </td>
-                                <td>Venom Esport</td>
-                                <td>Valorant</td>
-                                <td>19</td>
-                                <td>11</td>
-                                <td>8</td>
-                                <td><strong>58%</strong></td>
-                                <td><strong>1 100</strong></td>
-                            </tr>
-                            <tr>
-                                <td><span class="rank-badge">9</span></td>
-                                <td>
-                                    <div class="player-cell">
-                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
-                                        <a href="profil.html">DarkKnight</a>
-                                    </div>
-                                </td>
-                                <td>Night Owls</td>
-                                <td>League of Legends</td>
-                                <td>16</td>
-                                <td>10</td>
-                                <td>6</td>
-                                <td><strong>63%</strong></td>
-                                <td><strong>980</strong></td>
-                            </tr>
-                            <tr>
-                                <td><span class="rank-badge">10</span></td>
-                                <td>
-                                    <div class="player-cell">
-                                        <img src="../img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
-                                        <a href="profil.html">PixelSniper</a>
-                                    </div>
-                                </td>
-                                <td>Pixel Army</td>
-                                <td>CS2</td>
-                                <td>15</td>
-                                <td>9</td>
-                                <td>6</td>
-                                <td><strong>60%</strong></td>
-                                <td><strong>890</strong></td>
                             </tr>
                         </tbody>
                     </table>
@@ -353,6 +230,116 @@
             <p>&copy; 2026 Gaming Campus - BDE. Tous droits réservés.</p>
         </div>
     </footer>
+    <script>
+        /* ── Filter tab buttons ── */
+        (function () {
+            const tabs = document.querySelectorAll('.filter-tabs .tab-btn');
+            tabs.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    tabs.forEach(function (t) {
+                        t.classList.remove('active');
+                        t.setAttribute('aria-selected', 'false');
+                    });
+                    btn.classList.add('active');
+                    btn.setAttribute('aria-selected', 'true');
 
+                    /* Filter visible rows by game (data-game attribute on rows) */
+                    const selectedGame = btn.textContent.trim();
+                    const rows = document.querySelectorAll('#leaderboard-body tr:not(.empty-state-row)');
+                    rows.forEach(function (row) {
+                        const game = row.cells[3] ? row.cells[3].textContent.trim() : '';
+                        if (selectedGame === 'Tous les jeux' || game === selectedGame) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        })();
+
+        /* ── Leaderboard table sort ── */
+        (function () {
+            const table = document.getElementById('leaderboard-table');
+            if (!table) return;
+
+            const tbody        = table.querySelector('tbody');
+            const headers      = table.querySelectorAll('th.sortable');
+            let   currentCol   = -1;
+            let   currentOrder = 'asc';
+
+            /* Parse a cell value based on declared data-type */
+            function parseValue(cell, type) {
+                const raw = cell.textContent.trim();
+                if (type === 'number')  return parseFloat(raw.replace(/[^\d.-]/g, '')) || 0;
+                if (type === 'percent') return parseFloat(raw.replace('%', '')) || 0;
+                return raw.toLowerCase();
+            }
+
+            function sortTable(colIndex, type) {
+                const rows = Array.from(tbody.querySelectorAll('tr:not(.empty-state-row)'));
+                if (rows.length === 0) return;
+
+                /* Toggle order if same column clicked */
+                if (colIndex === currentCol) {
+                    currentOrder = currentOrder === 'asc' ? 'desc' : 'asc';
+                } else {
+                    currentCol   = colIndex;
+                    currentOrder = 'asc';
+                }
+
+                rows.sort(function (a, b) {
+                    const cellA = a.cells[colIndex];
+                    const cellB = b.cells[colIndex];
+                    if (!cellA || !cellB) return 0;
+
+                    const va = parseValue(cellA, type);
+                    const vb = parseValue(cellB, type);
+
+                    let cmp;
+                    if (typeof va === 'number' && typeof vb === 'number') {
+                        cmp = va - vb;
+                    } else {
+                        cmp = String(va).localeCompare(String(vb), 'fr', { sensitivity: 'base' });
+                    }
+                    return currentOrder === 'asc' ? cmp : -cmp;
+                });
+
+                /* Re-append sorted rows */
+                rows.forEach(function (row) { tbody.appendChild(row); });
+
+                /* Update aria-sort and icons */
+                headers.forEach(function (th) {
+                    th.removeAttribute('aria-sort');
+                    const icon = th.querySelector('.sort-icon');
+                    if (icon) icon.textContent = '↕';
+                });
+                const activeHeader = table.querySelector('th.sortable[data-col="' + colIndex + '"]');
+                if (activeHeader) {
+                    activeHeader.setAttribute('aria-sort', currentOrder === 'asc' ? 'ascending' : 'descending');
+                    const icon = activeHeader.querySelector('.sort-icon');
+                    if (icon) icon.textContent = currentOrder === 'asc' ? '↑' : '↓';
+                }
+            }
+
+            headers.forEach(function (th) {
+                th.style.cursor = 'pointer';
+                th.addEventListener('click', function () {
+                    const colIndex = parseInt(this.getAttribute('data-col'), 10);
+                    const type     = this.getAttribute('data-type') || 'text';
+                    sortTable(colIndex, type);
+                });
+
+                /* Keyboard accessibility */
+                th.setAttribute('tabindex', '0');
+                th.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        th.click();
+                    }
+                });
+            });
+        })();
+    </script>
 </body>
 </html>

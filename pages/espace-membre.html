@@ -6,6 +6,7 @@
     <meta name="description" content="Espace membre Gaming Campus - Gère ton profil, tes équipes et tes inscriptions aux tournois.">
     <title>Espace Membre - Gaming Campus</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/espace-membre.css">
 </head>
 <body>
 
@@ -36,8 +37,9 @@
             <!-- Version connectée du header -->
             <div class="header-actions header-actions-logged">
                 <div class="user-menu">
-                    <img src="../img/placeholder-avatar.jpg" alt="Avatar" class="user-avatar-sm">
-                    <span class="user-pseudo">NightSlayer</span>
+                    <!-- Avatar dynamique chargé depuis le compte utilisateur -->
+                    <div class="user-avatar-sm user-avatar-empty" aria-hidden="true">👤</div>
+                    <span class="user-pseudo">[Pseudo]</span>
                 </div>
                 <a href="connexion.html" class="btn btn-outline btn-sm">Déconnexion</a>
             </div>
@@ -56,7 +58,7 @@
                         <li aria-current="page">Espace Membre</li>
                     </ol>
                 </nav>
-                <h1>👋 Bienvenue, NightSlayer !</h1>
+                <h1>👋 Bienvenue !</h1>
                 <p class="page-description">Gère ton profil, tes équipes et tes inscriptions aux tournois depuis ton espace personnel.</p>
             </div>
         </section>
@@ -81,22 +83,22 @@
                 <div class="stats-grid">
                     <div class="stat-card">
                         <span class="stat-icon">🎮</span>
-                        <span class="stat-number">2</span>
+                        <span class="stat-number">0</span>
                         <span class="stat-label">Tournois inscrits</span>
                     </div>
                     <div class="stat-card">
                         <span class="stat-icon">👥</span>
-                        <span class="stat-number">1</span>
+                        <span class="stat-number">0</span>
                         <span class="stat-label">Équipe active</span>
                     </div>
                     <div class="stat-card">
                         <span class="stat-icon">🏆</span>
-                        <span class="stat-number">5</span>
+                        <span class="stat-number">0</span>
                         <span class="stat-label">Tournois gagnés</span>
                     </div>
                     <div class="stat-card">
                         <span class="stat-icon">⭐</span>
-                        <span class="stat-number">#1</span>
+                        <span class="stat-number">—</span>
                         <span class="stat-label">Classement</span>
                     </div>
                 </div>
@@ -104,46 +106,11 @@
                 <!-- Prochains tournois inscrits -->
                 <div class="dashboard-section">
                     <h3>⏱️ Tes prochains tournois</h3>
-                    <div class="cards-grid">
-                        <article class="card card-tournoi card-compact">
-                            <div class="card-badge badge-en-cours">En cours</div>
-                            <div class="card-body">
-                                <h4 class="card-title">League of Legends - Rift Rivals</h4>
-                                <ul class="card-info-list">
-                                    <li class="card-info">
-                                        <span class="info-icon">📅</span>
-                                        <time datetime="2026-02-15T14:00">15 Fév 2026 - 14h00</time>
-                                    </li>
-                                    <li class="card-info">
-                                        <span class="info-icon">🛡️</span>
-                                        <span>Équipe : Team Phoenix</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="card-footer">
-                                <a href="tournoi-detail.html" class="btn btn-outline btn-sm">Détails</a>
-                            </div>
-                        </article>
-
-                        <article class="card card-tournoi card-compact">
-                            <div class="card-badge badge-a-venir">À venir</div>
-                            <div class="card-body">
-                                <h4 class="card-title">Valorant - Campus Showdown</h4>
-                                <ul class="card-info-list">
-                                    <li class="card-info">
-                                        <span class="info-icon">📅</span>
-                                        <time datetime="2026-02-20T18:00">20 Fév 2026 - 18h00</time>
-                                    </li>
-                                    <li class="card-info">
-                                        <span class="info-icon">🛡️</span>
-                                        <span>Équipe : Team Phoenix</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="card-footer">
-                                <a href="tournoi-detail.html" class="btn btn-outline btn-sm">Détails</a>
-                            </div>
-                        </article>
+                    <!-- Les tournois inscrits s'afficheront ici automatiquement -->
+                    <div class="empty-state">
+                        <span class="empty-state-icon">🎮</span>
+                        <p>Tu n'es inscrit à aucun tournoi pour le moment.</p>
+                        <a href="tournois.html" class="btn btn-primary btn-sm">Voir les tournois disponibles</a>
                     </div>
                 </div>
             </div>
@@ -166,36 +133,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Les réservations de l'utilisateur connecté s'afficheront ici -->
                             <tr>
-                                <td><a href="tournoi-detail.html">LoL - Rift Rivals</a></td>
-                                <td><time datetime="2026-02-15">15 Fév 2026</time></td>
-                                <td>Team Phoenix</td>
-                                <td><span class="status-badge status-confirmed">Confirmée</span></td>
-                                <td>
-                                    <a href="tournoi-detail.html" class="btn btn-outline btn-sm">Voir</a>
-                                    <!-- Bouton annulation : disponible uniquement 24h avant -->
-                                    <!--
-                                    <button type="button" class="btn btn-danger btn-sm">Annuler</button>
-                                    -->
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="tournoi-detail.html">Valorant - Campus Showdown</a></td>
-                                <td><time datetime="2026-02-20">20 Fév 2026</time></td>
-                                <td>Team Phoenix</td>
-                                <td><span class="status-badge status-confirmed">Confirmée</span></td>
-                                <td>
-                                    <a href="tournoi-detail.html" class="btn btn-outline btn-sm">Voir</a>
-                                    <button type="button" class="btn btn-danger btn-sm">Annuler</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="tournoi-detail.html">CS2 - Tournoi Éclair</a></td>
-                                <td><time datetime="2026-02-10">10 Fév 2026</time></td>
-                                <td>Team Phoenix</td>
-                                <td><span class="status-badge status-termine">Terminé</span></td>
-                                <td>
-                                    <a href="tournoi-detail.html" class="btn btn-outline btn-sm">Résultats</a>
+                                <td colspan="5" class="empty-state-cell">
+                                    <div class="empty-state">
+                                        <span class="empty-state-icon">📋</span>
+                                        <p>Aucune réservation enregistrée.</p>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -214,9 +158,13 @@
                     <div class="form-group form-group-avatar">
                         <label>Avatar</label>
                         <div class="avatar-upload">
-                            <img src="../img/placeholder-avatar.jpg" alt="Mon avatar actuel" class="current-avatar" loading="lazy">
+                            <!-- L'image actuelle sera chargée depuis le compte utilisateur -->
+                            <div class="avatar-preview">
+                                <img id="current-avatar-img" src="" alt="Mon avatar actuel" class="current-avatar hidden" loading="lazy">
+                                <span class="avatar-preview-placeholder" id="current-avatar-placeholder">👤</span>
+                            </div>
                             <div class="avatar-upload-actions">
-                                <label for="avatar-file" class="btn btn-outline btn-sm">Changer l'avatar</label>
+                                <label for="avatar-file" class="btn btn-outline btn-sm">📷 Changer l'avatar</label>
                                 <input type="file" id="avatar-file" name="avatar" accept="image/png, image/jpeg, image/webp" class="sr-only">
                                 <small class="form-help">JPG, PNG ou WebP. Max 2 Mo.</small>
                             </div>
@@ -226,25 +174,25 @@
                     <!-- Pseudo -->
                     <div class="form-group">
                         <label for="edit-pseudo">Pseudo</label>
-                        <input type="text" id="edit-pseudo" name="pseudo" value="NightSlayer" minlength="3" maxlength="20">
+                        <input type="text" id="edit-pseudo" name="pseudo" value="" minlength="3" maxlength="20" placeholder="Ton pseudo">
                     </div>
 
                     <!-- Nom complet -->
                     <div class="form-row">
                         <div class="form-group">
                             <label for="edit-prenom">Prénom</label>
-                            <input type="text" id="edit-prenom" name="prenom" value="Imed">
+                            <input type="text" id="edit-prenom" name="prenom" value="" placeholder="Ton prénom">
                         </div>
                         <div class="form-group">
                             <label for="edit-nom">Nom</label>
-                            <input type="text" id="edit-nom" name="nom" value="Kemouche">
+                            <input type="text" id="edit-nom" name="nom" value="" placeholder="Ton nom">
                         </div>
                     </div>
 
                     <!-- Email -->
                     <div class="form-group">
                         <label for="edit-email">Adresse email</label>
-                        <input type="email" id="edit-email" name="email" value="imed.kemouche@campus.fr">
+                        <input type="email" id="edit-email" name="email" value="" placeholder="ton.email@campus.fr">
                     </div>
 
                     <!-- Jeu principal -->
@@ -328,6 +276,33 @@
             <p>&copy; 2026 Gaming Campus - BDE. Tous droits réservés.</p>
         </div>
     </footer>
+    <script>
+        /* ── Avatar upload preview (espace membre) ── */
+        (function () {
+            const fileInput   = document.getElementById('avatar-file');
+            const previewImg  = document.getElementById('current-avatar-img');
+            const placeholder = document.getElementById('current-avatar-placeholder');
 
+            if (!fileInput) return;
+
+            fileInput.addEventListener('change', function () {
+                const file = this.files[0];
+                if (!file) return;
+
+                if (file.size > 2 * 1024 * 1024) {
+                    alert('L\'image est trop lourde. Maximum 2 Mo.');
+                    this.value = '';
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    if (previewImg)  { previewImg.src = e.target.result; previewImg.classList.remove('hidden'); }
+                    if (placeholder) { placeholder.classList.add('hidden'); }
+                };
+                reader.readAsDataURL(file);
+            });
+        })();
+    </script>
 </body>
 </html>

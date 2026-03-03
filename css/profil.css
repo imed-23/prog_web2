@@ -1,0 +1,22 @@
+/* ============================================
+   PROFIL.CSS — Page profil joueur spécifique
+   ============================================ */
+
+/* Profile hero darker */
+.profil-hero {
+    background: linear-gradient(135deg, var(--bg-color) 0%, var(--bg-tertiary) 100%);
+}
+
+/* Profile avatar glow */
+.profil-avatar {
+    transition: box-shadow var(--transition-base);
+}
+
+.profil-header-card:hover .profil-avatar {
+    box-shadow: 0 0 30px var(--accent-glow);
+}
+
+/* History table win row hint */
+.history-table .result-win {
+    position: relative;
+}

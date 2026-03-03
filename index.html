@@ -7,6 +7,7 @@
     <meta name="author" content="BDE Gaming Campus">
     <title>Gaming Campus - Plateforme de Tournois</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 
@@ -91,7 +92,7 @@
                     <!-- Carte Tournoi 1 -->
                     <article class="card card-tournoi">
                         <div class="card-badge badge-en-cours">En cours</div>
-                        <img src="img/placeholder-game.jpg" alt="League of Legends" class="card-image" loading="lazy">
+                        <img src="img/lol_cover.webp" alt="League of Legends" class="card-image" loading="lazy">
                         <div class="card-body">
                             <h3 class="card-title">League of Legends - Rift Rivals</h3>
                             <ul class="card-info-list">
@@ -123,7 +124,7 @@
                     <!-- Carte Tournoi 2 -->
                     <article class="card card-tournoi">
                         <div class="card-badge badge-a-venir">À venir</div>
-                        <img src="img/placeholder-game.jpg" alt="Valorant" class="card-image" loading="lazy">
+                        <img src="img/fc25.webp" alt="Valorant" class="card-image" loading="lazy">
                         <div class="card-body">
                             <h3 class="card-title">Valorant - Campus Showdown</h3>
                             <ul class="card-info-list">
@@ -155,7 +156,7 @@
                     <!-- Carte Tournoi 3 -->
                     <article class="card card-tournoi">
                         <div class="card-badge badge-termine">Terminé</div>
-                        <img src="img/placeholder-game.jpg" alt="Counter-Strike 2" class="card-image" loading="lazy">
+                        <img src="img/cs2.webp" alt="Counter-Strike 2" class="card-image" loading="lazy">
                         <div class="card-body">
                             <h3 class="card-title">CS2 - Tournoi Éclair</h3>
                             <ul class="card-info-list">
@@ -192,90 +193,13 @@
             <div class="section-container">
                 <h2 id="titre-prochains-matchs">⏱️ Prochains Matchs</h2>
 
-                <div class="matchs-list">
-                    <!-- Match 1 -->
-                    <article class="match-card">
-                        <div class="match-date">
-                            <time datetime="2026-02-15T14:00">
-                                <span class="match-day">15</span>
-                                <span class="match-month">Fév</span>
-                                <span class="match-hour">14h00</span>
-                            </time>
-                        </div>
-                        <div class="match-teams">
-                            <div class="team team-a">
-                                <img src="img/placeholder-avatar.jpg" alt="Avatar équipe Phoenix" class="team-avatar" loading="lazy">
-                                <span class="team-name">Team Phoenix</span>
-                            </div>
-                            <div class="match-vs">
-                                <span>VS</span>
-                            </div>
-                            <div class="team team-b">
-                                <img src="img/placeholder-avatar.jpg" alt="Avatar équipe Dragons" class="team-avatar" loading="lazy">
-                                <span class="team-name">Les Dragons</span>
-                            </div>
-                        </div>
-                        <div class="match-info">
-                            <span class="match-game">League of Legends</span>
-                            <span class="match-round">Demi-finale</span>
-                        </div>
-                        <div class="match-countdown" data-target="2026-02-15T14:00:00" aria-label="Compte à rebours avant le match">
-                            <div class="countdown-item">
-                                <span class="countdown-number">03</span>
-                                <span class="countdown-label">Jours</span>
-                            </div>
-                            <div class="countdown-item">
-                                <span class="countdown-number">06</span>
-                                <span class="countdown-label">Heures</span>
-                            </div>
-                            <div class="countdown-item">
-                                <span class="countdown-number">24</span>
-                                <span class="countdown-label">Minutes</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Match 2 -->
-                    <article class="match-card">
-                        <div class="match-date">
-                            <time datetime="2026-02-20T18:00">
-                                <span class="match-day">20</span>
-                                <span class="match-month">Fév</span>
-                                <span class="match-hour">18h00</span>
-                            </time>
-                        </div>
-                        <div class="match-teams">
-                            <div class="team team-a">
-                                <img src="img/placeholder-avatar.jpg" alt="Avatar équipe Wolves" class="team-avatar" loading="lazy">
-                                <span class="team-name">Cyber Wolves</span>
-                            </div>
-                            <div class="match-vs">
-                                <span>VS</span>
-                            </div>
-                            <div class="team team-b">
-                                <img src="img/placeholder-avatar.jpg" alt="Avatar équipe Shadow" class="team-avatar" loading="lazy">
-                                <span class="team-name">Shadow Gaming</span>
-                            </div>
-                        </div>
-                        <div class="match-info">
-                            <span class="match-game">Valorant</span>
-                            <span class="match-round">Quart de finale</span>
-                        </div>
-                        <div class="match-countdown" data-target="2026-02-20T18:00:00" aria-label="Compte à rebours avant le match">
-                            <div class="countdown-item">
-                                <span class="countdown-number">08</span>
-                                <span class="countdown-label">Jours</span>
-                            </div>
-                            <div class="countdown-item">
-                                <span class="countdown-number">12</span>
-                                <span class="countdown-label">Heures</span>
-                            </div>
-                            <div class="countdown-item">
-                                <span class="countdown-number">45</span>
-                                <span class="countdown-label">Minutes</span>
-                            </div>
-                        </div>
-                    </article>
+                <div class="matchs-list" id="liste-matchs">
+                    <!-- Les matchs seront affichés ici une fois les équipes inscrites -->
+                    <div class="empty-state empty-state-full">
+                        <span class="empty-state-icon">🎮</span>
+                        <p>Aucun match à venir pour le moment.</p>
+                        <p class="empty-state-sub"><a href="pages/tournois.html">Voir les tournois ouverts</a></p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -298,66 +222,11 @@
                             <th scope="col">Points</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="rank-gold">
-                            <td><span class="rank-badge">🥇 1</span></td>
-                            <td>
-                                <div class="player-cell">
-                                    <img src="img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
-                                    <span>NightSlayer</span>
-                                </div>
+                    <tbody id="leaderboard-preview-body">
+                        <tr class="empty-state-row">
+                            <td colspan="5" class="empty-state-cell">
+                                Aucun joueur classé pour le moment. <a href="pages/inscription.html">Inscris-toi</a> pour apparaître ici !
                             </td>
-                            <td>Team Phoenix</td>
-                            <td>24</td>
-                            <td><strong>2 450</strong></td>
-                        </tr>
-                        <tr class="rank-silver">
-                            <td><span class="rank-badge">🥈 2</span></td>
-                            <td>
-                                <div class="player-cell">
-                                    <img src="img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
-                                    <span>DragonFire</span>
-                                </div>
-                            </td>
-                            <td>Les Dragons</td>
-                            <td>21</td>
-                            <td><strong>2 180</strong></td>
-                        </tr>
-                        <tr class="rank-bronze">
-                            <td><span class="rank-badge">🥉 3</span></td>
-                            <td>
-                                <div class="player-cell">
-                                    <img src="img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
-                                    <span>ShadowX</span>
-                                </div>
-                            </td>
-                            <td>Shadow Gaming</td>
-                            <td>19</td>
-                            <td><strong>1 950</strong></td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank-badge">4</span></td>
-                            <td>
-                                <div class="player-cell">
-                                    <img src="img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
-                                    <span>CyberWolf</span>
-                                </div>
-                            </td>
-                            <td>Cyber Wolves</td>
-                            <td>17</td>
-                            <td><strong>1 720</strong></td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank-badge">5</span></td>
-                            <td>
-                                <div class="player-cell">
-                                    <img src="img/placeholder-avatar.jpg" alt="" class="player-avatar-sm" loading="lazy">
-                                    <span>BlazeMaster</span>
-                                </div>
-                            </td>
-                            <td>Inferno Squad</td>
-                            <td>15</td>
-                            <td><strong>1 580</strong></td>
                         </tr>
                     </tbody>
                 </table>
@@ -389,7 +258,7 @@
                 <h3>🎮 Gaming Campus</h3>
                 <p>La plateforme officielle de tournois gaming du campus. Organisée par le BDE pour les joueurs, par les joueurs.</p>
             </div>
-²
+
             <!-- Colonne 2 : Navigation rapide -->
             <div class="footer-col">
                 <h3>Navigation</h3>
@@ -403,7 +272,7 @@
             </div>
 
             <!-- Colonne 3 : Compte -->
-            <div class="footer-col">²
+            <div class="footer-col">
                 <h3>Mon Compte</h3>
                 <ul class="footer-nav">
                     <li><a href="pages/connexion.html">Connexion</a></li>

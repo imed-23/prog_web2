@@ -6,6 +6,7 @@
     <meta name="description" content="Gestion des réservations - Administration Gaming Campus">
     <title>Admin - Gestion des Réservations - Gaming Campus</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/admin.css">
 </head>
 <body>
 
@@ -28,7 +29,7 @@
             <div class="header-actions header-actions-logged">
                 <a href="../../index.html" class="btn btn-outline btn-sm">← Retour au site</a>
                 <div class="user-menu">
-                    <img src="../../img/placeholder-avatar.jpg" alt="" class="user-avatar-sm">
+                    <div class="user-avatar-sm user-avatar-empty" aria-hidden="true">👤</div>
                     <span class="user-pseudo">Admin BDE</span>
                 </div>
                 <a href="../connexion.html" class="btn btn-outline btn-sm">Déconnexion</a>
@@ -54,22 +55,22 @@
                 <div class="stats-grid">
                     <div class="stat-card stat-card-success">
                         <span class="stat-icon">✅</span>
-                        <span class="stat-number">42</span>
+                        <span class="stat-number">0</span>
                         <span class="stat-label">Réservations confirmées</span>
                     </div>
                     <div class="stat-card stat-card-warning">
                         <span class="stat-icon">⏳</span>
-                        <span class="stat-number">6</span>
+                        <span class="stat-number">0</span>
                         <span class="stat-label">En attente</span>
                     </div>
                     <div class="stat-card stat-card-danger">
                         <span class="stat-icon">❌</span>
-                        <span class="stat-number">8</span>
+                        <span class="stat-number">0</span>
                         <span class="stat-label">Annulées</span>
                     </div>
                     <div class="stat-card stat-card-info">
                         <span class="stat-icon">📋</span>
-                        <span class="stat-number">56</span>
+                        <span class="stat-number">0</span>
                         <span class="stat-label">Total réservations</span>
                     </div>
                 </div>
@@ -129,94 +130,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Les réservations seront chargées depuis la base de données -->
                             <tr>
-                                <td>1</td>
-                                <td>LoL - Rift Rivals</td>
-                                <td>NightSlayer</td>
-                                <td>Team Phoenix</td>
-                                <td><time datetime="2026-02-01">01/02/2026</time></td>
-                                <td><span class="status-badge status-confirmed">Confirmée</span></td>
-                                <td>
-                                    <button type="button" class="btn btn-danger btn-sm" title="Annuler cette réservation">❌ Annuler</button>
+                                <td colspan="7" class="empty-state-cell">
+                                    <div class="empty-state">
+                                        <span class="empty-state-icon">📋</span>
+                                        <p>Aucune réservation enregistrée pour le moment.</p>
+                                    </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>LoL - Rift Rivals</td>
-                                <td>DragonFire</td>
-                                <td>Les Dragons</td>
-                                <td><time datetime="2026-02-01">01/02/2026</time></td>
-                                <td><span class="status-badge status-confirmed">Confirmée</span></td>
-                                <td>
-                                    <button type="button" class="btn btn-danger btn-sm">❌ Annuler</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>LoL - Rift Rivals</td>
-                                <td>ShadowX</td>
-                                <td>Shadow Gaming</td>
-                                <td><time datetime="2026-02-02">02/02/2026</time></td>
-                                <td><span class="status-badge status-confirmed">Confirmée</span></td>
-                                <td>
-                                    <button type="button" class="btn btn-danger btn-sm">❌ Annuler</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Valorant - Showdown</td>
-                                <td>NightSlayer</td>
-                                <td>Team Phoenix</td>
-                                <td><time datetime="2026-02-12">12/02/2026</time></td>
-                                <td><span class="status-badge status-confirmed">Confirmée</span></td>
-                                <td>
-                                    <button type="button" class="btn btn-danger btn-sm">❌ Annuler</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Valorant - Showdown</td>
-                                <td>BlazeMaster</td>
-                                <td>Inferno Squad</td>
-                                <td><time datetime="2026-02-11">11/02/2026</time></td>
-                                <td><span class="status-badge status-confirmed">Confirmée</span></td>
-                                <td>
-                                    <button type="button" class="btn btn-danger btn-sm">❌ Annuler</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>CS2 - Night Tournament</td>
-                                <td>CyberWolf</td>
-                                <td>Cyber Wolves</td>
-                                <td><time datetime="2026-02-10">10/02/2026</time></td>
-                                <td><span class="status-badge status-annulee">Annulée</span></td>
-                                <td>
-                                    <span class="text-muted">—</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>CS2 - Night Tournament</td>
-                                <td>StormRider</td>
-                                <td>Thunder Squad</td>
-                                <td><time datetime="2026-02-11">11/02/2026</time></td>
-                                <td><span class="status-badge status-confirmed">Confirmée</span></td>
-                                <td>
-                                    <button type="button" class="btn btn-danger btn-sm">❌ Annuler</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>CS2 - Night Tournament</td>
-                                <td>NeonViper</td>
-                                <td>Venom Esport</td>
-                                <td><time datetime="2026-02-12">12/02/2026</time></td>
-                                <td><span class="status-badge status-confirmed">Confirmée</span></td>
-                                <td>
-                                    <button type="button" class="btn btn-danger btn-sm">❌ Annuler</button>
-                                </td>
-                            </tr>
+                        </tbody>
                         </tbody>
                     </table>
                 </div>

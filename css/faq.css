@@ -1,0 +1,23 @@
+/* ============================================
+   FAQ.CSS — Page FAQ spécifique
+   ============================================ */
+
+/* FAQ items animation */
+.faq-item {
+    transition: background var(--transition-fast);
+}
+
+.faq-item[open] {
+    background: rgba(230, 57, 70, 0.02);
+}
+
+/* Category headers with icons */
+.faq-category h2 {
+    position: relative;
+    padding-left: 0;
+}
+
+/* FAQ item open indicator glow */
+.faq-item[open] .faq-question {
+    color: var(--primary-color);
+}
