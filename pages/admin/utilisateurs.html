@@ -6,6 +6,7 @@
     <meta name="description" content="Gestion des utilisateurs - Administration Gaming Campus">
     <title>Admin - Gestion des Utilisateurs - Gaming Campus</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/admin.css">
 </head>
 <body>
 
@@ -28,7 +29,7 @@
             <div class="header-actions header-actions-logged">
                 <a href="../../index.html" class="btn btn-outline btn-sm">← Retour au site</a>
                 <div class="user-menu">
-                    <img src="../../img/placeholder-avatar.jpg" alt="" class="user-avatar-sm">
+                    <div class="user-avatar-sm user-avatar-empty" aria-hidden="true">👤</div>
                     <span class="user-pseudo">Admin BDE</span>
                 </div>
                 <a href="../connexion.html" class="btn btn-outline btn-sm">Déconnexion</a>
@@ -97,7 +98,7 @@
         <!-- ======== LISTE DES CAPITAINES ======== -->
         <section id="liste-capitaines" aria-labelledby="titre-capitaines">
             <div class="section-container">
-                <h2 id="titre-capitaines">🛡️ Capitaines (48)</h2>
+                <h2 id="titre-capitaines">🛡️ Capitaines</h2>
 
                 <div class="table-responsive">
                     <table class="admin-table" aria-label="Liste des capitaines">
@@ -113,50 +114,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Les capitaines inscrits s'afficheront ici automatiquement -->
                             <tr>
-                                <td>1</td>
-                                <td><strong>NightSlayer</strong></td>
-                                <td>Imed Kemouche</td>
-                                <td>imed.kemouche@campus.fr</td>
-                                <td>Team Phoenix</td>
-                                <td><time datetime="2025-09-01">01/09/2025</time></td>
-                                <td><button type="button" class="btn btn-danger btn-sm">🗑️ Supprimer</button></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td><strong>DragonFire</strong></td>
-                                <td>Karim Benali</td>
-                                <td>karim.benali@campus.fr</td>
-                                <td>Les Dragons</td>
-                                <td><time datetime="2025-09-05">05/09/2025</time></td>
-                                <td><button type="button" class="btn btn-danger btn-sm">🗑️ Supprimer</button></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td><strong>ShadowX</strong></td>
-                                <td>Yacine Djerbi</td>
-                                <td>yacine.djerbi@campus.fr</td>
-                                <td>Shadow Gaming</td>
-                                <td><time datetime="2025-09-10">10/09/2025</time></td>
-                                <td><button type="button" class="btn btn-danger btn-sm">🗑️ Supprimer</button></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td><strong>CyberWolf</strong></td>
-                                <td>Omar Saidi</td>
-                                <td>omar.saidi@campus.fr</td>
-                                <td>Cyber Wolves</td>
-                                <td><time datetime="2025-09-12">12/09/2025</time></td>
-                                <td><button type="button" class="btn btn-danger btn-sm">🗑️ Supprimer</button></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td><strong>BlazeMaster</strong></td>
-                                <td>Rami Khelil</td>
-                                <td>rami.khelil@campus.fr</td>
-                                <td>Inferno Squad</td>
-                                <td><time datetime="2025-09-15">15/09/2025</time></td>
-                                <td><button type="button" class="btn btn-danger btn-sm">🗑️ Supprimer</button></td>
+                                <td colspan="7" class="empty-state-cell">
+                                    <div class="empty-state">
+                                        <span class="empty-state-icon">👥</span>
+                                        <p>Aucun capitaine inscrit pour le moment.</p>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -167,7 +132,7 @@
         <!-- ======== LISTE DES ADMINISTRATEURS ======== -->
         <section id="liste-admins" aria-labelledby="titre-admins">
             <div class="section-container">
-                <h2 id="titre-admins">👑 Administrateurs (3)</h2>
+                <h2 id="titre-admins">👑 Administrateurs</h2>
 
                 <div class="table-responsive">
                     <table class="admin-table" aria-label="Liste des administrateurs">
@@ -182,29 +147,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Le compte Admin BDE principal est créé lors de l'installation -->
                             <tr>
                                 <td>1</td>
                                 <td><strong>Admin_BDE</strong></td>
                                 <td>Président BDE</td>
                                 <td>bde@campus.fr</td>
-                                <td><time datetime="2025-09-01">01/09/2025</time></td>
+                                <td><time datetime="2026-01-01">01/01/2026</time></td>
                                 <td><span class="status-badge">Compte principal</span></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td><strong>Admin_VP</strong></td>
-                                <td>Vice-Président BDE</td>
-                                <td>vp@campus.fr</td>
-                                <td><time datetime="2025-09-01">01/09/2025</time></td>
-                                <td><button type="button" class="btn btn-danger btn-sm">🗑️ Supprimer</button></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td><strong>Admin_Esport</strong></td>
-                                <td>Responsable Esport</td>
-                                <td>esport@campus.fr</td>
-                                <td><time datetime="2025-10-01">01/10/2025</time></td>
-                                <td><button type="button" class="btn btn-danger btn-sm">🗑️ Supprimer</button></td>
                             </tr>
                         </tbody>
                     </table>

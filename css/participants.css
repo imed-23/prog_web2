@@ -1,0 +1,15 @@
+/* ============================================
+   PARTICIPANTS.CSS — Page participants spécifique
+   ============================================ */
+
+/* Player cards hover effect */
+.card-joueur:hover .joueur-avatar {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px var(--accent-glow);
+    transition: all var(--transition-base);
+}
+
+/* Player stats highlight */
+.joueur-stats strong {
+    color: var(--primary-color);
+}

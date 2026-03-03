@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Profil joueur Gaming Campus - Statistiques, historique des participations, trophées et rang.">
-    <title>Profil de NightSlayer - Gaming Campus</title>
+    <title>Profil Joueur - Gaming Campus</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/profil.css">
 </head>
 <body>
 
@@ -50,7 +51,7 @@
                     <ol>
                         <li><a href="../index.html">Accueil</a></li>
                         <li><a href="participants.html">Participants</a></li>
-                        <li aria-current="page">NightSlayer</li>
+                        <li aria-current="page">[Pseudo du joueur]</li>
                     </ol>
                 </nav>
             </div>
@@ -61,21 +62,25 @@
             <div class="section-container">
                 <div class="profil-header-card">
                     <div class="profil-avatar-wrapper">
-                        <img src="../img/placeholder-avatar.jpg" alt="Avatar de NightSlayer" class="profil-avatar" loading="lazy">
-                        <span class="profil-rank-badge">🥇 #1</span>
+                        <!-- L'avatar sera chargé depuis le compte du joueur -->
+                        <div class="profil-avatar profil-avatar-empty" aria-label="Avatar du joueur">
+                            <span class="avatar-placeholder-icon">👤</span>
+                        </div>
+                        <span class="profil-rank-badge">— #?</span>
                     </div>
                     <div class="profil-info">
-                        <h1 id="profil-pseudo">NightSlayer</h1>
-                        <p class="profil-real-name">Imed Kemouche</p>
-                        <p class="profil-team">🛡️ Team Phoenix</p>
-                        <p class="profil-jeu">🎮 Jeu principal : League of Legends</p>
+                        <h1 id="profil-pseudo" class="profil-pseudo-placeholder">[Pseudo du joueur]</h1>
+                        <p class="profil-real-name profil-placeholder">[Prénom Nom]</p>
+                        <p class="profil-team profil-placeholder">🛡️ [Équipe]</p>
+                        <p class="profil-jeu profil-placeholder">🎮 Jeu principal : [Jeu]</p>
                         <div class="profil-level">
-                            <span class="level-badge">⭐ Diamond</span>
-                            <span class="level-points">2 450 points</span>
+                            <span class="level-badge profil-placeholder">⭐ [Rang]</span>
+                            <span class="level-points profil-placeholder">— points</span>
                         </div>
-                        <p class="profil-member-since">Membre depuis <time datetime="2025-09-01">Septembre 2025</time></p>
+                        <p class="profil-member-since">Membre depuis <time>[Date d'inscription]</time></p>
                     </div>
                 </div>
+                <p class="empty-state-note">🔒 Cette page affichera le profil public d'un joueur inscrit sur la plateforme.</p>
             </div>
         </section>
 
@@ -87,32 +92,32 @@
                 <div class="stats-grid">
                     <div class="stat-card">
                         <span class="stat-icon">🎮</span>
-                        <span class="stat-number">30</span>
+                        <span class="stat-number profil-placeholder">—</span>
                         <span class="stat-label">Matchs joués</span>
                     </div>
                     <div class="stat-card">
                         <span class="stat-icon">✅</span>
-                        <span class="stat-number">24</span>
+                        <span class="stat-number profil-placeholder">—</span>
                         <span class="stat-label">Victoires</span>
                     </div>
                     <div class="stat-card">
                         <span class="stat-icon">❌</span>
-                        <span class="stat-number">6</span>
+                        <span class="stat-number profil-placeholder">—</span>
                         <span class="stat-label">Défaites</span>
                     </div>
                     <div class="stat-card">
                         <span class="stat-icon">📈</span>
-                        <span class="stat-number">80%</span>
+                        <span class="stat-number profil-placeholder">—%</span>
                         <span class="stat-label">Win Rate</span>
                     </div>
                     <div class="stat-card">
                         <span class="stat-icon">🏆</span>
-                        <span class="stat-number">5</span>
+                        <span class="stat-number profil-placeholder">—</span>
                         <span class="stat-label">Tournois gagnés</span>
                     </div>
                     <div class="stat-card">
                         <span class="stat-icon">📊</span>
-                        <span class="stat-number">2 450</span>
+                        <span class="stat-number profil-placeholder">—</span>
                         <span class="stat-label">Points totaux</span>
                     </div>
                 </div>
@@ -124,37 +129,10 @@
             <div class="section-container">
                 <h2 id="titre-trophees">🏆 Trophées & Accomplissements</h2>
 
-                <div class="trophees-grid">
-                    <div class="trophee-card">
-                        <span class="trophee-icon">🥇</span>
-                        <h3>Champion LoL S1</h3>
-                        <p>1ère place - Rift Rivals Saison 1</p>
-                        <time datetime="2025-12-15">Déc 2025</time>
-                    </div>
-                    <div class="trophee-card">
-                        <span class="trophee-icon">🥇</span>
-                        <h3>Champion CS2</h3>
-                        <p>1ère place - CS2 Tournoi Éclair</p>
-                        <time datetime="2026-02-10">Fév 2026</time>
-                    </div>
-                    <div class="trophee-card">
-                        <span class="trophee-icon">🥈</span>
-                        <h3>Vice-Champion Valorant</h3>
-                        <p>2ème place - Valorant Cup</p>
-                        <time datetime="2025-11-20">Nov 2025</time>
-                    </div>
-                    <div class="trophee-card">
-                        <span class="trophee-icon">🔥</span>
-                        <h3>10 victoires d'affilée</h3>
-                        <p>Série de 10 victoires consécutives</p>
-                        <time datetime="2026-01-15">Jan 2026</time>
-                    </div>
-                    <div class="trophee-card">
-                        <span class="trophee-icon">⭐</span>
-                        <h3>N°1 du classement</h3>
-                        <p>Atteindre la 1ère place du leaderboard</p>
-                        <time datetime="2026-02-01">Fév 2026</time>
-                    </div>
+                <div class="empty-state">
+                    <span class="empty-state-icon">🏅</span>
+                    <p>Aucun trophée pour le moment.</p>
+                    <p class="empty-state-sub">Les trophées seront débloqués en participant et en gagnant des tournois.</p>
                 </div>
             </div>
         </section>
@@ -165,7 +143,7 @@
                 <h2 id="titre-historique">📜 Historique des participations</h2>
 
                 <div class="table-responsive">
-                    <table class="history-table" aria-label="Historique des tournois de NightSlayer">
+                    <table class="history-table" aria-label="Historique des tournois du joueur">
                         <thead>
                             <tr>
                                 <th scope="col">Tournoi</th>
@@ -177,45 +155,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- L'historique sera rempli à partir des participations enregistrées -->
                             <tr>
-                                <td><a href="tournoi-detail.html">CS2 Tournoi Éclair</a></td>
-                                <td><time datetime="2026-02-10">10 Fév 2026</time></td>
-                                <td>Counter-Strike 2</td>
-                                <td>Team Phoenix</td>
-                                <td><span class="result-win">Victoire</span></td>
-                                <td>🥇 1er</td>
-                            </tr>
-                            <tr>
-                                <td><a href="tournoi-detail.html">Rift Rivals S1</a></td>
-                                <td><time datetime="2025-12-15">15 Déc 2025</time></td>
-                                <td>League of Legends</td>
-                                <td>Team Phoenix</td>
-                                <td><span class="result-win">Victoire</span></td>
-                                <td>🥇 1er</td>
-                            </tr>
-                            <tr>
-                                <td><a href="tournoi-detail.html">Valorant Cup</a></td>
-                                <td><time datetime="2025-11-20">20 Nov 2025</time></td>
-                                <td>Valorant</td>
-                                <td>Team Phoenix</td>
-                                <td><span class="result-loss">Défaite</span></td>
-                                <td>🥈 2ème</td>
-                            </tr>
-                            <tr>
-                                <td><a href="tournoi-detail.html">LoL Campus Open</a></td>
-                                <td><time datetime="2025-10-10">10 Oct 2025</time></td>
-                                <td>League of Legends</td>
-                                <td>Team Phoenix</td>
-                                <td><span class="result-win">Victoire</span></td>
-                                <td>🥇 1er</td>
-                            </tr>
-                            <tr>
-                                <td><a href="tournoi-detail.html">Tournoi d'accueil</a></td>
-                                <td><time datetime="2025-09-15">15 Sep 2025</time></td>
-                                <td>Multi-jeux</td>
-                                <td>Team Phoenix</td>
-                                <td><span class="result-win">Victoire</span></td>
-                                <td>🥉 3ème</td>
+                                <td colspan="6" class="empty-state-cell">
+                                    <div class="empty-state">
+                                        <span class="empty-state-icon">📜</span>
+                                        <p>Aucune participation enregistrée pour le moment.</p>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

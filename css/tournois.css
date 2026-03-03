@@ -1,0 +1,43 @@
+/* ============================================
+   TOURNOIS.CSS — Pages tournois & détail
+   ============================================ */
+
+/* Filters section on tournois page */
+.filters-section {
+    position: sticky;
+    top: var(--header-height);
+    z-index: 100;
+}
+
+/* Results summary */
+#liste-tournois .results-summary {
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Tournoi detail hero */
+.tournoi-hero {
+    position: relative;
+}
+
+.tournoi-hero .card-badge {
+    position: static;
+    display: inline-block;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Sidebar inscribe button */
+.tournoi-detail-sidebar .btn-block {
+    margin-top: var(--spacing-lg);
+}
+
+/* Equipes grid */
+#equipes-inscrites .card-equipe {
+    text-align: center;
+}
+
+.equipe-avatar {
+    width: 60px;
+    height: 60px;
+}

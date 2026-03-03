@@ -1,0 +1,22 @@
+/* ============================================
+   ESPACE-MEMBRE.CSS — Page espace membre
+   ============================================ */
+
+/* Dashboard stat cards accent */
+#dashboard .stat-card:first-child {
+    border-color: var(--border-glow);
+}
+
+/* Reservations table canceled row */
+.reservations-table .btn-danger {
+    opacity: 0.85;
+}
+
+.reservations-table .btn-danger:hover {
+    opacity: 1;
+}
+
+/* Password section emphasis */
+.password-section {
+    max-width: 600px;
+}
