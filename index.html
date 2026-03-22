@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -63,20 +63,8 @@
                     <a href="pages/tournois.html" class="btn btn-primary btn-lg">Voir les Tournois</a>
                     <a href="pages/inscription.html" class="btn btn-outline btn-lg">Créer un Compte</a>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">12</span>
-                        <span class="stat-label">Tournois actifs</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">256</span>
-                        <span class="stat-label">Joueurs inscrits</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">48</span>
-                        <span class="stat-label">Équipes</span>
-                    </div>
-                </div>
+                <!-- Statistiques dynamiques — seront générées par PHP/MySQL en Sprint 4 -->
+                <!-- <div class="hero-stats"> ... </div> -->
             </div>
         </section>
 
@@ -88,102 +76,11 @@
                     <a href="pages/tournois.html" class="section-link">Voir tous les tournois →</a>
                 </div>
 
-                <div class="cards-grid">
-                    <!-- Carte Tournoi 1 -->
-                    <article class="card card-tournoi">
-                        <div class="card-badge badge-en-cours">En cours</div>
-                        <img src="img/lol_cover.webp" alt="League of Legends" class="card-image" loading="lazy">
-                        <div class="card-body">
-                            <h3 class="card-title">League of Legends - Rift Rivals</h3>
-                            <ul class="card-info-list">
-                                <li class="card-info">
-                                    <span class="info-icon">📅</span>
-                                    <time datetime="2026-02-15T14:00">15 Février 2026 - 14h00</time>
-                                </li>
-                                <li class="card-info">
-                                    <span class="info-icon">👥</span>
-                                    <span>12 / 16 équipes inscrites</span>
-                                </li>
-                                <li class="card-info">
-                                    <span class="info-icon">🏆</span>
-                                    <span>500€ de cashprize</span>
-                                </li>
-                            </ul>
-                            <div class="card-places">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="75% des places occupées">
-                                    <div class="progress-fill" style="width: 75%"></div>
-                                </div>
-                                <span class="places-restantes">4 places restantes</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <a href="pages/tournoi-detail.html" class="btn btn-primary btn-block">Voir les détails</a>
-                        </div>
-                    </article>
-
-                    <!-- Carte Tournoi 2 -->
-                    <article class="card card-tournoi">
-                        <div class="card-badge badge-a-venir">À venir</div>
-                        <img src="img/fc25.webp" alt="Valorant" class="card-image" loading="lazy">
-                        <div class="card-body">
-                            <h3 class="card-title">Valorant - Campus Showdown</h3>
-                            <ul class="card-info-list">
-                                <li class="card-info">
-                                    <span class="info-icon">📅</span>
-                                    <time datetime="2026-02-20T18:00">20 Février 2026 - 18h00</time>
-                                </li>
-                                <li class="card-info">
-                                    <span class="info-icon">👥</span>
-                                    <span>6 / 16 équipes inscrites</span>
-                                </li>
-                                <li class="card-info">
-                                    <span class="info-icon">🏆</span>
-                                    <span>300€ de cashprize</span>
-                                </li>
-                            </ul>
-                            <div class="card-places">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100" aria-label="37% des places occupées">
-                                    <div class="progress-fill" style="width: 37%"></div>
-                                </div>
-                                <span class="places-restantes">10 places restantes</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <a href="pages/tournoi-detail.html" class="btn btn-primary btn-block">Voir les détails</a>
-                        </div>
-                    </article>
-
-                    <!-- Carte Tournoi 3 -->
-                    <article class="card card-tournoi">
-                        <div class="card-badge badge-termine">Terminé</div>
-                        <img src="img/cs2.webp" alt="Counter-Strike 2" class="card-image" loading="lazy">
-                        <div class="card-body">
-                            <h3 class="card-title">CS2 - Tournoi Éclair</h3>
-                            <ul class="card-info-list">
-                                <li class="card-info">
-                                    <span class="info-icon">📅</span>
-                                    <time datetime="2026-02-10T16:00">10 Février 2026 - 16h00</time>
-                                </li>
-                                <li class="card-info">
-                                    <span class="info-icon">👥</span>
-                                    <span>8 / 8 équipes inscrites</span>
-                                </li>
-                                <li class="card-info">
-                                    <span class="info-icon">🏆</span>
-                                    <span>200€ de cashprize</span>
-                                </li>
-                            </ul>
-                            <div class="card-places">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" aria-label="100% des places occupées">
-                                    <div class="progress-fill" style="width: 100%"></div>
-                                </div>
-                                <span class="places-restantes places-complet">Complet</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <a href="pages/tournoi-detail.html" class="btn btn-outline btn-block">Voir les résultats</a>
-                        </div>
-                    </article>
+                <!-- Tournois en cours — seront chargés depuis la base de données en Sprint 4 (PHP/MySQL) -->
+                <div class="empty-state">
+                    <span class="empty-state-icon">🎮</span>
+                    <p>Aucun tournoi en cours pour le moment.</p>
+                    <p class="empty-state-sub"><a href="pages/tournois.html">Voir tous les tournois</a></p>
                 </div>
             </div>
         </section>
@@ -302,92 +199,9 @@
         </div>
     </footer>
 
-    <script>
-    /* ── Carousel - Tournois en cours ── */
-    (function () {
-        var section = document.getElementById('tournois-en-cours');
-        if (!section) return;
-        var grid = section.querySelector('.cards-grid');
-        if (!grid) return;
+    <!-- Script carousel : sera réactivé en Sprint 4 une fois les tournois chargés depuis la BDD (PHP/MySQL) -->
+    <!-- Fichier : js/carousel.js (à créer lors de l'externalisation JS) -->
 
-        var cards = Array.from(grid.children);
-        if (cards.length === 0) return;
-        var total = cards.length;
-        var current = 0;
-
-        /* Wrap grid in carousel viewport */
-        grid.classList.add('carousel-track');
-        var viewport = document.createElement('div');
-        viewport.className = 'carousel-viewport';
-        grid.parentNode.insertBefore(viewport, grid);
-        viewport.appendChild(grid);
-
-        /* Wrap viewport + buttons in wrapper */
-        var wrapper = document.createElement('div');
-        wrapper.className = 'carousel-wrapper';
-        wrapper.setAttribute('aria-label', 'Carrousel des tournois en cours');
-        viewport.parentNode.insertBefore(wrapper, viewport);
-        wrapper.appendChild(viewport);
-
-        var prevBtn = document.createElement('button');
-        prevBtn.className = 'carousel-btn carousel-prev';
-        prevBtn.setAttribute('aria-label', 'Tournoi pr\u00e9c\u00e9dent');
-        prevBtn.innerHTML = '&#8592;';
-        wrapper.insertBefore(prevBtn, viewport);
-
-        var nextBtn = document.createElement('button');
-        nextBtn.className = 'carousel-btn carousel-next';
-        nextBtn.setAttribute('aria-label', 'Tournoi suivant');
-        nextBtn.innerHTML = '&#8594;';
-        wrapper.appendChild(nextBtn);
-
-        /* Dots */
-        var dotsEl = document.createElement('div');
-        dotsEl.className = 'carousel-dots';
-        dotsEl.setAttribute('role', 'tablist');
-        wrapper.parentNode.insertBefore(dotsEl, wrapper.nextSibling);
-
-        cards.forEach(function (_, i) {
-            var dot = document.createElement('button');
-            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-            dot.setAttribute('role', 'tab');
-            dot.setAttribute('aria-label', 'Tournoi ' + (i + 1));
-            dot.addEventListener('click', function () { goTo(i); });
-            dotsEl.appendChild(dot);
-        });
-
-        function update(animate) {
-            grid.style.transition = animate === false
-                ? 'none'
-                : 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            grid.style.transform = 'translateX(-' + (current * viewport.offsetWidth) + 'px)';
-            dotsEl.querySelectorAll('.carousel-dot').forEach(function (d, i) {
-                d.classList.toggle('active', i === current);
-            });
-        }
-
-        function goTo(idx) {
-            current = ((idx % total) + total) % total;
-            update(true);
-        }
-
-        prevBtn.addEventListener('click', function () { goTo(current - 1); });
-        nextBtn.addEventListener('click', function () { goTo(current + 1); });
-
-        /* Touch / swipe */
-        var startX = 0;
-        viewport.addEventListener('touchstart', function (e) {
-            startX = e.touches[0].clientX;
-        }, { passive: true });
-        viewport.addEventListener('touchend', function (e) {
-            var dx = e.changedTouches[0].clientX - startX;
-            if (Math.abs(dx) > 50) goTo(current + (dx < 0 ? 1 : -1));
-        }, { passive: true });
-
-        window.addEventListener('resize', function () { update(false); });
-        update(false);
-    }());
-    </script>
-
+    <script src="js/main.js"></script>
 </body>
 </html>
