@@ -64,73 +64,12 @@
                 <h2 id="titre-calendrier">📅 Calendrier - Février 2026</h2>
 
                 <div class="calendar-navigation">
-                    <button class="btn btn-outline" aria-label="Mois précédent">← Janvier</button>
-                    <span class="calendar-current-month"><strong>Février 2026</strong></span>
-                    <button class="btn btn-outline" aria-label="Mois suivant">Mars →</button>
+                    <button id="cal-prev" class="btn btn-outline" aria-label="Mois précédent">← Janvier</button>
+                    <span class="calendar-current-month"><strong id="cal-label">Février 2026</strong></span>
+                    <button id="cal-next" class="btn btn-outline" aria-label="Mois suivant">Mars →</button>
                 </div>
 
-                <div class="table-responsive">
-                    <table class="calendar-table" aria-label="Calendrier événements février 2026">
-                        <thead>
-                            <tr>
-                                <th scope="col" abbr="Lundi">Lun</th>
-                                <th scope="col" abbr="Mardi">Mar</th>
-                                <th scope="col" abbr="Mercredi">Mer</th>
-                                <th scope="col" abbr="Jeudi">Jeu</th>
-                                <th scope="col" abbr="Vendredi">Ven</th>
-                                <th scope="col" abbr="Samedi">Sam</th>
-                                <th scope="col" abbr="Dimanche">Dim</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td class="calendar-event"><span>5</span> <a href="#evt-fortnite" class="calendar-event-link">🎮 Fortnite BR</a></td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td class="calendar-event"><span>10</span> <a href="#evt-cs2" class="calendar-event-link">🎮 CS2 Éclair</a></td>
-                                <td>11</td>
-                                <td class="calendar-today">12</td>
-                                <td>13</td>
-                                <td>14</td>
-                                <td class="calendar-event"><span>15</span> <a href="#evt-lol" class="calendar-event-link">🎮 LoL Rift</a></td>
-                            </tr>
-                            <tr>
-                                <td>16</td>
-                                <td>17</td>
-                                <td>18</td>
-                                <td>19</td>
-                                <td class="calendar-event"><span>20</span> <a href="#evt-valorant" class="calendar-event-link">🎮 Valorant</a></td>
-                                <td>21</td>
-                                <td>22</td>
-                            </tr>
-                            <tr>
-                                <td>23</td>
-                                <td>24</td>
-                                <td class="calendar-event"><span>25</span> <a href="#evt-cs2-night" class="calendar-event-link">🎮 CS2 Night</a></td>
-                                <td>26</td>
-                                <td>27</td>
-                                <td class="calendar-event"><span>28</span> <a href="#evt-lan" class="calendar-event-link">🏟️ LAN Party</a></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <div id="calendar-container"></div>
             </div>
         </section>
 
@@ -278,6 +217,109 @@
             <p>&copy; 2026 Gaming Campus - BDE. Tous droits réservés.</p>
         </div>
     </footer>
+
+    <script>
+    /* ── Calendrier interactif ── */
+    (function () {
+        var MONTHS = ['Janvier','Février','Mars','Avril','Mai','Juin',
+                      'Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+        var DAYS   = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+
+        /* Événements : clé = "AAAA-MM-JJ", valeur = tableau de textes */
+        var EVENTS = {
+            '2026-02-05': [{ label: '🎮 Fortnite BR',  href: '#evt-fortnite'  }],
+            '2026-02-10': [{ label: '🎮 CS2 Éclair',   href: '#evt-cs2'       }],
+            '2026-02-15': [{ label: '🎮 LoL Rift',     href: '#evt-lol'       }],
+            '2026-02-20': [{ label: '🎮 Valorant',     href: '#evt-valorant'  }],
+            '2026-02-25': [{ label: '🎮 CS2 Night',    href: '#evt-cs2-night' }],
+            '2026-02-28': [{ label: '🏟️ LAN Party',   href: '#evt-lan'       }],
+            '2026-03-01': [{ label: '🚀 Rocket League Cup', href: '#liste-evenements' }]
+        };
+
+        var year    = 2026;
+        var month   = 1; /* 0 = Janvier … 11 = Décembre */
+        var container = document.getElementById('calendar-container');
+        var titleH2   = document.getElementById('titre-calendrier');
+        var labelSpan = document.getElementById('cal-label');
+        var prevBtn   = document.getElementById('cal-prev');
+        var nextBtn   = document.getElementById('cal-next');
+        if (!container) return;
+
+        function pad(n) { return String(n).padStart(2, '0'); }
+
+        function render() {
+            var mName   = MONTHS[month];
+            var label   = mName + ' ' + year;
+
+            /* Mise à jour des titres */
+            titleH2.textContent = '📅 Calendrier - ' + label;
+            labelSpan.textContent = label;
+
+            var prevMonth = month > 0  ? MONTHS[month - 1] : MONTHS[11] + ' ' + (year - 1);
+            var nextMonth = month < 11 ? MONTHS[month + 1] : MONTHS[0]  + ' ' + (year + 1);
+            prevBtn.textContent = '← ' + prevMonth;
+            nextBtn.textContent = nextMonth + ' →';
+
+            /* Premier jour de la semaine (Lun=0 … Dim=6) */
+            var firstDay    = new Date(year, month, 1).getDay(); /* 0=Dim */
+            var startCol    = firstDay === 0 ? 6 : firstDay - 1;
+            var daysInMonth = new Date(year, month + 1, 0).getDate();
+            var today       = new Date();
+
+            var html = '<div class="table-responsive">'
+                + '<table class="calendar-table" aria-label="Calendrier ' + label + '">'
+                + '<thead><tr>';
+            DAYS.forEach(function (d) { html += '<th scope="col">' + d + '</th>'; });
+            html += '</tr></thead><tbody>';
+
+            var day = 1;
+            var started = false;
+            while (day <= daysInMonth) {
+                html += '<tr>';
+                for (var col = 0; col < 7; col++) {
+                    if (!started && col < startCol) {
+                        html += '<td></td>';
+                    } else if (day > daysInMonth) {
+                        html += '<td></td>';
+                    } else {
+                        started = true;
+                        var key  = year + '-' + pad(month + 1) + '-' + pad(day);
+                        var evts = EVENTS[key] || [];
+                        var isToday = (today.getFullYear() === year
+                                    && today.getMonth()    === month
+                                    && today.getDate()     === day);
+                        var cls = '';
+                        if (isToday)     cls += ' calendar-today';
+                        if (evts.length) cls += ' calendar-event';
+                        html += '<td class="' + cls.trim() + '">';
+                        html += '<span>' + day + '</span>';
+                        evts.forEach(function (e) {
+                            html += ' <a href="' + e.href + '" class="calendar-event-link">' + e.label + '</a>';
+                        });
+                        html += '</td>';
+                        day++;
+                    }
+                }
+                html += '</tr>';
+            }
+            html += '</tbody></table></div>';
+            container.innerHTML = html;
+        }
+
+        prevBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (month === 0) { month = 11; year--; } else { month--; }
+            render();
+        });
+        nextBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (month === 11) { month = 0; year++; } else { month++; }
+            render();
+        });
+
+        render();
+    }());
+    </script>
 
 </body>
 </html>

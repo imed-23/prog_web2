@@ -43,3 +43,81 @@
     background: radial-gradient(circle, rgba(230, 57, 70, 0.06) 0%, transparent 70%);
     pointer-events: none;
 }
+
+/* ============================================
+   Carousel - Tournois en cours
+   ============================================ */
+.carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.carousel-viewport {
+    flex: 1;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+}
+
+#tournois-en-cours .carousel-track {
+    display: flex !important;
+    gap: 0 !important;
+    grid-template-columns: none !important;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+#tournois-en-cours .carousel-track > .card {
+    flex: 0 0 100%;
+    min-width: 0;
+}
+
+.carousel-btn {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    border: 2px solid var(--border-glow);
+    background: var(--bg-card);
+    color: var(--text-color);
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: background var(--transition-base), box-shadow var(--transition-base), color var(--transition-base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.carousel-btn:hover,
+.carousel-btn:focus {
+    background: var(--primary-color);
+    box-shadow: var(--shadow-glow);
+    color: #fff;
+    outline: none;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: var(--radius-full);
+    background: var(--border-color-light);
+    border: none;
+    cursor: pointer;
+    transition: background var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+    padding: 0;
+}
+
+.carousel-dot.active {
+    background: var(--primary-color);
+    box-shadow: 0 0 8px var(--accent-glow);
+    transform: scale(1.3);
+}
