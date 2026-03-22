@@ -146,8 +146,8 @@ Créer un site web dynamique où n'importe qui sur le campus peut consulter les 
 - 📢 Annonces d'événements futurs
 
 ### 8. Événements
-- 📅 Calendrier interactif
-- 📍 Dates et lieux précis
+- 📅 une vraie Calendrier interactif on peut naviguer entre les mois 
+- 📍 Dates et lieux précis 
 - 🏆 Informations sur les prix/récompenses
 - 👥 Liste des participants inscrits
 
