@@ -10,6 +10,12 @@
  *   $cssSpecifique   (string) : nom du fichier CSS spécifique (ex: 'tournois.css')
  *   $jsSupplementaires (array) : noms des fichiers JS à ajouter en fin de page
  */
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$_isLoggedIn = !empty($_SESSION['user_id']);
+$_userRole   = $_SESSION['user_role'] ?? '';
+$_userPseudo = $_SESSION['user_pseudo'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -58,8 +64,17 @@
 
             <!-- Actions utilisateur -->
             <div class="header-actions">
-                <a href="<?= $rootPath ?>pages/connexion.php" class="btn btn-outline">Connexion</a>
-                <a href="<?= $rootPath ?>pages/inscription.php" class="btn btn-primary">Inscription</a>
+                <?php if ($_isLoggedIn): ?>
+                    <?php if ($_userRole === 'admin'): ?>
+                        <a href="<?= $rootPath ?>pages/admin/dashboard.php" class="btn btn-outline">⚙️ Admin</a>
+                    <?php else: ?>
+                        <a href="<?= $rootPath ?>pages/espace-membre.php" class="btn btn-outline">👤 <?= htmlspecialchars($_userPseudo) ?></a>
+                    <?php endif; ?>
+                    <a href="<?= $rootPath ?>pages/deconnexion.php" class="btn btn-primary">Déconnexion</a>
+                <?php else: ?>
+                    <a href="<?= $rootPath ?>pages/connexion.php" class="btn btn-outline">Connexion</a>
+                    <a href="<?= $rootPath ?>pages/inscription.php" class="btn btn-primary">Inscription</a>
+                <?php endif; ?>
             </div>
         </div>
     </header>

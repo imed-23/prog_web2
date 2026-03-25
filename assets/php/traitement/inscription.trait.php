@@ -7,8 +7,8 @@
  * Il traite uniquement les requêtes POST.
  */
 
-// Inclure la connexion BDD (chemin relatif depuis pages/)
-require_once __DIR__ . '/../../assets/php/config/db.php';
+// Inclure la connexion BDD (chemin relatif depuis assets/php/traitement/)
+require_once __DIR__ . '/../config/db.php';
 
 // Initialisation des variables partagées avec la vue
 $erreurs         = [];      // Tableau des erreurs PHP (clé = champ)

@@ -4,6 +4,18 @@
  * Sprint 4 : traitement PHP + message succès post-inscription
  */
 
+session_start();
+
+// Déjà connecté → redirection
+if (!empty($_SESSION['user_id'])) {
+    if ($_SESSION['user_role'] === 'admin') {
+        header('Location: admin/dashboard.php');
+    } else {
+        header('Location: espace-membre.php');
+    }
+    exit;
+}
+
 // ── Variables ──────────────────────────────────────────────────────────────
 $erreurConnexion = '';
 $successMessage  = '';
@@ -11,6 +23,9 @@ $successMessage  = '';
 // Message de succès après inscription
 if (isset($_GET['success']) && $_GET['success'] === '1') {
     $successMessage = 'Compte créé avec succès ! Tu peux maintenant te connecter.';
+}
+if (isset($_GET['deconnecte']) && $_GET['deconnecte'] === '1') {
+    $successMessage = 'Tu as été déconnecté(e) avec succès.';
 }
 
 // ── Traitement POST ────────────────────────────────────────────────────────
@@ -33,8 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!$user || !password_verify($mdp, $user['mdp_hash'])) {
                 $erreurConnexion = 'Email ou mot de passe incorrect.';
             } else {
-                // Connexion réussie — démarrage de session
-                session_start();
+                // Connexion réussie — session déjà démarrée en haut du fichier
                 $_SESSION['user_id']    = $user['id'];
                 $_SESSION['user_pseudo'] = $user['pseudo'];
                 $_SESSION['user_role']  = $user['role'];

@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__ . '/../assets/php/components/auth-guard.php';
+authRequire();
+
 $rootPath        = '../';
 $pageTitle       = 'Espace Membre - Gaming Campus';
 $metaDescription = 'Ton espace personnel Gaming Campus. Gère tes équipes, tes inscriptions et ton profil.';

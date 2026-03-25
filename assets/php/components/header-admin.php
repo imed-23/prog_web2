@@ -49,9 +49,9 @@
                 <a href="<?= $rootPath ?>index.php" class="btn btn-outline btn-sm">← Retour au site</a>
                 <div class="user-menu">
                     <div class="user-avatar-sm user-avatar-empty" aria-hidden="true">👤</div>
-                    <span class="user-pseudo">Admin BDE</span>
+                    <span class="user-pseudo"><?= htmlspecialchars($_SESSION['user_pseudo'] ?? 'Admin') ?></span>
                 </div>
-                <a href="<?= $rootPath ?>pages/connexion.php" class="btn btn-outline btn-sm">Déconnexion</a>
+                <a href="<?= $rootPath ?>pages/deconnexion.php" class="btn btn-outline btn-sm">Déconnexion</a>
             </div>
         </div>
     </header>

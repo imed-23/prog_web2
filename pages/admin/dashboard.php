@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__ . '/../../assets/php/components/auth-guard.php';
+authRequire('admin');
+
 $rootPath        = '../../';
 $pageTitle       = 'Dashboard Admin - Gaming Campus';
 $metaDescription = 'Tableau de bord de l\'interface d\'administration Gaming Campus.';

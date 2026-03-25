@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__ . '/../../assets/php/components/auth-guard.php';
+authRequire('admin');
+
 $rootPath        = '../../';
 $pageTitle       = 'Gestion Réservations - Admin - Gaming Campus';
 $metaDescription = 'Administration des réservations Gaming Campus.';
