@@ -1,0 +1,146 @@
+/* ============================================================
+   GAMING CAMPUS — tournoi-detail.css
+   Styles spécifiques à la page de détail d'un tournoi
+   Complète style.css (variables + layout globaux)
+   ============================================================ */
+
+/* ── Layout général ── */
+.tournoi-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+}
+
+@media (min-width: 768px) {
+    .tournoi-detail-grid {
+        grid-template-columns: 1fr 340px;
+    }
+}
+
+/* ── Bannière image ── */
+.tournoi-banner {
+    margin-bottom: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.tournoi-banner img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+}
+
+/* ── Hero du tournoi ── */
+.tournoi-hero {
+    position: relative;
+}
+
+.tournoi-hero .card-badge {
+    position: static;
+    display: inline-block;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ── Description du tournoi ── */
+.tournoi-description h3 {
+    margin-bottom: var(--spacing-md);
+    color: var(--primary-color);
+}
+
+.tournoi-description h4 {
+    margin: var(--spacing-lg) 0 var(--spacing-sm);
+    color: var(--text-color);
+}
+
+.tournoi-description ul,
+.tournoi-description ol {
+    list-style: disc;
+    padding-left: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+    color: var(--text-secondary);
+}
+
+.tournoi-description ol {
+    list-style: decimal;
+}
+
+.tournoi-description li {
+    margin-bottom: var(--spacing-xs);
+}
+
+/* ── Liste des prix ── */
+.prizes-list {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--spacing-xs) var(--spacing-lg);
+    padding: var(--spacing-md);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+}
+
+.prizes-list dt {
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.prizes-list dd {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* ── Sidebar infos rapides ── */
+.tournoi-detail-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.info-details {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--spacing-xs) var(--spacing-md);
+}
+
+.info-details dt {
+    font-weight: 600;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.info-details dd {
+    color: var(--text-color);
+}
+
+/* ── Badge de statut ── */
+.status-badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.status-en-cours  { background: var(--badge-en-cours); color: #fff; }
+.status-a-venir   { background: var(--badge-a-venir);  color: #fff; }
+.status-termine   { background: var(--badge-termine);  color: #fff; }
+.status-complet   { background: var(--badge-complet);  color: #fff; }
+
+/* ── Bracket placeholder ── */
+.bracket-placeholder {
+    padding: var(--spacing-2xl);
+    text-align: center;
+    background: var(--bg-card);
+    border: 1px dashed var(--border-color-light);
+    border-radius: var(--radius-lg);
+    color: var(--text-muted);
+}
+
+/* Section description */
+.section-description {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
