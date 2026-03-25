@@ -233,3 +233,161 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* ============================================================
+   Sprint 4 — Classes complémentaires pour les pages admin PHP
+   ============================================================ */
+
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+.admin-page-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-page-header h1 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin: 0 0 0.25rem;
+}
+
+.admin-page-header p {
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* ── Cartes stat dashboard ── */
+.admin-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+}
+
+.admin-stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.admin-stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    border-color: var(--primary-color);
+}
+
+.admin-stat-icon { font-size: 2rem; line-height: 1; }
+
+.admin-stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 1;
+}
+
+.admin-stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
+/* ── Actions rapides dashboard ── */
+.admin-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.admin-action-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--text-color);
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.admin-action-card:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.admin-action-icon { font-size: 2rem; line-height: 1; }
+
+/* ── En-tête de section admin ── */
+.admin-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.admin-section-header h2 { margin: 0; font-size: 1.2rem; }
+
+.admin-filters select {
+    background: var(--bg-card);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 0.4rem 0.75rem;
+    cursor: pointer;
+}
+
+/* ── Boutons action dans tableaux ── */
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.65rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    margin-right: 0.25rem;
+}
+
+.btn-action:hover { opacity: 0.8; }
+.btn-edit   { background: rgba(52,152,219,.2);  color: #3498db; }
+.btn-delete { background: rgba(231,76,60,.2);   color: #e74c3c; }
+.btn-view   { background: rgba(155,89,182,.2);  color: #9b59b6; }
+
+/* ── Badges statut Sprint 4 ── */
+.status-confirmee  { background: rgba(39,174,96,.2);  color: #2ecc71; }
+.status-en-attente { background: rgba(243,156,18,.2); color: #f39c12; }
+.status-annulee    { background: rgba(231,76,60,.2);  color: #e74c3c; }
+
+@media (max-width: 768px) {
+    .admin-stats-grid   { grid-template-columns: repeat(2, 1fr); }
+    .admin-actions-grid { grid-template-columns: repeat(2, 1fr); }
+}
