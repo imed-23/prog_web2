@@ -395,6 +395,20 @@ tp-demande-client/
 
 ---
 
+## 🔐 Configuration Git & GitHub
+
+Pour pouvoir pousser vos modifications vers GitHub, vous devez configurer un **Personal Access Token (PAT)**.
+
+👉 **[Suivez le guide complet ici : GUIDE_GITHUB_TOKEN.md](./GUIDE_GITHUB_TOKEN.md)**
+
+Ce guide explique :
+- Pourquoi vous avez besoin d'un token
+- Comment créer un token étape par étape (avec captures d'écran mentales)
+- Comment l'utiliser pour `git push`
+- Les bonnes pratiques de sécurité
+
+---
+
 ## 🔄 Historique des Modifications
 
 ### Sprint 3 – Corrections & Améliorations (Mars 2026)
