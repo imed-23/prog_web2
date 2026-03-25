@@ -6,6 +6,54 @@
 
 /* ── 1. Menu hamburger (mobile) ── */
 (function () {
+    var THEME_KEY = 'gc_theme';
+    var root = document.documentElement;
+    var toggles = document.querySelectorAll('[data-theme-toggle]');
+
+    function preferredTheme() {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            return 'light';
+        }
+        return 'dark';
+    }
+
+    function updateToggleUi(theme) {
+        toggles.forEach(function (btn) {
+            var icon = btn.querySelector('.theme-toggle-icon');
+            var label = btn.querySelector('.theme-toggle-label');
+            if (icon) icon.textContent = (theme === 'light') ? '☀️' : '🌙';
+            if (label) label.textContent = (theme === 'light') ? 'Light' : 'Dark';
+            btn.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
+            btn.setAttribute('title', 'Thème : ' + ((theme === 'light') ? 'Light' : 'Dark'));
+        });
+    }
+
+    function applyTheme(theme) {
+        if (theme === 'light') {
+            root.setAttribute('data-theme', 'light');
+        } else {
+            root.removeAttribute('data-theme');
+            theme = 'dark';
+        }
+        updateToggleUi(theme);
+    }
+
+    var storedTheme = localStorage.getItem(THEME_KEY);
+    var currentTheme = (storedTheme === 'light' || storedTheme === 'dark') ? storedTheme : preferredTheme();
+    applyTheme(currentTheme);
+
+    toggles.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            currentTheme = (root.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
+            localStorage.setItem(THEME_KEY, currentTheme);
+            applyTheme(currentTheme);
+        });
+    });
+}());
+
+
+/* ── 1. Menu hamburger (mobile) ── */
+(function () {
     var toggle = document.querySelector('.menu-toggle');
     var nav    = document.getElementById('main-nav');
     if (!toggle || !nav) return;
@@ -46,9 +94,9 @@
 
         var linkPath = resolvePath(link.getAttribute('href'));
 
-        /* Correspondance exacte, ou index.html vs / */
-        var isHome   = (linkPath === '/index.html' || linkPath === '/');
-        var atHome   = (currentPath === '/index.html' || currentPath === '/');
+        /* Correspondance exacte, ou page d'accueil (index.html/index.php) */
+        var isHome = (linkPath === '/index.html' || linkPath === '/index.php' || linkPath === '/');
+        var atHome = (currentPath === '/index.html' || currentPath === '/index.php' || currentPath === '/');
 
         if (linkPath === currentPath || (isHome && atHome)) {
             link.classList.add('active');

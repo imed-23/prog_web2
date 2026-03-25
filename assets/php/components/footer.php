@@ -1,4 +1,8 @@
 <?php
+require_once __DIR__ . '/../config/auth.php';
+gc_start_session();
+$currentUser = gc_current_user();
+
 /*
  * assets/php/components/footer.php
  * Composant réutilisable — Pied de page public du site
@@ -37,8 +41,13 @@
             <div class="footer-col">
                 <h3>Mon Compte</h3>
                 <ul class="footer-nav">
+                    <?php if ($currentUser): ?>
+                    <li><a href="<?= $rootPath ?>pages/espace-membre.php">Mon Espace</a></li>
+                    <li><a href="<?= $rootPath ?>pages/logout.php">Déconnexion</a></li>
+                    <?php else: ?>
                     <li><a href="<?= $rootPath ?>pages/connexion.php">Connexion</a></li>
                     <li><a href="<?= $rootPath ?>pages/inscription.php">Inscription</a></li>
+                    <?php endif; ?>
                     <li><a href="<?= $rootPath ?>pages/espace-membre.php">Espace Membre</a></li>
                     <li><a href="<?= $rootPath ?>pages/faq.php">FAQ</a></li>
                     <li><a href="<?= $rootPath ?>pages/contact.php">Contact</a></li>

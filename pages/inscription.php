@@ -4,6 +4,9 @@
  * Sprint 4 : traitement PHP sécurisé + validation JS front-end
  */
 
+require_once __DIR__ . '/../assets/php/config/auth.php';
+gc_start_session();
+
 // ── Traitement du formulaire (POST uniquement) ─────────────────────────────
 $erreurs          = [];
 $anciennesValeurs = [];
@@ -47,6 +50,7 @@ $old = $anciennesValeurs;
                     <form class="auth-form" id="form-inscription"
                           method="post" action="inscription.php"
                           enctype="multipart/form-data" novalidate>
+                        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(gc_csrf_token()) ?>">
 
                         <!-- ── Avatar ── -->
                         <div class="form-group form-group-avatar">

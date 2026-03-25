@@ -382,6 +382,52 @@
 .btn-delete { background: rgba(231,76,60,.2);   color: #e74c3c; }
 .btn-view   { background: rgba(155,89,182,.2);  color: #9b59b6; }
 
+.inline-role-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.inline-role-form select {
+    min-width: 120px;
+}
+
+.admin-inline-edit {
+    display: inline-block;
+    margin-right: 0.35rem;
+}
+
+.admin-inline-edit summary {
+    list-style: none;
+}
+
+.admin-inline-edit summary::-webkit-details-marker {
+    display: none;
+}
+
+.admin-edit-form {
+    margin-top: 0.6rem;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background: var(--bg-tertiary);
+    display: grid;
+    gap: 0.35rem;
+    min-width: 260px;
+}
+
+.admin-edit-form label {
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+}
+
+.admin-edit-form input,
+.admin-edit-form select,
+.admin-edit-form textarea {
+    width: 100%;
+}
+
 /* ── Badges statut Sprint 4 ── */
 .status-confirmee  { background: rgba(39,174,96,.2);  color: #2ecc71; }
 .status-en-attente { background: rgba(243,156,18,.2); color: #f39c12; }

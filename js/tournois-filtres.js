@@ -1,7 +1,7 @@
 /* ============================================================
    GAMING CAMPUS — tournois-filtres.js
    Filtrage par jeu/statut/places + pagination
-   Chargé uniquement dans pages/tournois.html
+    Chargé uniquement dans pages/tournois.php
    ============================================================ */
 (function () {
     var PER_PAGE   = 3;

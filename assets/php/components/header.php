@@ -1,4 +1,8 @@
 <?php
+require_once __DIR__ . '/../config/auth.php';
+gc_start_session();
+$currentUser = gc_current_user();
+
 /*
  * assets/php/components/header.php
  * Composant réutilisable — En-tête public du site
@@ -25,6 +29,16 @@ $_userPseudo = $_SESSION['user_pseudo'] ?? '';
     <meta name="description" content="<?= htmlspecialchars($metaDescription ?? 'Plateforme de Tournois Gaming Campus') ?>">
     <meta name="author" content="BDE Gaming Campus">
     <title><?= htmlspecialchars($pageTitle ?? 'Gaming Campus') ?></title>
+    <script>
+        (function () {
+            try {
+                var theme = localStorage.getItem('gc_theme');
+                if (theme === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+            } catch (e) {}
+        }());
+    </script>
     <link rel="stylesheet" href="<?= $rootPath ?>css/style.css">
     <?php if (!empty($cssSpecifique)): ?>
     <link rel="stylesheet" href="<?= $rootPath ?>css/<?= htmlspecialchars($cssSpecifique) ?>">
@@ -64,6 +78,7 @@ $_userPseudo = $_SESSION['user_pseudo'] ?? '';
 
             <!-- Actions utilisateur -->
             <div class="header-actions">
+<<<<<<< HEAD
                 <?php if ($_isLoggedIn): ?>
                     <?php if ($_userRole === 'admin'): ?>
                         <a href="<?= $rootPath ?>pages/admin/dashboard.php" class="btn btn-outline">⚙️ Admin</a>
@@ -74,6 +89,18 @@ $_userPseudo = $_SESSION['user_pseudo'] ?? '';
                 <?php else: ?>
                     <a href="<?= $rootPath ?>pages/connexion.php" class="btn btn-outline">Connexion</a>
                     <a href="<?= $rootPath ?>pages/inscription.php" class="btn btn-primary">Inscription</a>
+=======
+                <button type="button" class="btn btn-outline btn-sm theme-toggle" data-theme-toggle aria-label="Basculer le thème" title="Basculer le thème">
+                    <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
+                    <span class="theme-toggle-label">Dark</span>
+                </button>
+                <?php if ($currentUser): ?>
+                <a href="<?= $rootPath ?>pages/espace-membre.php" class="btn btn-outline"><?= htmlspecialchars($currentUser['pseudo']) ?></a>
+                <a href="<?= $rootPath ?>pages/logout.php" class="btn btn-primary">Déconnexion</a>
+                <?php else: ?>
+                <a href="<?= $rootPath ?>pages/connexion.php" class="btn btn-outline">Connexion</a>
+                <a href="<?= $rootPath ?>pages/inscription.php" class="btn btn-primary">Inscription</a>
+>>>>>>> 14eabe1 (release v1.3)
                 <?php endif; ?>
             </div>
         </div>

@@ -1,6 +1,26 @@
 <?php
+<<<<<<< HEAD
 require_once __DIR__ . '/../../assets/php/components/auth-guard.php';
 authRequire('admin');
+=======
+require_once __DIR__ . '/../../assets/php/config/db.php';
+
+$stats = [
+    'users' => 0,
+    'active_tournois' => 0,
+    'reservations' => 0,
+    'finished' => 0,
+];
+
+try {
+    $stats['users'] = (int) $pdo->query('SELECT COUNT(*) FROM utilisateurs')->fetchColumn();
+    $stats['active_tournois'] = (int) $pdo->query('SELECT COUNT(*) FROM tournois WHERE statut IN ("a-venir", "en-cours")')->fetchColumn();
+    $stats['reservations'] = (int) $pdo->query('SELECT COUNT(*) FROM reservations')->fetchColumn();
+    $stats['finished'] = (int) $pdo->query('SELECT COUNT(*) FROM tournois WHERE statut = "termine"')->fetchColumn();
+} catch (PDOException $e) {
+    error_log('[ADMIN DASHBOARD] ' . $e->getMessage());
+}
+>>>>>>> 14eabe1 (release v1.3)
 
 $rootPath        = '../../';
 $pageTitle       = 'Dashboard Admin - Gaming Campus';
@@ -27,28 +47,28 @@ include '../../assets/php/components/header-admin.php';
                     <div class="admin-stat-card">
                         <span class="admin-stat-icon">👥</span>
                         <div class="admin-stat-info">
-                            <span class="admin-stat-value">0</span>
+                            <span class="admin-stat-value"><?= $stats['users'] ?></span>
                             <span class="admin-stat-label">Utilisateurs inscrits</span>
                         </div>
                     </div>
                     <div class="admin-stat-card">
                         <span class="admin-stat-icon">🎮</span>
                         <div class="admin-stat-info">
-                            <span class="admin-stat-value">0</span>
+                            <span class="admin-stat-value"><?= $stats['active_tournois'] ?></span>
                             <span class="admin-stat-label">Tournois actifs</span>
                         </div>
                     </div>
                     <div class="admin-stat-card">
                         <span class="admin-stat-icon">📋</span>
                         <div class="admin-stat-info">
-                            <span class="admin-stat-value">0</span>
+                            <span class="admin-stat-value"><?= $stats['reservations'] ?></span>
                             <span class="admin-stat-label">Réservations</span>
                         </div>
                     </div>
                     <div class="admin-stat-card">
                         <span class="admin-stat-icon">🏆</span>
                         <div class="admin-stat-info">
-                            <span class="admin-stat-value">0</span>
+                            <span class="admin-stat-value"><?= $stats['finished'] ?></span>
                             <span class="admin-stat-label">Tournois terminés</span>
                         </div>
                     </div>

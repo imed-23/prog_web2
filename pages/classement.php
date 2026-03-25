@@ -1,4 +1,41 @@
 <?php
+require_once __DIR__ . '/../assets/php/config/db.php';
+
+$rows = [];
+$dbError = '';
+
+$jeuLabels = [
+    'lol' => 'League of Legends',
+    'valorant' => 'Valorant',
+    'cs2' => 'CS2',
+    'fortnite' => 'Fortnite',
+    'rocket-league' => 'Rocket League',
+    'autre' => 'Autre',
+];
+
+try {
+    $stmt = $pdo->query('SELECT
+                            u.id,
+                            u.pseudo,
+                            u.avatar,
+                            u.jeu_principal,
+                            (SELECT r2.nom_equipe FROM reservations r2 WHERE r2.capitaine_id = u.id ORDER BY r2.created_at DESC LIMIT 1) AS nom_equipe,
+                            COUNT(r.id) AS matchs_joues,
+                            SUM(CASE WHEN r.statut = "confirmee" THEN 1 ELSE 0 END) AS victoires,
+                            SUM(CASE WHEN r.statut = "annulee" THEN 1 ELSE 0 END) AS defaites,
+                            SUM(CASE WHEN r.statut = "confirmee" THEN 10 WHEN r.statut = "en-attente" THEN 3 ELSE 0 END) AS points
+                        FROM utilisateurs u
+                        LEFT JOIN reservations r ON r.capitaine_id = u.id
+                        WHERE u.role <> "admin"
+                        GROUP BY u.id
+                        ORDER BY points DESC, victoires DESC, matchs_joues DESC, u.created_at ASC');
+    $rows = $stmt->fetchAll();
+} catch (PDOException $e) {
+    error_log('[CLASSEMENT LIST] ' . $e->getMessage());
+    $dbError = 'Impossible de charger le classement.';
+}
+
+$top = array_slice($rows, 0, 3);
 $rootPath        = '../';
 $pageTitle       = 'Classement - Gaming Campus';
 $metaDescription = 'Classement général des joueurs et équipes. Top joueurs, statistiques et badges de rang.';
@@ -29,11 +66,40 @@ include '../assets/php/components/header.php';
             <div class="section-container">
                 <h2 id="titre-podium">🏅 Podium</h2>
 
-                <!-- Le podium sera rempli automatiquement depuis la base de données -->
                 <div class="podium-grid">
+                    <?php
+                        $podiumOrder = [1, 0, 2];
+                        $podiumMedals = ['🥇', '🥈', '🥉'];
+                        $podiumClasses = ['podium-gold', 'podium-silver', 'podium-bronze'];
+                    ?>
+                    <?php foreach ($podiumOrder as $idx): ?>
+                    <?php if (isset($top[$idx])): ?>
+                    <?php
+                        $j = $top[$idx];
+                        $matchs = (int) $j['matchs_joues'];
+                        $wins = (int) $j['victoires'];
+                        $points = (int) $j['points'];
+                    ?>
+                    <article class="podium-card <?= $podiumClasses[$idx] ?>">
+                        <span class="podium-rank"><?= $podiumMedals[$idx] ?></span>
+                        <?php if (!empty($j['avatar'])): ?>
+                        <img class="podium-avatar" src="../<?= htmlspecialchars($j['avatar']) ?>" alt="Avatar <?= htmlspecialchars($j['pseudo']) ?>" loading="lazy">
+                        <?php else: ?>
+                        <div class="podium-avatar podium-avatar-empty" aria-hidden="true">
+                            <span class="avatar-placeholder-icon">👤</span>
+                        </div>
+                        <?php endif; ?>
+                        <h3><?= htmlspecialchars($j['pseudo']) ?></h3>
+                        <p class="podium-team"><?= htmlspecialchars((string) ($j['nom_equipe'] ?: 'Aucune équipe')) ?></p>
+                        <div class="podium-stats">
+                            <span class="stat"><strong><?= $wins ?></strong> victoires</span>
+                            <span class="stat"><strong><?= $points ?></strong> points</span>
+                        </div>
+                    </article>
+                    <?php else: ?>
                     <!-- 2ème place -->
-                    <article class="podium-card podium-silver">
-                        <span class="podium-rank">🥈</span>
+                    <article class="podium-card <?= $podiumClasses[$idx] ?>">
+                        <span class="podium-rank"><?= $podiumMedals[$idx] ?></span>
                         <div class="podium-avatar podium-avatar-empty" aria-hidden="true">
                             <span class="avatar-placeholder-icon">👤</span>
                         </div>
@@ -44,37 +110,9 @@ include '../assets/php/components/header.php';
                             <span class="stat"><strong>—</strong> points</span>
                         </div>
                     </article>
-
-                    <!-- 1ère place -->
-                    <article class="podium-card podium-gold">
-                        <span class="podium-rank">🥇</span>
-                        <div class="podium-avatar podium-avatar-empty" aria-hidden="true">
-                            <span class="avatar-placeholder-icon">👤</span>
-                        </div>
-                        <h3 class="podium-name-placeholder">—</h3>
-                        <p class="podium-team podium-team-placeholder">Aucune équipe</p>
-                        <div class="podium-stats">
-                            <span class="stat"><strong>—</strong> victoires</span>
-                            <span class="stat"><strong>—</strong> points</span>
-                        </div>
-                    </article>
-
-                    <!-- 3ème place -->
-                    <article class="podium-card podium-bronze">
-                        <span class="podium-rank">🥉</span>
-                        <div class="podium-avatar podium-avatar-empty" aria-hidden="true">
-                            <span class="avatar-placeholder-icon">👤</span>
-                        </div>
-                        <h3 class="podium-name-placeholder">—</h3>
-                        <p class="podium-team podium-team-placeholder">Aucune équipe</p>
-                        <div class="podium-stats">
-                            <span class="stat"><strong>—</strong> victoires</span>
-                            <span class="stat"><strong>—</strong> points</span>
-                        </div>
-                    </article>
+                    <?php endif; ?>
+                    <?php endforeach; ?>
                 </div>
-
-                <p class="empty-state-note">🔒 Le podium sera mis à jour automatiquement dès que des joueurs s'inscrivent et participent aux tournois.</p>
             </div>
         </section>
 
@@ -126,7 +164,33 @@ include '../assets/php/components/header.php';
                             </tr>
                         </thead>
                         <tbody id="leaderboard-body">
-                            <!-- Les joueurs seront affichés ici une fois inscrits et ayant participé à des tournois -->
+                            <?php if ($dbError !== ''): ?>
+                            <tr class="empty-state-row">
+                                <td colspan="9" class="empty-state-cell">⚠️ <?= htmlspecialchars($dbError) ?></td>
+                            </tr>
+                            <?php elseif (!empty($rows)): ?>
+                            <?php foreach ($rows as $index => $row): ?>
+                            <?php
+                                $matchs = (int) $row['matchs_joues'];
+                                $wins = (int) $row['victoires'];
+                                $loss = (int) $row['defaites'];
+                                $points = (int) $row['points'];
+                                $winRate = $matchs > 0 ? (int) round(($wins / $matchs) * 100) : 0;
+                                $jeu = $jeuLabels[$row['jeu_principal'] ?? ''] ?? 'Non défini';
+                            ?>
+                            <tr>
+                                <td><?= $index + 1 ?></td>
+                                <td><?= htmlspecialchars($row['pseudo']) ?></td>
+                                <td><?= htmlspecialchars((string) ($row['nom_equipe'] ?: 'Aucune')) ?></td>
+                                <td><?= htmlspecialchars($jeu) ?></td>
+                                <td><?= $matchs ?></td>
+                                <td><?= $wins ?></td>
+                                <td><?= $loss ?></td>
+                                <td><?= $winRate ?>%</td>
+                                <td><?= $points ?></td>
+                            </tr>
+                            <?php endforeach; ?>
+                            <?php else: ?>
                             <tr class="empty-state-row">
                                 <td colspan="9" class="empty-state-cell">
                                     <div class="empty-state">
@@ -137,19 +201,10 @@ include '../assets/php/components/header.php';
                                     </div>
                                 </td>
                             </tr>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
-
-                <!-- Pagination -->
-                <nav class="pagination" aria-label="Pagination du classement">
-                    <ul>
-                        <li><a href="#" class="pagination-link active" aria-current="page">1</a></li>
-                        <li><a href="#" class="pagination-link">2</a></li>
-                        <li><a href="#" class="pagination-link">3</a></li>
-                        <li><a href="#" class="pagination-link pagination-next" aria-label="Page suivante">→</a></li>
-                    </ul>
-                </nav>
             </div>
         </section>
 

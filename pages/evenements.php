@@ -1,4 +1,37 @@
 <?php
+require_once __DIR__ . '/../assets/php/config/db.php';
+
+$events = [];
+$calendarEvents = [];
+$dbError = '';
+
+$jeuLabels = [
+    'lol' => 'League of Legends',
+    'valorant' => 'Valorant',
+    'cs2' => 'Counter-Strike 2',
+    'fortnite' => 'Fortnite',
+    'rocket-league' => 'Rocket League',
+];
+
+try {
+    $stmt = $pdo->query('SELECT id, nom, jeu, date_debut, lieu, cashprize, statut FROM tournois ORDER BY date_debut ASC LIMIT 24');
+    $events = $stmt->fetchAll();
+
+    foreach ($events as $event) {
+        $key = date('Y-m-d', strtotime((string) $event['date_debut']));
+        if (!isset($calendarEvents[$key])) {
+            $calendarEvents[$key] = [];
+        }
+        $calendarEvents[$key][] = [
+            'label' => (string) $event['nom'],
+            'href' => 'tournoi-detail.php?id=' . (int) $event['id'],
+        ];
+    }
+} catch (PDOException $e) {
+    error_log('[EVENEMENTS LIST] ' . $e->getMessage());
+    $dbError = 'Impossible de charger les événements pour le moment.';
+}
+
 $rootPath        = '../';
 $pageTitle       = 'Événements - Gaming Campus';
 $metaDescription = 'Calendrier des événements gaming du campus. Dates, lieux, prix et inscriptions.';
@@ -36,6 +69,9 @@ include '../assets/php/components/header.php';
                 </div>
 
                 <div id="calendar-container"></div>
+                <script>
+                    window.GC_EVENTS = <?= json_encode($calendarEvents, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;
+                </script>
             </div>
         </section>
 
@@ -45,13 +81,42 @@ include '../assets/php/components/header.php';
                 <h2 id="titre-evenements">🎯 Événements à venir</h2>
 
                 <div class="events-list">
-                    <!-- Les événements seront chargés depuis la base de données (PHP/MySQL Sprint 4) -->
+                    <?php if ($dbError !== ''): ?>
+                    <div class="empty-state empty-state-full">
+                        <span class="empty-state-icon">⚠️</span>
+                        <p><?= htmlspecialchars($dbError) ?></p>
+                    </div>
+                    <?php elseif (!empty($events)): ?>
+                    <?php foreach ($events as $event): ?>
+                    <article class="event-card">
+                        <div class="event-date">
+                            <time datetime="<?= htmlspecialchars((string) $event['date_debut']) ?>">
+                                <span class="event-day"><?= htmlspecialchars(date('d', strtotime((string) $event['date_debut']))) ?></span>
+                                <span class="event-month"><?= htmlspecialchars(date('M', strtotime((string) $event['date_debut']))) ?></span>
+                            </time>
+                        </div>
+                        <div class="event-body">
+                            <h3 class="event-title"><?= htmlspecialchars($event['nom']) ?></h3>
+                            <ul class="event-details">
+                                <li>🎮 <?= htmlspecialchars($jeuLabels[$event['jeu']] ?? $event['jeu']) ?></li>
+                                <li>🕒 <?= htmlspecialchars(date('d/m/Y H:i', strtotime((string) $event['date_debut']))) ?></li>
+                                <li>📍 <?= htmlspecialchars((string) ($event['lieu'] ?: 'Campus')) ?></li>
+                                <li>🏆 <?= number_format((float) $event['cashprize'], 0, ',', ' ') ?>€</li>
+                            </ul>
+                        </div>
+                        <div class="event-actions">
+                            <a href="tournoi-detail.php?id=<?= (int) $event['id'] ?>" class="btn btn-primary">Détails</a>
+                        </div>
+                    </article>
+                    <?php endforeach; ?>
+                    <?php else: ?>
                     <div class="empty-state empty-state-full">
                         <span class="empty-state-icon">📅</span>
                         <p>Aucun événement à venir pour le moment.</p>
                         <p class="empty-state-sub">Les prochains événements seront annoncés ici dès leur programmation.</p>
                         <a href="contact.php" class="btn btn-outline">Nous contacter</a>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </section>

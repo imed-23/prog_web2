@@ -10,8 +10,7 @@
     var DAYS   = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
 
     /* Événements : clé = "AAAA-MM-JJ" → tableau d'objets {label, href} */
-    /* Sera remplacé par des données PHP/MySQL lors du Sprint 4 */
-    var EVENTS = {};
+    var EVENTS = window.GC_EVENTS || {};
 
     var year      = new Date().getFullYear();
     var month     = new Date().getMonth(); /* 0 = Janvier … 11 = Décembre */

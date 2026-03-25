@@ -83,6 +83,6 @@ VALUES (
     'Admin',
     'BDE',
     'admin@gamingcampus.fr',
-    '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', -- password: Admin1234!
+    '$2y$12$OFfwEw6G6C05CDwuSNZTmu3iBNHj3L8VGx735Cqf4ZXaE.W14h1T.', -- password: Admin1234!
     'admin'
 );

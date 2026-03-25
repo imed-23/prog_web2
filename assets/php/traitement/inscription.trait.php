@@ -7,8 +7,15 @@
  * Il traite uniquement les requêtes POST.
  */
 
+<<<<<<< HEAD
 // Inclure la connexion BDD (chemin relatif depuis assets/php/traitement/)
 require_once __DIR__ . '/../config/db.php';
+=======
+// Inclure la connexion BDD
+require_once __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/../config/auth.php';
+gc_start_session();
+>>>>>>> 14eabe1 (release v1.3)
 
 // Initialisation des variables partagées avec la vue
 $erreurs         = [];      // Tableau des erreurs PHP (clé = champ)
@@ -17,6 +24,11 @@ $anciennesValeurs = [];     // Pour repopuler les champs après erreur
 
 // ── Traitement uniquement si POST ─────────────────────────────────────────
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    if (!gc_verify_csrf($_POST['csrf_token'] ?? null)) {
+        $erreurs['db'] = 'Session expirée. Merci de recharger la page et réessayer.';
+        return;
+    }
 
     // ── 1. Récupération & nettoyage des données ───────────────────────────
     $pseudo    = trim($_POST['pseudo']          ?? '');
@@ -146,7 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $stmt = $pdo->prepare('
                 INSERT INTO utilisateurs (pseudo, prenom, nom, email, mdp_hash, avatar, jeu_principal, role)
-                VALUES (:pseudo, :prenom, :nom, :email, :mdp_hash, :avatar, :jeu_principal, \'visiteur\')
+                VALUES (:pseudo, :prenom, :nom, :email, :mdp_hash, :avatar, :jeu_principal, \'capitaine\')
             ');
             $stmt->execute([
                 ':pseudo'        => $pseudo,
