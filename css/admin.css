@@ -382,6 +382,139 @@
 .btn-delete { background: rgba(231,76,60,.2);   color: #e74c3c; }
 .btn-view   { background: rgba(155,89,182,.2);  color: #9b59b6; }
 
+.inline-role-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.inline-role-form select {
+    min-width: 120px;
+}
+
+/* ---- User cell with avatar (Sprint 6) ---- */
+.user-cell-with-avatar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.user-avatar-small {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-color);
+}
+
+.user-avatar-placeholder {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    border: 2px solid var(--border-color);
+}
+
+.user-pseudo {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* ---- Game badge ---- */
+.game-badge {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-tertiary);
+    color: var(--text-color);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+}
+
+/* ---- Count badge ---- */
+.admin-count-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-md);
+    background: var(--primary-color);
+    color: var(--text-on-primary);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+/* ---- Filters row ---- */
+.filters-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.filter-group label {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.filter-search {
+    flex-direction: row;
+    align-items: center;
+}
+
+.filter-search input {
+    width: 200px;
+}
+
+.filter-search .btn {
+    margin-left: 0.25rem;
+}
+
+.admin-inline-edit {
+    display: inline-block;
+    margin-right: 0.35rem;
+}
+
+.admin-inline-edit summary {
+    list-style: none;
+}
+
+.admin-inline-edit summary::-webkit-details-marker {
+    display: none;
+}
+
+.admin-edit-form {
+    margin-top: 0.6rem;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background: var(--bg-tertiary);
+    display: grid;
+    gap: 0.35rem;
+    min-width: 260px;
+}
+
+.admin-edit-form label {
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+}
+
+.admin-edit-form input,
+.admin-edit-form select,
+.admin-edit-form textarea {
+    width: 100%;
+}
+
 /* ── Badges statut Sprint 4 ── */
 .status-confirmee  { background: rgba(39,174,96,.2);  color: #2ecc71; }
 .status-en-attente { background: rgba(243,156,18,.2); color: #f39c12; }
