@@ -395,6 +395,20 @@ tp-demande-client/
 
 ---
 
+## 🔐 Configuration Git & GitHub
+
+Pour pouvoir pousser vos modifications vers GitHub, vous devez configurer un **Personal Access Token (PAT)**.
+
+👉 **[Suivez le guide complet ici : GUIDE_GITHUB_TOKEN.md](./GUIDE_GITHUB_TOKEN.md)**
+
+Ce guide explique :
+- Pourquoi vous avez besoin d'un token
+- Comment créer un token étape par étape (avec captures d'écran mentales)
+- Comment l'utiliser pour `git push`
+- Les bonnes pratiques de sécurité
+
+---
+
 ## 🔄 Historique des Modifications
 
 ### Sprint 3 – Corrections & Améliorations (Mars 2026)
@@ -453,3 +467,105 @@ Les boutons de filtre "Tous les jeux / League of Legends / Valorant / CS2" sur l
 ---
 
 **📌 Document de référence - À utiliser comme base unique pour tout le développement du projet**
+
+---
+
+## 📊 Historique des Versions & Sprints
+
+### 🏷️ Système de Versionnement
+
+Chaque sprint terminé est marqué par un **tag Git** dans le dépôt :
+- `v1.0` — Version initiale (structure HTML)
+- `v1.1` — Sprint 1 terminé
+- `v1.2` — Sprint 2 terminé (CSS & Responsive)
+- `v1.3` — Sprint 3 terminé (Corrections & Fonctionnalités JS)
+- `v1.4` — Sprint 4 terminé (Formulaire d'inscription PHP/MySQL)
+- `v1.5` — Sprint 5 & 6 terminés (Espace Admin & Remontée des données)
+
+---
+
+### ✅ Sprint 4 : Le Formulaire d'Inscription (COMPLET ✅)
+
+**Statut :** 100% terminé
+
+#### Fonctionnalités implémentées :
+
+| Exigence | Fichier | Statut |
+|----------|---------|--------|
+| Structure HTML/CSS du formulaire | `pages/inscription.php` | ✅ |
+| Validation JS front-end | `js/form-validation.js` | ✅ |
+| Traitement PHP sécurisé | `assets/php/traitement/inscription.trait.php` | ✅ |
+| Hash mot de passe (bcrypt) | `password_hash()` | ✅ |
+| Protection CSRF | `gc_csrf_token()` | ✅ |
+| Upload d'avatar | `js/avatar-upload.js` + PHP | ✅ |
+| Unicité email/pseudo BDD | Vérification avant insert | ✅ |
+| Base de données MySQL | `assets/sql/init.sql` | ✅ |
+
+---
+
+### ✅ Sprint 5 : L'Espace Admin & Les Sessions (COMPLET ✅)
+
+**Statut :** 100% terminé
+
+#### Fonctionnalités implémentées :
+
+| Exigence | Fichier | Statut |
+|----------|---------|--------|
+| Système de sessions PHP | `assets/php/config/auth.php` | ✅ |
+| Protection pages admin | `gc_require_login()` / `gc_require_admin()` | ✅ |
+| Page de connexion | `pages/connexion.php` | ✅ |
+| Dashboard admin | `pages/admin/dashboard.php` | ✅ |
+| Gestion des réservations | `pages/admin/reservations.php` | ✅ |
+| Gestion des tournois | `pages/admin/tournois.php` | ✅ |
+| Gestion des utilisateurs | `pages/admin/utilisateurs.php` | ✅ |
+| Messages de succès/erreur | Alertes dans tous les formulaires | ✅ |
+| Déconnexion | `pages/logout.php` | ✅ |
+
+---
+
+### ✅ Sprint 6 : Remontée des données (COMPLET ✅)
+
+**Statut :** 100% terminé
+
+#### Fonctionnalités implémentées :
+
+| Exigence | Fichier | Statut |
+|----------|---------|--------|
+| Tableau de bord admin avec liste inscriptions | `pages/admin/inscriptions.php` | ✅ |
+| Boucle PHP pour afficher les inscrits | Boucle `foreach` dans le tableau | ✅ |
+| Filtres par rôle | Filtre dropdown (Visiteur/Capitaine/Admin) | ✅ |
+| Recherche par pseudo/email | Champ de recherche avec SQL LIKE | ✅ |
+| Tri par colonnes | Liens dans les en-têtes de colonnes | ✅ |
+| Actions sur utilisateurs | Changement de rôle + suppression | ✅ |
+| Affichage des avatars | Images ou placeholder par défaut | ✅ |
+| Liaison formulaire → admin | Les inscriptions apparaissent dans l'admin | ✅ |
+
+#### Pages mises à jour :
+- **`pages/admin/inscriptions.php`** — NOUVELLE PAGE : liste complète des utilisateurs inscrits
+- **`pages/admin/dashboard.php`** — Lien rapide vers "Voir les inscriptions" ajouté
+- **`assets/php/components/header-admin.php`** — Nouvel onglet "Inscriptions" dans la navigation admin
+- **`css/admin.css`** — Nouveaux styles pour les avatars, badges de jeu, filtres
+
+---
+
+### 📋 Résumé des Pages Admin
+
+| Page | URL | Description |
+|------|-----|-------------|
+| Dashboard | `/pages/admin/dashboard.php` | Vue d'ensemble avec statistiques |
+| Inscriptions | `/pages/admin/inscriptions.php` | Liste des utilisateurs, filtres, recherche |
+| Tournois | `/pages/admin/tournois.php` | Créer/modifier/supprimer des tournois |
+| Utilisateurs | `/pages/admin/utilisateurs.php` | Gérer les comptes et rôles |
+| Réservations | `/pages/admin/reservations.php` | Voir et modifier le statut des réservations |
+
+---
+
+### 🎯 Prochaines Étapes (Sprints Futurs)
+
+Les sprints suivants pourront inclure :
+- **Sprint 7** : Système de réservation d'équipes pour les tournois
+- **Sprint 8** : Affichage public des tournois et inscrits
+- **Sprint 9** : Système de classement automatique (leaderboard)
+- **Sprint 10** : Notifications et emails
+
+---
