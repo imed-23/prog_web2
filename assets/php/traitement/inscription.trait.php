@@ -7,8 +7,10 @@
  * Il traite uniquement les requêtes POST.
  */
 
-// Inclure la connexion BDD (chemin relatif depuis pages/)
-require_once __DIR__ . '/../../assets/php/config/db.php';
+// Inclure la connexion BDD
+require_once __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/../config/auth.php';
+gc_start_session();
 
 // Initialisation des variables partagées avec la vue
 $erreurs         = [];      // Tableau des erreurs PHP (clé = champ)
@@ -17,6 +19,11 @@ $anciennesValeurs = [];     // Pour repopuler les champs après erreur
 
 // ── Traitement uniquement si POST ─────────────────────────────────────────
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    if (!gc_verify_csrf($_POST['csrf_token'] ?? null)) {
+        $erreurs['db'] = 'Session expirée. Merci de recharger la page et réessayer.';
+        return;
+    }
 
     // ── 1. Récupération & nettoyage des données ───────────────────────────
     $pseudo    = trim($_POST['pseudo']          ?? '');
@@ -101,8 +108,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
         } catch (PDOException $e) {
-            error_log('[INSCRIPTION BDD] ' . $e->getMessage());
-            $erreurs['db'] = 'Erreur de vérification. Réessaie dans un moment.';
+            error_log('[INSCRIPTION INSERT]' . $e->getMessage());
+            if (($e->getCode() === '23000') || str_contains(strtolower($e->getMessage()), 'duplicate')) {
+                $erreurs['db'] = 'Ce compte existe déjà (email ou pseudo déjà utilisé).';
+            } else {
+                $erreurs['db'] = 'Une erreur est survenue lors de la création du compte. Réessaie dans un moment.';
+            }
         }
     }
 
@@ -146,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $stmt = $pdo->prepare('
                 INSERT INTO utilisateurs (pseudo, prenom, nom, email, mdp_hash, avatar, jeu_principal, role)
-                VALUES (:pseudo, :prenom, :nom, :email, :mdp_hash, :avatar, :jeu_principal, \'visiteur\')
+                VALUES (:pseudo, :prenom, :nom, :email, :mdp_hash, :avatar, :jeu_principal, \'capitaine\')
             ');
             $stmt->execute([
                 ':pseudo'        => $pseudo,
@@ -163,8 +174,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
 
         } catch (PDOException $e) {
-            error_log('[INSCRIPTION INSERT] ' . $e->getMessage());
-            $erreurs['db'] = 'Une erreur est survenue lors de la création du compte. Réessaie dans un moment.';
+            error_log('[INSCRIPTION INSERT]' . $e->getMessage());
+            if (($e->getCode() === '23000') || str_contains(strtolower($e->getMessage()), 'duplicate')) {
+                $erreurs['db'] = 'Ce compte existe déjà (email ou pseudo déjà utilisé).';
+            } else {
+                $erreurs['db'] = 'Une erreur est survenue lors de la création du compte. Réessaie dans un moment.';
+            }
         }
     }
 }
