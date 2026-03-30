@@ -4,3 +4,6 @@
 
 # Qwen Code
 .qwen/
+
+# Uploads (user-generated content)
+uploads/
