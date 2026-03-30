@@ -97,6 +97,48 @@
     --header-height: 70px;
 }
 
+html[data-theme="light"] {
+    --bg-color: #f4f6fb;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #eef2fa;
+    --bg-card: rgba(255, 255, 255, 0.92);
+    --bg-card-hover: rgba(245, 249, 255, 0.98);
+
+    --text-color: #1f2937;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --text-on-primary: #ffffff;
+
+    --primary-color: #cf2433;
+    --primary-hover: #b81f2d;
+    --primary-dark: #8f1822;
+    --accent-color: #cf2433;
+    --accent-glow: rgba(207, 36, 51, 0.3);
+
+    --success-color: #1f9d58;
+    --warning-color: #d97706;
+    --danger-color: #c0392b;
+    --info-color: #2563eb;
+
+    --badge-en-cours: #16a34a;
+    --badge-a-venir: #2563eb;
+    --badge-termine: #64748b;
+    --badge-complet: #c0392b;
+
+    --border-color: rgba(15, 23, 42, 0.12);
+    --border-color-light: rgba(15, 23, 42, 0.22);
+    --border-glow: rgba(207, 36, 51, 0.18);
+
+    --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.1);
+    --shadow-md: 0 6px 20px rgba(15, 23, 42, 0.12);
+    --shadow-lg: 0 14px 36px rgba(15, 23, 42, 0.16);
+    --shadow-glow: 0 0 18px rgba(207, 36, 51, 0.22);
+    --shadow-glow-strong: 0 0 26px rgba(207, 36, 51, 0.3);
+
+    --glass-bg: rgba(255, 255, 255, 0.86);
+    --glass-border: rgba(15, 23, 42, 0.1);
+}
+
 
 /* ============================================
    2. RESET & BASE
@@ -338,6 +380,20 @@ section {
     align-items: center;
     gap: var(--spacing-sm);
     flex-shrink: 0;
+}
+
+.theme-toggle {
+    min-width: 116px;
+}
+
+.theme-toggle-icon {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.theme-toggle-label {
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.02em;
 }
 
 /* Hamburger menu (mobile) */
@@ -2192,6 +2248,16 @@ section {
     color: var(--success-color);
 }
 
+.status-confirmee {
+    background: rgba(46, 204, 113, 0.15);
+    color: var(--success-color);
+}
+
+.status-en-attente {
+    background: rgba(241, 196, 15, 0.18);
+    color: #f1c40f;
+}
+
 .status-en-cours {
     background: rgba(46, 204, 113, 0.15);
     color: var(--success-color);
@@ -2728,6 +2794,15 @@ section {
     .header-actions .btn {
         padding: 0.4rem 0.75rem;
         font-size: var(--font-size-xs);
+    }
+
+    .theme-toggle {
+        min-width: 0;
+        padding-inline: 0.55rem;
+    }
+
+    .theme-toggle-label {
+        display: none;
     }
 
     /* Hero compact */
