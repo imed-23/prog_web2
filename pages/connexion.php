@@ -4,25 +4,62 @@
  * Sprint 4 : traitement PHP + message succès post-inscription
  */
 
+require_once __DIR__ . '/../assets/php/config/auth.php';
+gc_start_session();
+
 // ── Variables ──────────────────────────────────────────────────────────────
 $erreurConnexion = '';
 $successMessage  = '';
+$redirectPath    = trim($_GET['redirect'] ?? '');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $redirectPath = trim($_POST['redirect'] ?? $redirectPath);
+}
+
+// Autorise uniquement des redirections internes relatives (pas d'URL externe)
+if ($redirectPath !== '') {
+    if (preg_match('/^https?:\/\//i', $redirectPath) || str_starts_with($redirectPath, '//') || str_starts_with($redirectPath, '/')) {
+        $redirectPath = '';
+    }
+}
+
+$currentUser = gc_current_user();
+if ($currentUser) {
+    if ($redirectPath !== '') {
+        header('Location: ' . $redirectPath);
+        exit;
+    }
+
+    if ($currentUser['role'] === 'admin') {
+        header('Location: admin/dashboard.php');
+    } else {
+        header('Location: espace-membre.php');
+    }
+    exit;
+}
 
 // Message de succès après inscription
 if (isset($_GET['success']) && $_GET['success'] === '1') {
     $successMessage = 'Compte créé avec succès ! Tu peux maintenant te connecter.';
 }
+if (isset($_GET['logout']) && $_GET['logout'] === '1') {
+    $successMessage = 'Déconnexion réussie.';
+}
 
 // ── Traitement POST ────────────────────────────────────────────────────────
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!gc_verify_csrf($_POST['csrf_token'] ?? null)) {
+        $erreurConnexion = 'Session expirée. Recharge la page puis réessaie.';
+    }
+
     $email = trim(strtolower($_POST['email'] ?? ''));
     $mdp   = $_POST['password'] ?? '';
 
-    if (empty($email) || empty($mdp)) {
+    if (empty($erreurConnexion) && (empty($email) || empty($mdp))) {
         $erreurConnexion = 'Veuillez remplir tous les champs.';
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    } elseif (empty($erreurConnexion) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $erreurConnexion = 'Format d\'email invalide.';
-    } else {
+    } elseif (empty($erreurConnexion)) {
         // Connexion BDD
         require_once __DIR__ . '/../assets/php/config/db.php';
         try {
@@ -34,10 +71,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $erreurConnexion = 'Email ou mot de passe incorrect.';
             } else {
                 // Connexion réussie — démarrage de session
-                session_start();
+                gc_start_session();
+                session_regenerate_id(true);
                 $_SESSION['user_id']    = $user['id'];
                 $_SESSION['user_pseudo'] = $user['pseudo'];
                 $_SESSION['user_role']  = $user['role'];
+
+                if ($redirectPath !== '') {
+                    header('Location: ' . $redirectPath);
+                    exit;
+                }
 
                 // Redirection selon le rôle
                 if ($user['role'] === 'admin') {
@@ -90,6 +133,8 @@ include '../assets/php/components/header.php';
                     <?php endif; ?>
 
                     <form class="auth-form" method="post" action="connexion.php" novalidate>
+                        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(gc_csrf_token()) ?>">
+                        <input type="hidden" name="redirect" value="<?= htmlspecialchars($redirectPath) ?>">
 
                         <div class="form-group">
                             <label for="email">Adresse email <span class="required">*</span></label>
