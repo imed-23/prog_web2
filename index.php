@@ -1,4 +1,8 @@
 <?php
+require_once __DIR__ . '/assets/php/config/auth.php';
+gc_start_session();
+$currentUser = gc_current_user();
+
 $rootPath        = '';
 $pageTitle       = 'Gaming Campus - Plateforme de Tournois';
 $metaDescription = 'Plateforme de Tournois Gaming Campus - Consultez les tournois, inscrivez votre équipe et suivez les classements.';
@@ -18,7 +22,11 @@ include 'assets/php/components/header.php';
                 <p class="hero-subtitle">Consulte les tournois à venir, inscris ton équipe et grimpe dans le classement. La prochaine victoire est à portée de clic.</p>
                 <div class="hero-actions">
                     <a href="pages/tournois.php" class="btn btn-primary btn-lg">Voir les Tournois</a>
+                    <?php if ($currentUser): ?>
+                    <a href="pages/espace-membre.php" class="btn btn-outline btn-lg">Voir mon compte</a>
+                    <?php else: ?>
                     <a href="pages/inscription.php" class="btn btn-outline btn-lg">Créer un Compte</a>
+                    <?php endif; ?>
                 </div>
                 <!-- Statistiques dynamiques — seront générées par PHP/MySQL en Sprint 4 -->
                 <!-- <div class="hero-stats"> ... </div> -->
@@ -79,7 +87,12 @@ include 'assets/php/components/header.php';
                     <tbody id="leaderboard-preview-body">
                         <tr class="empty-state-row">
                             <td colspan="5" class="empty-state-cell">
-                                Aucun joueur classé pour le moment. <a href="pages/inscription.php">Inscris-toi</a> pour apparaître ici !
+                                Aucun joueur classé pour le moment.
+                                <?php if ($currentUser): ?>
+                                <a href="pages/espace-membre.php">Voir mon compte</a> pour suivre tes stats.
+                                <?php else: ?>
+                                <a href="pages/inscription.php">Inscris-toi</a> pour apparaître ici !
+                                <?php endif; ?>
                             </td>
                         </tr>
                     </tbody>
@@ -93,7 +106,11 @@ include 'assets/php/components/header.php';
                 <h2 id="titre-cta">Prêt à entrer dans l'arène ?</h2>
                 <p>Crée ton compte, forme ton équipe et inscris-toi au prochain tournoi. Les places partent vite !</p>
                 <div class="cta-actions">
+                    <?php if ($currentUser): ?>
+                    <a href="pages/espace-membre.php" class="btn btn-primary btn-lg">Voir mon espace membre</a>
+                    <?php else: ?>
                     <a href="pages/inscription.php" class="btn btn-primary btn-lg">Créer mon compte</a>
+                    <?php endif; ?>
                     <a href="pages/tournois.php" class="btn btn-outline btn-lg">Explorer les tournois</a>
                 </div>
             </div>
