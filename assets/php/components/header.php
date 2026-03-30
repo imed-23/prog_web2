@@ -1,4 +1,8 @@
 <?php
+require_once __DIR__ . '/../config/auth.php';
+gc_start_session();
+$currentUser = gc_current_user();
+
 /*
  * assets/php/components/header.php
  * Composant réutilisable — En-tête public du site
@@ -10,6 +14,12 @@
  *   $cssSpecifique   (string) : nom du fichier CSS spécifique (ex: 'tournois.css')
  *   $jsSupplementaires (array) : noms des fichiers JS à ajouter en fin de page
  */
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$_isLoggedIn = !empty($_SESSION['user_id']);
+$_userRole   = $_SESSION['user_role'] ?? '';
+$_userPseudo = $_SESSION['user_pseudo'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -19,6 +29,16 @@
     <meta name="description" content="<?= htmlspecialchars($metaDescription ?? 'Plateforme de Tournois Gaming Campus') ?>">
     <meta name="author" content="BDE Gaming Campus">
     <title><?= htmlspecialchars($pageTitle ?? 'Gaming Campus') ?></title>
+    <script>
+        (function () {
+            try {
+                var theme = localStorage.getItem('gc_theme');
+                if (theme === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+            } catch (e) {}
+        }());
+    </script>
     <link rel="stylesheet" href="<?= $rootPath ?>css/style.css">
     <?php if (!empty($cssSpecifique)): ?>
     <link rel="stylesheet" href="<?= $rootPath ?>css/<?= htmlspecialchars($cssSpecifique) ?>">
@@ -58,8 +78,17 @@
 
             <!-- Actions utilisateur -->
             <div class="header-actions">
+                <button type="button" class="btn btn-outline btn-sm theme-toggle" data-theme-toggle aria-label="Basculer le thème" title="Basculer le thème">
+                    <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
+                    <span class="theme-toggle-label">Dark</span>
+                </button>
+                <?php if ($currentUser): ?>
+                <a href="<?= $rootPath ?>pages/espace-membre.php" class="btn btn-outline"><?= htmlspecialchars($currentUser['pseudo']) ?></a>
+                <a href="<?= $rootPath ?>pages/logout.php" class="btn btn-primary">Déconnexion</a>
+                <?php else: ?>
                 <a href="<?= $rootPath ?>pages/connexion.php" class="btn btn-outline">Connexion</a>
                 <a href="<?= $rootPath ?>pages/inscription.php" class="btn btn-primary">Inscription</a>
+                <?php endif; ?>
             </div>
         </div>
     </header>
