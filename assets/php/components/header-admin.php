@@ -53,9 +53,8 @@ $currentUser = gc_current_user();
             <nav aria-label="Navigation administration">
                 <ul id="admin-nav" class="nav-list">
                     <li><a href="<?= $rootPath ?>pages/admin/dashboard.php" class="nav-link<?= (($adminActivePage ?? '') === 'dashboard') ? ' active' : '' ?>"<?= (($adminActivePage ?? '') === 'dashboard') ? ' aria-current="page"' : '' ?>>📊 Dashboard</a></li>
-                    <li><a href="<?= $rootPath ?>pages/admin/inscriptions.php" class="nav-link<?= (($adminActivePage ?? '') === 'inscriptions') ? ' active' : '' ?>"<?= (($adminActivePage ?? '') === 'inscriptions') ? ' aria-current="page"' : '' ?>>👥 Inscriptions</a></li>
                     <li><a href="<?= $rootPath ?>pages/admin/tournois.php" class="nav-link<?= (($adminActivePage ?? '') === 'tournois') ? ' active' : '' ?>"<?= (($adminActivePage ?? '') === 'tournois') ? ' aria-current="page"' : '' ?>>🎮 Tournois</a></li>
-                    <li><a href="<?= $rootPath ?>pages/admin/utilisateurs.php" class="nav-link<?= (($adminActivePage ?? '') === 'utilisateurs') ? ' active' : '' ?>"<?= (($adminActivePage ?? '') === 'utilisateurs') ? ' aria-current="page"' : '' ?>>🔧 Comptes</a></li>
+                    <li><a href="<?= $rootPath ?>pages/admin/utilisateurs.php" class="nav-link<?= (($adminActivePage ?? '') === 'utilisateurs') ? ' active' : '' ?>"<?= (($adminActivePage ?? '') === 'utilisateurs') ? ' aria-current="page"' : '' ?>>👥 Utilisateurs</a></li>
                     <li><a href="<?= $rootPath ?>pages/admin/reservations.php" class="nav-link<?= (($adminActivePage ?? '') === 'reservations') ? ' active' : '' ?>"<?= (($adminActivePage ?? '') === 'reservations') ? ' aria-current="page"' : '' ?>>📋 Réservations</a></li>
                 </ul>
             </nav>

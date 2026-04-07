@@ -1,6 +1,6 @@
 <?php
 /**
- * Connexion à la base de données MySQL via PDO
+ * Connexion à la base de données PostgreSQL via PDO
  * Gaming Campus — Sprint 4
  *
  * Utilisation dans les autres fichiers :
