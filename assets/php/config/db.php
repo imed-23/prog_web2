@@ -1,24 +1,16 @@
 <?php
 /**
  * Connexion à la base de données PostgreSQL via PDO
- * Gaming Campus — Sprint 4
- *
- * Utilisation dans les autres fichiers :
- *   require_once __DIR__ . '/../config/db.php';
- *   $stmt = $pdo->prepare("SELECT ...");
+ * Gaming Campus
  */
 
-// ── Paramètres de connexion ────────────────────────────────────────────────
-// 127.0.0.1 force une connexion TCP (important sous WSL, évite l'erreur socket "No such file or directory")
-define('DB_HOST', getenv('DB_HOST') ?: '127.0.0.1');
-define('DB_PORT', (int) (getenv('DB_PORT') ?: 3306));
-define('DB_NAME', getenv('DB_NAME') ?: 'gaming_campus');
-define('DB_USER', getenv('DB_USER') ?: 'root');
-define('DB_PASS', getenv('DB_PASS') ?: '');
-define('DB_CHARSET', 'utf8mb4');
+define('DB_HOST', getenv('PGHOST') ?: '127.0.0.1');
+define('DB_PORT', (int) (getenv('PGPORT') ?: 5432));
+define('DB_NAME', getenv('PGDATABASE') ?: 'gaming_campus');
+define('DB_USER', getenv('PGUSER') ?: 'postgres');
+define('DB_PASS', getenv('PGPASSWORD') ?: '');
 
-// ── Connexion PDO ──────────────────────────────────────────────────────────
-$dsn = 'mysql:host=' . DB_HOST . ';port=' . DB_PORT . ';dbname=' . DB_NAME . ';charset=' . DB_CHARSET;
+$dsn = 'pgsql:host=' . DB_HOST . ';port=' . DB_PORT . ';dbname=' . DB_NAME;
 
 $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -32,6 +24,6 @@ try {
     error_log('[DB ERROR] ' . $e->getMessage());
     die(json_encode([
         'success' => false,
-        'message' => 'Connexion à la base de données impossible. Vérifiez que MySQL est démarré et que DB_HOST/DB_PORT sont corrects.',
+        'message' => 'Connexion à la base de données impossible.',
     ]));
 }
