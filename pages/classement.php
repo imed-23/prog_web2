@@ -14,21 +14,23 @@ $jeuLabels = [
 ];
 
 try {
-    $stmt = $pdo->query('SELECT
+    $stmt = $pdo->query("SELECT
                             u.id,
                             u.pseudo,
                             u.avatar,
                             u.jeu_principal,
+                            u.created_at,
                             (SELECT r2.nom_equipe FROM reservations r2 WHERE r2.capitaine_id = u.id ORDER BY r2.created_at DESC LIMIT 1) AS nom_equipe,
                             COUNT(r.id) AS matchs_joues,
-                            SUM(CASE WHEN r.statut = "confirmee" THEN 1 ELSE 0 END) AS victoires,
-                            SUM(CASE WHEN r.statut = "annulee" THEN 1 ELSE 0 END) AS defaites,
-                            SUM(CASE WHEN r.statut = "confirmee" THEN 10 WHEN r.statut = "en-attente" THEN 3 ELSE 0 END) AS points
+                            SUM(CASE WHEN r.statut = 'confirmee' THEN 1 ELSE 0 END) AS victoires,
+                            SUM(CASE WHEN r.statut = 'en-attente' THEN 1 ELSE 0 END) AS en_attente,
+                            SUM(CASE WHEN r.statut = 'annulee' THEN 1 ELSE 0 END) AS annulees,
+                            SUM(CASE WHEN r.statut = 'confirmee' THEN 10 WHEN r.statut = 'en-attente' THEN 3 ELSE 0 END) AS points
                         FROM utilisateurs u
                         LEFT JOIN reservations r ON r.capitaine_id = u.id
-                        WHERE u.role <> "admin"
-                        GROUP BY u.id
-                        ORDER BY points DESC, victoires DESC, matchs_joues DESC, u.created_at ASC');
+                        WHERE u.role <> 'admin'
+                        GROUP BY u.id, u.pseudo, u.avatar, u.jeu_principal, u.created_at
+                        ORDER BY points DESC, victoires DESC, matchs_joues DESC, u.created_at ASC");
     $rows = $stmt->fetchAll();
 } catch (PDOException $e) {
     error_log('[CLASSEMENT LIST] ' . $e->getMessage());
@@ -173,9 +175,11 @@ include '../assets/php/components/header.php';
                             <?php
                                 $matchs = (int) $row['matchs_joues'];
                                 $wins = (int) $row['victoires'];
-                                $loss = (int) $row['defaites'];
+                                $annul = (int) ($row['annulees'] ?? 0);
+                                $loss = max(0, $matchs - $wins - (int) ($row['en_attente'] ?? 0) - $annul);
                                 $points = (int) $row['points'];
-                                $winRate = $matchs > 0 ? (int) round(($wins / $matchs) * 100) : 0;
+                                $matchsTermines = max(0, $matchs - $annul);
+                                $winRate = $matchsTermines > 0 ? (int) round(($wins / $matchsTermines) * 100) : 0;
                                 $jeu = $jeuLabels[$row['jeu_principal'] ?? ''] ?? 'Non défini';
                             ?>
                             <tr>

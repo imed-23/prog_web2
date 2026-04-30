@@ -63,13 +63,11 @@
         }
     }
 
-    /* Soumission du formulaire (bouton Filtrer) */
-    filterForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        applyFilters();
-    });
+    /* Soumission du formulaire : on laisse partir vers le serveur
+       (GET avec les paramètres jeu/statut/places) afin que la BDD
+       applique le filtre sur l'ensemble des tournois — pas seulement la page courante. */
 
-    /* Filtrage en temps réel au changement de select */
+    /* Filtrage en temps réel au changement de select : aperçu côté client */
     filterForm.querySelectorAll('select').forEach(function (sel) {
         sel.addEventListener('change', applyFilters);
     });

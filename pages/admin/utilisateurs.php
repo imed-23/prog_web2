@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../assets/php/config/auth.php';
-gc_require_login('../../pages/connexion.php');
+gc_require_admin('../../pages/connexion.php');
 
 require_once __DIR__ . '/../../assets/php/config/db.php';
 
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $target = $stmt->fetch();
 
                         if ($target && $target['role'] === 'admin') {
-                            $adminCount = (int) $pdo->query('SELECT COUNT(*) FROM utilisateurs WHERE role = "admin"')->fetchColumn();
+                            $adminCount = (int) $pdo->query("SELECT COUNT(*) FROM utilisateurs WHERE role = 'admin'")->fetchColumn();
                             if ($adminCount <= 1) {
                                 $messageErreur = 'Impossible de supprimer le dernier administrateur.';
                             }
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     } else {
                         $selfId = (int) (gc_current_user()['id'] ?? 0);
                         if ($target['role'] === 'admin' && $newRole !== 'admin') {
-                            $adminCount = (int) $pdo->query('SELECT COUNT(*) FROM utilisateurs WHERE role = "admin"')->fetchColumn();
+                            $adminCount = (int) $pdo->query("SELECT COUNT(*) FROM utilisateurs WHERE role = 'admin'")->fetchColumn();
                             if ($adminCount <= 1) {
                                 $messageErreur = 'Impossible de rétrograder le dernier administrateur.';
                             }

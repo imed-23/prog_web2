@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../assets/php/config/auth.php';
-gc_require_login('../../pages/connexion.php');
+gc_require_admin('../../pages/connexion.php');
 
 require_once __DIR__ . '/../../assets/php/config/db.php';
 
@@ -98,8 +98,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $messageErreur = 'La date du tournoi doit être dans le futur.';
             } else {
                 try {
-                    $stmt = $pdo->prepare('INSERT INTO tournois (nom, jeu, date_debut, lieu, nb_places, cashprize, description, statut)
-                                           VALUES (:nom, :jeu, :date_debut, :lieu, :nb_places, :cashprize, :description, "a-venir")');
+                    $stmt = $pdo->prepare("INSERT INTO tournois (nom, jeu, date_debut, lieu, nb_places, cashprize, description, statut)
+                                           VALUES (:nom, :jeu, :date_debut, :lieu, :nb_places, :cashprize, :description, 'a-venir')");
                     $stmt->execute([
                         ':nom' => $nom,
                         ':jeu' => $jeu,

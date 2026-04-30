@@ -154,7 +154,7 @@ include '../assets/php/components/header.php';
                                 <input type="checkbox" id="remember" name="remember">
                                 <label for="remember">Se souvenir de moi</label>
                             </div>
-                            <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+                            <span class="forgot-password" title="Cette fonctionnalité arrive bientôt" style="opacity:0.5;cursor:not-allowed;">Mot de passe oublié ? (bientôt)</span>
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-lg btn-block">Se connecter</button>

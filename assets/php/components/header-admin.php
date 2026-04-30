@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../config/auth.php';
-gc_require_login($rootPath . 'pages/connexion.php');
+gc_require_admin($rootPath . 'pages/connexion.php');
 $currentUser = gc_current_user();
 
 /*

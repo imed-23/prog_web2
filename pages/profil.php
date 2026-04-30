@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__ . '/../assets/php/config/auth.php';
+gc_require_login('connexion.php');
+
 $rootPath        = '../';
 $pageTitle       = 'Profil Joueur - Gaming Campus';
 $metaDescription = 'Profil d\'un joueur Gaming Campus. Statistiques, trophées et historique des participations.';

@@ -38,7 +38,7 @@ try {
             LEFT JOIN (
                 SELECT tournoi_id, COUNT(*) AS inscrits
                 FROM reservations
-                WHERE statut <> "annulee"
+                WHERE statut <> \'annulee\'
                 GROUP BY tournoi_id
             ) rc ON rc.tournoi_id = t.id
             WHERE 1=1';
@@ -58,7 +58,8 @@ try {
         $sql .= ' AND COALESCE(rc.inscrits, 0) >= t.nb_places';
     }
 
-    $sql .= ' ORDER BY FIELD(t.statut, "en-cours", "a-venir", "termine"), t.date_debut ASC';
+    // PostgreSQL n'a pas FIELD() de MySQL : on simule l'ordre via CASE
+    $sql .= " ORDER BY CASE t.statut WHEN 'en-cours' THEN 1 WHEN 'a-venir' THEN 2 WHEN 'termine' THEN 3 ELSE 4 END, t.date_debut ASC";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);

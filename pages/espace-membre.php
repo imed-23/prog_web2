@@ -78,7 +78,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!is_dir($uploadDir)) {
                 mkdir($uploadDir, 0755, true);
             }
-            $ext = strtolower(pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION));
+            // Extension dérivée du MIME type vérifié, pas du nom client
+            $mimeToExt = [
+                'image/jpeg' => 'jpg',
+                'image/png'  => 'png',
+                'image/webp' => 'webp',
+                'image/gif'  => 'gif',
+            ];
+            $ext = $mimeToExt[$mimeType] ?? 'bin';
             $filename = uniqid('avatar_', true) . '.' . $ext;
             $destPath = $uploadDir . $filename;
 

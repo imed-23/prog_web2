@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../assets/php/config/auth.php';
-gc_require_login('../../pages/connexion.php');
+gc_require_admin('../../pages/connexion.php');
 
 require_once __DIR__ . '/../../assets/php/config/db.php';
 
@@ -38,9 +38,9 @@ $stats = [
 
 try {
     $stats['total'] = (int) $pdo->query('SELECT COUNT(*) FROM reservations')->fetchColumn();
-    $stats['confirmee'] = (int) $pdo->query('SELECT COUNT(*) FROM reservations WHERE statut = "confirmee"')->fetchColumn();
-    $stats['en-attente'] = (int) $pdo->query('SELECT COUNT(*) FROM reservations WHERE statut = "en-attente"')->fetchColumn();
-    $stats['annulee'] = (int) $pdo->query('SELECT COUNT(*) FROM reservations WHERE statut = "annulee"')->fetchColumn();
+    $stats['confirmee'] = (int) $pdo->query("SELECT COUNT(*) FROM reservations WHERE statut = 'confirmee'")->fetchColumn();
+    $stats['en-attente'] = (int) $pdo->query("SELECT COUNT(*) FROM reservations WHERE statut = 'en-attente'")->fetchColumn();
+    $stats['annulee'] = (int) $pdo->query("SELECT COUNT(*) FROM reservations WHERE statut = 'annulee'")->fetchColumn();
 } catch (PDOException $e) {
     error_log('[ADMIN RESERVATIONS STATS] ' . $e->getMessage());
 }

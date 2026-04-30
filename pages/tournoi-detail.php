@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             try {
-                $stmt = $pdo->prepare('UPDATE utilisateurs SET role = "capitaine" WHERE id = ? AND role = "visiteur"');
+                $stmt = $pdo->prepare("UPDATE utilisateurs SET role = 'capitaine' WHERE id = ? AND role = 'visiteur'");
                 $stmt->execute([(int) $currentUser['id']]);
                 $_SESSION['user_role'] = 'capitaine';
                 $currentUser = gc_current_user();
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if (!$tournoiForReserve) {
                         $messageErreur = 'Tournoi introuvable.';
                     } else {
-                        $stmt = $pdo->prepare('SELECT COUNT(*) FROM reservations WHERE tournoi_id = ? AND statut <> "annulee"');
+                        $stmt = $pdo->prepare("SELECT COUNT(*) FROM reservations WHERE tournoi_id = ? AND statut <> 'annulee'");
                         $stmt->execute([$tournoiId]);
                         $inscrits = (int) $stmt->fetchColumn();
                         $total = (int) $tournoiForReserve['nb_places'];
@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             if ($stmt->fetch()) {
                                 $messageErreur = 'Tu as déjà une inscription pour ce tournoi.';
                             } else {
-                                $stmt = $pdo->prepare('INSERT INTO reservations (tournoi_id, capitaine_id, nom_equipe, statut) VALUES (?, ?, ?, "en-attente")');
+                                $stmt = $pdo->prepare("INSERT INTO reservations (tournoi_id, capitaine_id, nom_equipe, statut) VALUES (?, ?, ?, 'en-attente')");
                                 $stmt->execute([$tournoiId, (int) $currentUser['id'], $nomEquipe]);
                                 $messageSucces = 'Inscription de ton équipe enregistrée.';
                             }
@@ -122,16 +122,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 if ($tournoiId > 0) {
     try {
-        $stmt = $pdo->prepare('SELECT t.*, COALESCE(rc.inscrits, 0) AS equipes_inscrites
+        $stmt = $pdo->prepare("SELECT t.*, COALESCE(rc.inscrits, 0) AS equipes_inscrites
                                FROM tournois t
                                LEFT JOIN (
                                    SELECT tournoi_id, COUNT(*) AS inscrits
                                    FROM reservations
-                                   WHERE statut <> "annulee"
+                                   WHERE statut <> 'annulee'
                                    GROUP BY tournoi_id
                                ) rc ON rc.tournoi_id = t.id
                                WHERE t.id = ?
-                               LIMIT 1');
+                               LIMIT 1");
         $stmt->execute([$tournoiId]);
         $tournoi = $stmt->fetch();
 

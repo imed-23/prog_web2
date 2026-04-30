@@ -6,9 +6,9 @@ $participants = [];
 $dbError = '';
 
 try {
-    $sql = 'SELECT id, pseudo, prenom, nom, avatar, jeu_principal, role, created_at
+    $sql = "SELECT id, pseudo, prenom, nom, avatar, jeu_principal, role, created_at
             FROM utilisateurs
-            WHERE role <> "admin"';
+            WHERE role <> 'admin'";
     $params = [];
 
     if ($search !== '') {

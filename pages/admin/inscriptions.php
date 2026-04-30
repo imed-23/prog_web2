@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../assets/php/config/auth.php';
-gc_require_login('../../pages/connexion.php');
+gc_require_admin('../../pages/connexion.php');
 
 require_once __DIR__ . '/../../assets/php/config/db.php';
 
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $target = $stmt->fetch();
 
                         if ($target && $target['role'] === 'admin') {
-                            $adminCount = (int) $pdo->query('SELECT COUNT(*) FROM utilisateurs WHERE role = "admin"')->fetchColumn();
+                            $adminCount = (int) $pdo->query("SELECT COUNT(*) FROM utilisateurs WHERE role = 'admin'")->fetchColumn();
                             if ($adminCount <= 1) {
                                 $messageErreur = 'Impossible de supprimer le dernier administrateur.';
                             }
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     } else {
                         $selfId = (int) (gc_current_user()['id'] ?? 0);
                         if ($target['role'] === 'admin' && $newRole !== 'admin') {
-                            $adminCount = (int) $pdo->query('SELECT COUNT(*) FROM utilisateurs WHERE role = "admin"')->fetchColumn();
+                            $adminCount = (int) $pdo->query("SELECT COUNT(*) FROM utilisateurs WHERE role = 'admin'")->fetchColumn();
                             if ($adminCount <= 1) {
                                 $messageErreur = 'Impossible de rétrograder le dernier administrateur.';
                             }
@@ -95,11 +95,18 @@ $search = trim($_GET['search'] ?? '');
 $sortBy = trim($_GET['sort'] ?? 'created_at');
 $sortOrder = trim($_GET['order'] ?? 'DESC');
 
-// Validation des paramètres de tri
-$allowedSort = ['pseudo', 'email', 'jeu_principal', 'created_at', 'role'];
-if (!in_array($sortBy, $allowedSort, true)) {
+// Validation des paramètres de tri (mapping en dur pour éviter toute injection SQL)
+$sortColumnMap = [
+    'pseudo'        => 'pseudo',
+    'email'         => 'email',
+    'jeu_principal' => 'jeu_principal',
+    'created_at'    => 'created_at',
+    'role'          => 'role',
+];
+if (!isset($sortColumnMap[$sortBy])) {
     $sortBy = 'created_at';
 }
+$sortColumn = $sortColumnMap[$sortBy];
 $sortOrder = strtoupper($sortOrder) === 'ASC' ? 'ASC' : 'DESC';
 
 // ── Statistiques ───────────────────────────────────────────────────────────
@@ -112,9 +119,9 @@ $stats = [
 
 try {
     $stats['total'] = (int) $pdo->query('SELECT COUNT(*) FROM utilisateurs')->fetchColumn();
-    $stats['capitaines'] = (int) $pdo->query('SELECT COUNT(*) FROM utilisateurs WHERE role = "capitaine"')->fetchColumn();
-    $stats['visiteurs'] = (int) $pdo->query('SELECT COUNT(*) FROM utilisateurs WHERE role = "visiteur"')->fetchColumn();
-    $stats['admins'] = (int) $pdo->query('SELECT COUNT(*) FROM utilisateurs WHERE role = "admin"')->fetchColumn();
+    $stats['capitaines'] = (int) $pdo->query("SELECT COUNT(*) FROM utilisateurs WHERE role = 'capitaine'")->fetchColumn();
+    $stats['visiteurs'] = (int) $pdo->query("SELECT COUNT(*) FROM utilisateurs WHERE role = 'visiteur'")->fetchColumn();
+    $stats['admins'] = (int) $pdo->query("SELECT COUNT(*) FROM utilisateurs WHERE role = 'admin'")->fetchColumn();
 } catch (PDOException $e) {
     error_log('[ADMIN INSCRIPTIONS STATS] ' . $e->getMessage());
 }
@@ -141,7 +148,7 @@ try {
         $params[':search'] = '%' . $search . '%';
     }
 
-    $sql .= " ORDER BY $sortBy $sortOrder";
+    $sql .= " ORDER BY $sortColumn $sortOrder";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);

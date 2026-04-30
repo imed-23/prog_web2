@@ -10,9 +10,18 @@ function gc_start_session(): void
     }
 
     ini_set('session.use_strict_mode', '1');
+
+    // Détecte si la requête arrive en HTTPS (directement ou via reverse-proxy)
+    $isHttps = (
+        (!empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off')
+        || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https')
+        || ((int) ($_SERVER['SERVER_PORT'] ?? 0) === 443)
+    );
+
     session_start([
         'cookie_httponly' => true,
         'cookie_samesite' => 'Lax',
+        'cookie_secure'   => $isHttps,
     ]);
 }
 

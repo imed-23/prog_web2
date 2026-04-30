@@ -31,12 +31,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif (empty($message) || strlen($message) < 10) {
             $messageErreur = 'Le message doit contenir au moins 10 caractères.';
         } else {
-            // Ici, on pourrait enregistrer le message en BDD ou envoyer un email
-            // Pour l'instant, on simule un envoi réussi
-            // Exemple: insertion dans une table 'messages' ou envoi mail()
-            $successContact = 'Ton message a bien été envoyé ! On te répond sous 24h.';
-            // Vider les champs après envoi réussi
-            $_POST = [];
+            try {
+                $stmt = $pdo->prepare('INSERT INTO contacts (nom, email, sujet, message) VALUES (:nom, :email, :sujet, :message)');
+                $stmt->execute([
+                    ':nom'     => $nom,
+                    ':email'   => strtolower($email),
+                    ':sujet'   => $sujet,
+                    ':message' => $message,
+                ]);
+                $successContact = 'Ton message a bien été envoyé ! On te répond sous 24h.';
+                $_POST = [];
+            } catch (PDOException $e) {
+                error_log('[CONTACT] ' . $e->getMessage());
+                $messageErreur = 'Impossible d\'envoyer ton message pour le moment. Réessaie plus tard.';
+            }
         }
     }
 }
