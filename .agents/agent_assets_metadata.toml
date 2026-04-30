@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "CraTz6yfm-3nbRWxcQhxH"
+uri = "file://RAPPORT_TESTS.md"
+type = "text"
+title = "Rapport de Tests — Gaming Campus"
