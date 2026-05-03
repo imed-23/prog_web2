@@ -1,8 +1,4 @@
-/* ============================================================
-   GAMING CAMPUS — tournois-filtres.js
-   Filtrage par jeu/statut/places + pagination
-    Chargé uniquement dans pages/tournois.php
-   ============================================================ */
+// filtrage et pagination des tournois
 (function () {
     var PER_PAGE   = 3;
     var allCards   = Array.from(document.querySelectorAll('#liste-tournois .card-tournoi'));
@@ -63,13 +59,11 @@
         }
     }
 
-    /* Soumission du formulaire (bouton Filtrer) */
-    filterForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        applyFilters();
-    });
+    /* Soumission du formulaire : on laisse partir vers le serveur
+       (GET avec les paramètres jeu/statut/places) afin que la BDD
+       applique le filtre sur l'ensemble des tournois — pas seulement la page courante. */
 
-    /* Filtrage en temps réel au changement de select */
+    /* Filtrage en temps réel au changement de select : aperçu côté client */
     filterForm.querySelectorAll('select').forEach(function (sel) {
         sel.addEventListener('change', applyFilters);
     });

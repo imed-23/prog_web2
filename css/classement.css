@@ -1,6 +1,4 @@
-/* ============================================
-   CLASSEMENT.CSS — Page classement spécifique
-   ============================================ */
+/* classement.css - page classement */
 
 /* Podium gold card larger */
 #podium .podium-gold {
@@ -22,7 +20,7 @@
     color: var(--success-color);
 }
 
-/* ── Sortable column headers ── */
+/* entetes de colonnes triables */
 th.sortable {
     cursor: pointer;
     user-select: none;
@@ -48,7 +46,7 @@ th.sortable[aria-sort] .sort-icon {
     color: var(--primary-color, #e63946);
 }
 
-/* ── Podium avatar placeholder (no image) ── */
+/* avatar podium placeholder */
 .podium-avatar-empty {
     width: 80px;
     height: 80px;
@@ -72,7 +70,7 @@ th.sortable[aria-sort] .sort-icon {
     font-style: italic;
 }
 
-/* ── Empty state (table / cards) ── */
+/* etat vide (tableau/cartes) */
 .empty-state {
     display: flex;
     flex-direction: column;
@@ -110,7 +108,7 @@ th.sortable[aria-sort] .sort-icon {
     font-style: italic;
 }
 
-/* ── Profil placeholder styles ── */
+/* styles placeholder profil */
 .profil-placeholder {
     opacity: 0.4;
     font-style: italic;

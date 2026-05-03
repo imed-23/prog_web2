@@ -1,6 +1,4 @@
-/* ============================================
-   ESPACE-MEMBRE.CSS — Page espace membre
-   ============================================ */
+/* espace-membre.css - page espace membre */
 
 /* Dashboard stat cards accent */
 #dashboard .stat-card:first-child {
@@ -50,10 +48,18 @@
     height: 96px;
     min-width: 96px;
     min-height: 96px;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color-light);
 }
 
 #profil .avatar-preview img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }

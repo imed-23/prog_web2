@@ -1,11 +1,6 @@
-/* ============================================================
-   GAMING CAMPUS — avatar-upload.js
-   Prévisualisation et validation de l'avatar en temps réel
-   Chargé dans : pages/inscription.php + pages/espace-membre.php
-   ============================================================ */
-
+// previsualisation de l'avatar en temps reel
 (function () {
-    /* ── Inscription : avatar-preview avec bouton Supprimer ── */
+    // inscription : preview avatar avec bouton Supprimer
     var fileInput   = document.getElementById('avatar-file');
     var previewImg  = document.getElementById('avatar-preview-img');
     var placeholder = document.getElementById('avatar-placeholder');

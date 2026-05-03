@@ -1,6 +1,4 @@
-/* ============================================
-   ADMIN.CSS — Pages d'administration
-   ============================================ */
+/* admin.css - pages administration */
 
 /* ---- Header Admin ---- */
 .header-admin {
@@ -234,9 +232,7 @@
     }
 }
 
-/* ============================================================
-   Sprint 4 — Classes complémentaires pour les pages admin PHP
-   ============================================================ */
+/* classes complementaires pour pages admin php */
 
 .admin-container {
     max-width: 1200px;

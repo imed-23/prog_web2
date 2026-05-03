@@ -1,10 +1,6 @@
-/* ============================================================
-   GAMING CAMPUS — main.js
-   Scripts globaux : menu hamburger + lien actif automatique
-   Chargé dans TOUTES les pages (dans le <head> ou avant </body>)
-   ============================================================ */
+// scripts globaux : menu hamburger + lien actif
 
-/* ── 1. Menu hamburger (mobile) ── */
+// 1. menu hamburger (mobile)
 (function () {
     var THEME_KEY = 'gc_theme';
     var root = document.documentElement;
@@ -55,7 +51,7 @@
 /* ── 1. Menu hamburger (mobile) ── */
 (function () {
     var toggle = document.querySelector('.menu-toggle');
-    var nav    = document.getElementById('main-nav');
+    var nav    = document.getElementById('main-nav') || document.getElementById('admin-nav');
     if (!toggle || !nav) return;
 
     toggle.addEventListener('click', function () {

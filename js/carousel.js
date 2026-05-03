@@ -1,15 +1,4 @@
-/* ============================================================
-   GAMING CAMPUS — carousel.js
-   Carousel tactile pour la section "Tournois en cours"
-   Sera activé en Sprint 4 une fois les données réelles chargées
-   depuis la base de données via PHP/MySQL.
-
-   Fonctionnalités :
-   - Navigation précédent / suivant
-   - Points de navigation (dots)
-   - Support tactile (swipe mobile)
-   - Responsive (recalcul au redimensionnement)
-   ============================================================ */
+// carousel tactile pour la section tournois
 (function () {
     var section = document.getElementById('tournois-en-cours');
     if (!section) return;

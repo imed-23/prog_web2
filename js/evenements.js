@@ -1,8 +1,4 @@
-/* ============================================================
-   GAMING CAMPUS — evenements.js
-   Calendrier interactif — navigation entre les mois
-   Chargé uniquement dans pages/evenements.php
-   ============================================================ */
+// calendrier interactif avec navigation entre les mois
 
 (function () {
     var MONTHS = ['Janvier','Février','Mars','Avril','Mai','Juin',

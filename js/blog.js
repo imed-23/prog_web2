@@ -1,8 +1,4 @@
-/* ============================================================
-   GAMING CAMPUS — blog.js
-   Pagination côté client des articles de blog
-   Chargé uniquement dans pages/blog.php
-   ============================================================ */
+// pagination du blog
 
 (function () {
     var PER_PAGE  = 4;

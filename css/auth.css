@@ -1,6 +1,4 @@
-/* ============================================
-   AUTH.CSS — Pages connexion & inscription
-   ============================================ */
+/* auth.css - pages connexion et inscription */
 
 /* Auth page background glow */
 .auth-section {
@@ -20,7 +18,7 @@
     box-shadow: var(--shadow-glow-strong);
 }
 
-/* ── Avatar upload ── */
+/* avatar upload */
 .form-group-avatar .avatar-upload {
     display: flex;
     align-items: center;
@@ -80,9 +78,7 @@
     display: none !important;
 }
 
-/* ============================================================
-   Sprint 4 — Styles de validation JS (form-validation.js)
-   ============================================================ */
+/* styles de validation js */
 
 /* Champ en erreur */
 .input-error {
@@ -107,7 +103,7 @@
 
 .field-error a { color: #e74c3c; text-decoration: underline; }
 
-/* ── Barre de force mot de passe ── */
+/* barre de force mot de passe */
 .strength-bar-wrapper {
     margin-top: 0.5rem;
 }
@@ -134,7 +130,7 @@
     display: block;
 }
 
-/* ── Alertes ── */
+/* alertes */
 .alert {
     padding: 0.9rem 1.1rem;
     border-radius: var(--radius-md, 10px);
@@ -157,7 +153,7 @@
 
 .alert p { margin: 0; }
 
-/* ── Options formulaire ── */
+/* options formulaire */
 .form-options {
     display: flex;
     justify-content: space-between;

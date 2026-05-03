@@ -1,10 +1,6 @@
-/* ============================================================
-   GAMING CAMPUS — classement.js
-   Tri du tableau de classement + filtres par jeu
-   Chargé uniquement dans pages/classement.php
-   ============================================================ */
+// tri du classement + filtres par jeu
 
-/* ── 1. Filter tab buttons ── */
+// 1. boutons de filtre par jeu
 (function () {
     var tabs = document.querySelectorAll('.filter-tabs .tab-btn');
     tabs.forEach(function (btn) {
@@ -31,7 +27,7 @@
     });
 }());
 
-/* ── 2. Leaderboard table sort ── */
+// 2. tri du tableau de classement
 (function () {
     var table = document.getElementById('leaderboard-table');
     if (!table) return;

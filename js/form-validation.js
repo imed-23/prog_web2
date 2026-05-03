@@ -1,18 +1,8 @@
-/**
- * form-validation.js — Validation temps réel du formulaire d'inscription
- * Gaming Campus — Sprint 4
- *
- * Fonctionnalités :
- *  - Erreurs inline sous chaque champ (`.field-error`)
- *  - Indicateur de force du mot de passe
- *  - Vérification confirmation mdp
- *  - Bloque la soumission si des erreurs existent
- */
-
+// validation temps reel du formulaire d'inscription
 (function () {
     'use strict';
 
-    // ── Sélecteurs ──────────────────────────────────────────────────────────
+    // selecteurs
     var form     = document.querySelector('.auth-form');
     if (!form) return;
 
@@ -24,9 +14,9 @@
     var passwordCfm = document.getElementById('password-confirm');
     var cgu         = document.getElementById('cgu');
 
-    // ── Helpers ──────────────────────────────────────────────────────────────
+    // helpers
 
-    /** Affiche un message d'erreur sous le champ */
+    // affiche un message d'erreur sous le champ
     function showError(input, msg) {
         clearError(input);
         input.classList.add('input-error');
@@ -38,14 +28,14 @@
         input.parentNode.insertBefore(err, input.nextSibling);
     }
 
-    /** Affiche un état OK sur le champ */
+    // affiche un etat OK sur le champ
     function showOk(input) {
         clearError(input);
         input.classList.remove('input-error');
         input.classList.add('input-ok');
     }
 
-    /** Supprime le message d'erreur d'un champ */
+    // supprime le message d'erreur d'un champ
     function clearError(input) {
         input.classList.remove('input-error', 'input-ok');
         var next = input.nextSibling;
@@ -54,12 +44,12 @@
         }
     }
 
-    /** Regex basique email */
+    // regex basique email
     function isValidEmail(val) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val);
     }
 
-    /** Force du mot de passe (retourne 0-4) */
+    // force du mot de passe (retourne 0-4)
     function passwordStrength(val) {
         var score = 0;
         if (val.length >= 8)              score++;
@@ -69,7 +59,7 @@
         return score;
     }
 
-    // ── Validateurs par champ ──────────────────────────────────────────────
+    // validateurs par champ
 
     function validatePseudo() {
         var v = pseudo.value.trim();
@@ -141,7 +131,7 @@
         return true;
     }
 
-    // ── Barre de force du mot de passe ────────────────────────────────────
+    // barre de force du mot de passe
 
     var strengthBar  = null;
     var strengthText = null;
@@ -190,7 +180,7 @@
         text.style.color            = l.color;
     }
 
-    // ── Écouteurs temps réel ──────────────────────────────────────────────
+    // ecouteurs temps reel
 
     if (pseudo)      pseudo.addEventListener('input',  validatePseudo);
     if (prenom)      prenom.addEventListener('input',  validatePrenom);
@@ -215,7 +205,7 @@
     if (password)    password.addEventListener('blur', validatePassword);
     if (passwordCfm) passwordCfm.addEventListener('blur', validatePasswordConfirm);
 
-    // ── Interception de la soumission ────────────────────────────────────
+    // interception de la soumission
 
     form.addEventListener('submit', function (e) {
         var valid = true;

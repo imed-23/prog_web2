@@ -1,64 +1,58 @@
-/* ============================================
-   GAMING CAMPUS - STYLE GLOBAL (style.css)
-   Sprint 2 : CSS Variables, Layout, Responsive
-   Pas de framework — CSS pur (Flexbox + Grid)
-   ============================================ */
 
-/* ============================================
-   1. CSS CUSTOM PROPERTIES (Dark Mode Ready)
-   ============================================ */
+/* 1. variables CSS */
 :root {
     /* --- Couleurs principales --- */
-    --bg-color: #0a0a0f;
-    --bg-secondary: #12121a;
-    --bg-tertiary: #1a1a2e;
-    --bg-card: rgba(26, 26, 46, 0.85);
-    --bg-card-hover: rgba(30, 30, 55, 0.95);
+    --bg-color: #05050A; /* Deep Space Black */
+    --bg-secondary: #0A0B14;
+    --bg-tertiary: #121424;
+    --bg-card: rgba(18, 20, 36, 0.7);
+    --bg-card-hover: rgba(28, 30, 56, 0.85);
 
     /* --- Texte --- */
-    --text-color: #e8e8f0;
-    --text-secondary: #a0a0b8;
-    --text-muted: #6a6a80;
+    --text-color: #f8f9fa;
+    --text-secondary: #adb5bd;
+    --text-muted: #6c757d;
     --text-on-primary: #ffffff;
 
-    /* --- Couleurs accent --- */
-    --primary-color: #e63946;
-    --primary-hover: #ff4d5a;
-    --primary-dark: #b82d38;
-    --accent-color: #ff2d55;
-    --accent-glow: rgba(230, 57, 70, 0.5);
+    /* --- Couleurs accent (Neon & Cyber) --- */
+    --primary-color: #f72585; /* Neon Pink */
+    --primary-hover: #b5179e; /* Purple Pink */
+    --primary-dark: #7209b7;  /* Deep Purple */
+    --accent-color: #4cc9f0;  /* Cyan */
+    --accent-glow: rgba(247, 37, 133, 0.5);
 
     /* --- Couleurs utilitaires --- */
-    --success-color: #2ecc71;
-    --warning-color: #f39c12;
-    --danger-color: #e74c3c;
-    --info-color: #3498db;
+    --success-color: #06d6a0; /* Neon Green */
+    --warning-color: #ffd166; /* Bright Yellow */
+    --danger-color: #ef476f;  /* Bright Red */
+    --info-color: #4cc9f0;
 
     /* --- Badges tournoi --- */
-    --badge-en-cours: #2ecc71;
-    --badge-a-venir: #3498db;
-    --badge-termine: #6a6a80;
-    --badge-complet: #e74c3c;
+    --badge-en-cours: #06d6a0;
+    --badge-a-venir: #4cc9f0;
+    --badge-termine: #6c757d;
+    --badge-complet: #ef476f;
 
     /* --- Bordures --- */
-    --border-color: rgba(255, 255, 255, 0.08);
-    --border-color-light: rgba(255, 255, 255, 0.15);
-    --border-glow: rgba(230, 57, 70, 0.3);
+    --border-color: rgba(255, 255, 255, 0.06);
+    --border-color-light: rgba(255, 255, 255, 0.12);
+    --border-glow: rgba(247, 37, 133, 0.4);
 
     /* --- Ombres --- */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
-    --shadow-glow: 0 0 20px rgba(230, 57, 70, 0.3);
-    --shadow-glow-strong: 0 0 40px rgba(230, 57, 70, 0.5);
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6);
+    --shadow-glow: 0 0 20px rgba(247, 37, 133, 0.35);
+    --shadow-glow-strong: 0 0 40px rgba(247, 37, 133, 0.6);
 
     /* --- Glassmorphism --- */
-    --glass-bg: rgba(18, 18, 26, 0.7);
-    --glass-blur: blur(16px);
-    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-bg: rgba(10, 11, 20, 0.75);
+    --glass-blur: blur(20px);
+    --glass-border: rgba(255, 255, 255, 0.05);
 
     /* --- Typographie --- */
-    --font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --font-family: system-ui, -apple-system, sans-serif;
+    --font-heading: system-ui, -apple-system, sans-serif;
     --font-mono: 'Consolas', 'Courier New', monospace;
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
@@ -81,15 +75,15 @@
 
     /* --- Border radius --- */
     --radius-sm: 6px;
-    --radius-md: 10px;
-    --radius-lg: 14px;
-    --radius-xl: 20px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
     --radius-full: 50%;
 
     /* --- Transitions --- */
-    --transition-fast: 0.15s ease;
-    --transition-base: 0.3s ease;
-    --transition-slow: 0.5s ease;
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
     /* --- Layout --- */
     --container-max: 1200px;
@@ -98,51 +92,40 @@
 }
 
 html[data-theme="light"] {
-    --bg-color: #f4f6fb;
+    /* Bien que le thème principal soit sombre, on garde un fallback clair stylisé tech */
+    --bg-color: #f8f9fa;
     --bg-secondary: #ffffff;
-    --bg-tertiary: #eef2fa;
-    --bg-card: rgba(255, 255, 255, 0.92);
-    --bg-card-hover: rgba(245, 249, 255, 0.98);
+    --bg-tertiary: #f1f3f5;
+    --bg-card: rgba(255, 255, 255, 0.95);
+    --bg-card-hover: #ffffff;
 
-    --text-color: #1f2937;
-    --text-secondary: #475569;
-    --text-muted: #64748b;
+    --text-color: #212529;
+    --text-secondary: #495057;
+    --text-muted: #868e96;
     --text-on-primary: #ffffff;
 
-    --primary-color: #cf2433;
-    --primary-hover: #b81f2d;
-    --primary-dark: #8f1822;
-    --accent-color: #cf2433;
-    --accent-glow: rgba(207, 36, 51, 0.3);
+    --primary-color: #f72585; 
+    --primary-hover: #b5179e;
+    --primary-dark: #7209b7;
+    --accent-color: #4cc9f0;
+    --accent-glow: rgba(247, 37, 133, 0.25);
 
-    --success-color: #1f9d58;
-    --warning-color: #d97706;
-    --danger-color: #c0392b;
-    --info-color: #2563eb;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --border-color-light: rgba(0, 0, 0, 0.15);
+    --border-glow: rgba(247, 37, 133, 0.2);
 
-    --badge-en-cours: #16a34a;
-    --badge-a-venir: #2563eb;
-    --badge-termine: #64748b;
-    --badge-complet: #c0392b;
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+    --shadow-glow: 0 0 20px rgba(247, 37, 133, 0.2);
+    --shadow-glow-strong: 0 0 40px rgba(247, 37, 133, 0.4);
 
-    --border-color: rgba(15, 23, 42, 0.12);
-    --border-color-light: rgba(15, 23, 42, 0.22);
-    --border-glow: rgba(207, 36, 51, 0.18);
-
-    --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.1);
-    --shadow-md: 0 6px 20px rgba(15, 23, 42, 0.12);
-    --shadow-lg: 0 14px 36px rgba(15, 23, 42, 0.16);
-    --shadow-glow: 0 0 18px rgba(207, 36, 51, 0.22);
-    --shadow-glow-strong: 0 0 26px rgba(207, 36, 51, 0.3);
-
-    --glass-bg: rgba(255, 255, 255, 0.86);
-    --glass-border: rgba(15, 23, 42, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.9);
+    --glass-border: rgba(0, 0, 0, 0.05);
 }
 
 
-/* ============================================
-   2. RESET & BASE
-   ============================================ */
+/* 2. reset et base */
 *,
 *::before,
 *::after {
@@ -200,10 +183,12 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.2;
     color: var(--text-color);
     font-weight: 700;
+    font-family: var(--font-heading);
+    letter-spacing: 0.02em;
 }
 
-h1 { font-size: var(--font-size-3xl); }
-h2 { font-size: var(--font-size-2xl); margin-bottom: var(--spacing-lg); }
+h1 { font-size: var(--font-size-3xl); text-transform: uppercase; letter-spacing: 0.05em; }
+h2 { font-size: var(--font-size-2xl); margin-bottom: var(--spacing-lg); text-transform: uppercase; }
 h3 { font-size: var(--font-size-xl); }
 h4 { font-size: var(--font-size-lg); }
 
@@ -258,9 +243,7 @@ address {
 }
 
 
-/* ============================================
-   3. CONTAINER / LAYOUT
-   ============================================ */
+/* 3. container et layout */
 .section-container {
     width: 100%;
     max-width: var(--container-max);
@@ -291,9 +274,7 @@ section {
 }
 
 
-/* ============================================
-   4. HEADER / NAVIGATION — FLEXBOX
-   ============================================ */
+/* 4. header et navigation */
 #site-header {
     position: sticky;
     top: 0;
@@ -301,15 +282,16 @@ section {
     background: var(--glass-bg);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
-    border-bottom: 1px solid var(--glass-border);
-    height: var(--header-height);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    min-height: var(--header-height);
 }
 
 .header-container {
     max-width: var(--container-max);
     margin: 0 auto;
-    padding: 0 var(--spacing-lg);
-    height: 100%;
+    padding: 0.5rem var(--spacing-lg);
+    min-height: var(--header-height);
     /* FLEXBOX — alignement horizontal */
     display: flex;
     align-items: center;
@@ -426,65 +408,87 @@ section {
 }
 
 
-/* ============================================
-   5. BOUTONS
-   ============================================ */
+/* 5. boutons */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: var(--spacing-sm);
-    padding: 0.6rem 1.25rem;
-    font-family: var(--font-family);
+    padding: 0.6rem 1.4rem;
+    font-family: var(--font-heading);
     font-size: var(--font-size-sm);
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.4;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     border-radius: var(--radius-md);
     cursor: pointer;
     transition: all var(--transition-base);
     text-decoration: none;
     white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.btn:hover::after {
+    opacity: 1;
 }
 
 .btn-primary {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     color: var(--text-on-primary);
-    border-color: var(--primary-color);
-    box-shadow: 0 0 15px rgba(230, 57, 70, 0.25);
+    box-shadow: 0 4px 15px rgba(247, 37, 133, 0.3);
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .btn-primary:hover,
 .btn-primary:focus {
-    background: var(--primary-hover);
-    border-color: var(--primary-hover);
+    background: linear-gradient(135deg, var(--primary-hover), var(--primary-color));
     color: var(--text-on-primary);
-    box-shadow: var(--shadow-glow);
-    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(247, 37, 133, 0.6);
+    transform: translateY(-2px);
+    border-color: rgba(255,255,255,0.3);
 }
 
 .btn-outline {
-    background: transparent;
+    background: rgba(255,255,255,0.02);
     color: var(--text-color);
     border-color: var(--border-color-light);
+    backdrop-filter: blur(4px);
 }
 
 .btn-outline:hover,
 .btn-outline:focus {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-    background: rgba(230, 57, 70, 0.05);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    background: rgba(76, 201, 240, 0.08);
+    box-shadow: 0 0 15px rgba(76, 201, 240, 0.3);
+    transform: translateY(-2px);
 }
 
 .btn-danger {
-    background: var(--danger-color);
+    background: linear-gradient(135deg, var(--danger-color), #c0392b);
     color: var(--text-on-primary);
-    border-color: var(--danger-color);
+    box-shadow: 0 4px 15px rgba(239, 71, 111, 0.3);
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .btn-danger:hover {
-    background: #c0392b;
-    border-color: #c0392b;
+    background: linear-gradient(135deg, #ff5c85, var(--danger-color));
+    box-shadow: 0 8px 25px rgba(239, 71, 111, 0.6);
+    transform: translateY(-2px);
 }
 
 .btn-lg {
@@ -504,9 +508,7 @@ section {
 }
 
 
-/* ============================================
-   6. HERO SECTIONS
-   ============================================ */
+/* 6. sections hero */
 .hero-section {
     padding: var(--spacing-3xl) 0;
     background: linear-gradient(135deg, var(--bg-color) 0%, var(--bg-tertiary) 50%, var(--bg-secondary) 100%);
@@ -631,9 +633,7 @@ section {
 }
 
 
-/* ============================================
-   7. CARDS — CSS GRID
-   ============================================ */
+/* 7. cards */
 /* Grille principale des tournois */
 .cards-grid {
     display: grid;
@@ -648,19 +648,21 @@ section {
 /* Card de base */
 .card {
     background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: all var(--transition-base);
+    transition: var(--transition-base);
     display: flex;
     flex-direction: column;
     position: relative;
+    box-shadow: var(--shadow-sm);
 }
 
 .card:hover {
-    border-color: var(--border-glow);
-    box-shadow: var(--shadow-glow);
-    transform: translateY(-3px);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 30px var(--accent-glow);
+    transform: translateY(-5px);
     background: var(--bg-card-hover);
 }
 
@@ -669,28 +671,35 @@ section {
     position: absolute;
     top: var(--spacing-md);
     left: var(--spacing-md);
-    padding: 0.25rem 0.75rem;
-    font-size: var(--font-size-xs);
-    font-weight: 700;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.65rem;
+    font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border-radius: var(--radius-sm);
+    letter-spacing: 0.1em;
+    border-radius: 50px;
     z-index: 2;
     color: var(--text-on-primary);
+    backdrop-filter: blur(4px);
 }
 
 .badge-en-cours {
-    background: var(--badge-en-cours);
-    box-shadow: 0 0 10px rgba(46, 204, 113, 0.4);
+    background: rgba(6, 214, 160, 0.2);
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+    box-shadow: 0 0 15px rgba(6, 214, 160, 0.4);
 }
 
 .badge-a-venir {
-    background: var(--badge-a-venir);
-    box-shadow: 0 0 10px rgba(52, 152, 219, 0.4);
+    background: rgba(76, 201, 240, 0.2);
+    color: var(--info-color);
+    border: 1px solid var(--info-color);
+    box-shadow: 0 0 15px rgba(76, 201, 240, 0.4);
 }
 
 .badge-termine {
-    background: var(--badge-termine);
+    background: rgba(108, 117, 125, 0.2);
+    color: #ced4da;
+    border: 1px solid #6c757d;
 }
 
 /* Card image */
@@ -801,9 +810,7 @@ section {
 }
 
 
-/* ============================================
-   8. MATCHS
-   ============================================ */
+/* 8. matchs */
 .matchs-list {
     display: flex;
     flex-direction: column;
@@ -930,9 +937,7 @@ section {
 }
 
 
-/* ============================================
-   9. LEADERBOARD / TABLES
-   ============================================ */
+/* 9. leaderboard et tableaux */
 .table-responsive {
     width: 100%;
     overflow-x: auto;
@@ -983,20 +988,22 @@ section {
 .leaderboard-table tbody tr:hover,
 .history-table tbody tr:hover,
 .reservations-table tbody tr:hover {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.04);
 }
 
 /* Rank rows */
-.rank-gold { background: rgba(255, 215, 0, 0.05); }
-.rank-silver { background: rgba(192, 192, 192, 0.05); }
-.rank-bronze { background: rgba(205, 127, 50, 0.05); }
+.rank-gold { background: rgba(255, 215, 0, 0.08); }
+.rank-silver { background: rgba(192, 192, 192, 0.08); }
+.rank-bronze { background: rgba(205, 127, 50, 0.08); }
 
-.rank-gold:hover { background: rgba(255, 215, 0, 0.1) !important; }
-.rank-silver:hover { background: rgba(192, 192, 192, 0.1) !important; }
-.rank-bronze:hover { background: rgba(205, 127, 50, 0.1) !important; }
+.rank-gold:hover { background: rgba(255, 215, 0, 0.15) !important; box-shadow: inset 2px 0 0 gold; }
+.rank-silver:hover { background: rgba(192, 192, 192, 0.15) !important; box-shadow: inset 2px 0 0 silver; }
+.rank-bronze:hover { background: rgba(205, 127, 50, 0.15) !important; box-shadow: inset 2px 0 0 #cd7f32; }
 
 .rank-badge {
-    font-weight: 700;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    font-size: 1.1em;
 }
 
 .player-cell {
@@ -1024,9 +1031,7 @@ section {
 }
 
 
-/* ============================================
-   10. PODIUM
-   ============================================ */
+/* 10. podium */
 .podium-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -1038,47 +1043,70 @@ section {
     text-align: center;
     padding: var(--spacing-xl);
     background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
     border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    transition: all var(--transition-base);
+    border-radius: var(--radius-xl);
+    transition: var(--transition-base);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.podium-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 4px;
 }
 
 .podium-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-glow);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
 }
 
 .podium-gold {
-    border-color: rgba(255, 215, 0, 0.3);
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.5);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
 }
+.podium-gold::before { background: linear-gradient(90deg, #f9d423, #ff4e50); }
 
 .podium-silver {
-    border-color: rgba(192, 192, 192, 0.3);
+    border-color: rgba(192, 192, 192, 0.4);
 }
+.podium-silver::before { background: linear-gradient(90deg, #e6e9f0, #eef1f5); }
 
 .podium-bronze {
-    border-color: rgba(205, 127, 50, 0.3);
+    border-color: rgba(205, 127, 50, 0.4);
 }
+.podium-bronze::before { background: linear-gradient(90deg, #b06ab3, #4568dc); }
 
 .podium-rank {
-    font-size: var(--font-size-4xl);
+    font-size: var(--font-size-5xl);
+    font-family: var(--font-heading);
+    font-weight: 900;
     display: block;
     margin-bottom: var(--spacing-md);
+    background: linear-gradient(135deg, #fff, #888);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
+.podium-gold .podium-rank { background: linear-gradient(135deg, #f9d423, #ff4e50); -webkit-background-clip: text; background-clip: text; }
+.podium-silver .podium-rank { background: linear-gradient(135deg, #e6e9f0, #a8abad); -webkit-background-clip: text; background-clip: text; }
+.podium-bronze .podium-rank { background: linear-gradient(135deg, #ff7e5f, #feb47b); -webkit-background-clip: text; background-clip: text; }
 
 .podium-avatar {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     border-radius: var(--radius-full);
     object-fit: cover;
     margin: 0 auto var(--spacing-md);
-    border: 3px solid var(--border-color-light);
+    border: 4px solid var(--border-color-light);
+    box-shadow: var(--shadow-md);
 }
 
-.podium-gold .podium-avatar { border-color: rgba(255, 215, 0, 0.5); }
-.podium-silver .podium-avatar { border-color: rgba(192, 192, 192, 0.5); }
-.podium-bronze .podium-avatar { border-color: rgba(205, 127, 50, 0.5); }
+.podium-gold .podium-avatar { border-color: #f9d423; box-shadow: 0 0 20px rgba(255,215,0,0.4); }
+.podium-silver .podium-avatar { border-color: #e6e9f0; box-shadow: 0 0 15px rgba(192,192,192,0.3); }
+.podium-bronze .podium-avatar { border-color: #cd7f32; box-shadow: 0 0 15px rgba(205,127,50,0.3); }
 
 .podium-team {
     color: var(--text-muted);
@@ -1099,9 +1127,7 @@ section {
 }
 
 
-/* ============================================
-   11. FILTERS & SEARCH
-   ============================================ */
+/* 11. filtres et recherche */
 .filters-section {
     padding: var(--spacing-xl) 0;
     background: var(--bg-secondary);
@@ -1223,9 +1249,7 @@ section {
 }
 
 
-/* ============================================
-   12. FORMS
-   ============================================ */
+/* 12. formulaires */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -1243,16 +1267,18 @@ section {
     color: var(--primary-color);
 }
 
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="password"],
-.form-group input[type="search"],
-.form-group input[type="tel"],
-.form-group input[type="url"],
-.form-group input[type="number"],
-.form-group input[type="date"],
-.form-group select,
-.form-group textarea {
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+input[type="date"],
+input[type="datetime-local"],
+select,
+textarea {
+    color-scheme: dark light;
     padding: 0.7rem var(--spacing-md);
     background: var(--bg-tertiary);
     border: 1px solid var(--border-color);
@@ -1263,21 +1289,21 @@ section {
     transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15), 0 0 15px rgba(230, 57, 70, 0.1);
 }
 
-.form-group textarea {
+textarea {
     resize: vertical;
     min-height: 120px;
 }
 
-.form-group input::placeholder,
-.form-group textarea::placeholder {
+input::placeholder,
+textarea::placeholder {
     color: var(--text-muted);
 }
 
@@ -1331,9 +1357,7 @@ section {
 }
 
 
-/* ============================================
-   13. AUTH PAGES (Connexion / Inscription)
-   ============================================ */
+/* 13. pages auth (connexion / inscription) */
 .auth-section {
     padding: var(--spacing-3xl) 0;
     display: flex;
@@ -1397,9 +1421,7 @@ section {
 }
 
 
-/* ============================================
-   14. CONTACT PAGE
-   ============================================ */
+/* 14. page contact */
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -1422,9 +1444,7 @@ section {
 }
 
 
-/* ============================================
-   15. SIDEBAR CARDS
-   ============================================ */
+/* 15. cartes sidebar */
 .sidebar-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -1467,9 +1487,7 @@ section {
 }
 
 
-/* ============================================
-   16. EVENTS PAGE
-   ============================================ */
+/* 16. page evenements */
 .events-list {
     display: flex;
     flex-direction: column;
@@ -1601,9 +1619,7 @@ section {
 }
 
 
-/* ============================================
-   17. FAQ
-   ============================================ */
+/* 17. faq */
 .faq-category {
     margin-bottom: var(--spacing-2xl);
 }
@@ -1687,9 +1703,7 @@ section {
 }
 
 
-/* ============================================
-   18. BLOG
-   ============================================ */
+/* 18. blog */
 .blog-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -1754,9 +1768,7 @@ section {
 }
 
 
-/* ============================================
-   19. ARTICLE FULL
-   ============================================ */
+/* 19. article complet */
 .article-full {
     padding: var(--spacing-2xl) 0;
 }
@@ -1924,9 +1936,7 @@ section {
 }
 
 
-/* ============================================
-   20. PARTICIPANTS
-   ============================================ */
+/* 20. participants */
 .joueur-avatar,
 .equipe-avatar {
     width: 70px;
@@ -1965,9 +1975,7 @@ section {
 }
 
 
-/* ============================================
-   21. PROFIL PAGE
-   ============================================ */
+/* 21. page profil */
 .profil-header-card {
     display: flex;
     flex-direction: column;
@@ -2130,9 +2138,7 @@ section {
 }
 
 
-/* ============================================
-   22. MEMBER AREA
-   ============================================ */
+/* 22. espace membre */
 .member-nav {
     background: var(--bg-secondary);
     border-bottom: 1px solid var(--border-color);
@@ -2284,9 +2290,7 @@ section {
 }
 
 
-/* ============================================
-   23. TOURNOI DETAIL PAGE
-   ============================================ */
+/* 23. page detail tournoi */
 .tournoi-detail-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -2379,9 +2383,7 @@ section {
 }
 
 
-/* ============================================
-   24. CTA SECTION
-   ============================================ */
+/* 24. section CTA */
 .cta-section {
     text-align: center;
     padding: var(--spacing-3xl) 0;
@@ -2409,9 +2411,7 @@ section {
 }
 
 
-/* ============================================
-   25. PAGINATION
-   ============================================ */
+/* 25. pagination */
 .pagination {
     margin-top: var(--spacing-2xl);
     display: flex;
@@ -2454,9 +2454,7 @@ section {
 }
 
 
-/* ============================================
-   26. FOOTER — STICKY (Flexbox body)
-   ============================================ */
+/* 26. footer */
 #site-footer {
     background: var(--bg-secondary);
     border-top: 1px solid var(--border-color);
@@ -2513,9 +2511,7 @@ section {
 }
 
 
-/* ============================================
-   27. ADMIN PAGES
-   ============================================ */
+/* 27. pages admin */
 .admin-layout {
     display: grid;
     grid-template-columns: 1fr;
@@ -2558,10 +2554,7 @@ section {
 }
 
 
-/* ============================================
-   28. RESPONSIVE — MOBILE FIRST
-   Breakpoint principal : 768px
-   ============================================ */
+/* 28. responsive - mobile first */
 
 /* ---- Tablet (>= 480px) ---- */
 @media (min-width: 480px) {
@@ -2759,8 +2752,8 @@ section {
 }
 
 
-/* ---- MOBILE ONLY (< 768px) ---- */
-@media (max-width: 767px) {
+/* ---- MOBILE ONLY (< 992px) ---- */
+@media (max-width: 991px) {
     /* Show hamburger button */
     .menu-toggle {
         display: flex;
@@ -2791,9 +2784,16 @@ section {
     }
 
     /* Header actions smaller */
+    .header-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.25rem;
+    }
+
     .header-actions .btn {
-        padding: 0.4rem 0.75rem;
-        font-size: var(--font-size-xs);
+        padding: 0.4rem 0.6rem;
+        font-size: 0.7rem;
+        letter-spacing: 0;
     }
 
     .theme-toggle {
@@ -2847,6 +2847,47 @@ section {
         font-size: var(--font-size-2xl);
     }
 
+    /* Public Header adaptatif */
+    .header-container {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .header-actions {
+        width: 100%;
+        justify-content: center;
+        padding-top: 0.5rem;
+        margin-top: 0.25rem;
+        border-top: 1px solid var(--border-color-light);
+    }
+
+    /* Admin header compact */
+    .header-admin .header-container {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding-block: 0.5rem;
+        justify-content: center;
+    }
+
+    .header-admin .header-actions-logged {
+        gap: 0.25rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    /* Admin nav horizontal scroll removed, using standard hamburger menu */
+
+    .header-admin .nav-link {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.6rem;
+    }
+
+    .header-admin .logo {
+        margin-bottom: 0.25rem;
+    }
+
     /* User menu hide text */
     .user-pseudo {
         display: none;
@@ -2854,9 +2895,7 @@ section {
 }
 
 
-/* ============================================
-   29. ANIMATIONS & EFFECTS
-   ============================================ */
+/* 29. animations et effets */
 
 /* Smooth focus outlines */
 :focus-visible {
@@ -2997,3 +3036,77 @@ section {
 }
 
 .avatar-upload-actions label.btn { cursor: pointer; width: fit-content; }
+
+/* Responsive table wrapper */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 1rem;
+}
+
+/* Mobile fixes (< 768px) */
+@media (max-width: 768px) {
+    .section-container {
+        padding: 0 1rem !important;
+    }
+
+    /* Hero buttons stack vertically on very small screens */
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .header-admin .nav-link {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.5rem;
+        white-space: nowrap;
+    }
+
+    /* Tables: reduce font size on mobile */
+    .admin-table,
+    .leaderboard-table {
+        font-size: 0.75rem;
+    }
+
+    .admin-table th,
+    .admin-table td,
+    .leaderboard-table th,
+    .leaderboard-table td {
+        padding: 0.4rem 0.5rem;
+        white-space: nowrap;
+    }
+
+    /* Admin stats grid */
+    .admin-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Footer columns stack */
+    .footer-container {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Very small screens (< 380px) */
+@media (max-width: 380px) {
+    .header-actions .btn:not(.theme-toggle) {
+        font-size: 0.65rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .logo-text {
+        font-size: 0.8rem;
+    }
+
+    .logo-admin-badge {
+        font-size: 0.55rem;
+        padding: 0.1rem 0.3rem;
+    }
+}
+

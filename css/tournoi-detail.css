@@ -1,10 +1,6 @@
-/* ============================================================
-   GAMING CAMPUS — tournoi-detail.css
-   Styles spécifiques à la page de détail d'un tournoi
-   Complète style.css (variables + layout globaux)
-   ============================================================ */
+/* tournoi-detail.css - styles specifiques detail tournoi */
 
-/* ── Layout général ── */
+/* layout general */
 .tournoi-detail-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -17,7 +13,7 @@
     }
 }
 
-/* ── Bannière image ── */
+/* banniere image */
 .tournoi-banner {
     margin-bottom: var(--spacing-xl);
     border-radius: var(--radius-lg);
@@ -32,7 +28,7 @@
     display: block;
 }
 
-/* ── Hero du tournoi ── */
+/* hero tournoi */
 .tournoi-hero {
     position: relative;
 }
@@ -43,7 +39,7 @@
     margin-bottom: var(--spacing-sm);
 }
 
-/* ── Description du tournoi ── */
+/* description tournoi */
 .tournoi-description h3 {
     margin-bottom: var(--spacing-md);
     color: var(--primary-color);
@@ -70,7 +66,7 @@
     margin-bottom: var(--spacing-xs);
 }
 
-/* ── Liste des prix ── */
+/* liste des prix */
 .prizes-list {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -91,7 +87,7 @@
     font-weight: 700;
 }
 
-/* ── Sidebar infos rapides ── */
+/* sidebar infos rapides */
 .tournoi-detail-sidebar {
     display: flex;
     flex-direction: column;
@@ -114,7 +110,7 @@
     color: var(--text-color);
 }
 
-/* ── Badge de statut ── */
+/* badge de statut */
 .status-badge {
     display: inline-block;
     padding: 0.2rem 0.6rem;
@@ -129,7 +125,7 @@
 .status-termine   { background: var(--badge-termine);  color: #fff; }
 .status-complet   { background: var(--badge-complet);  color: #fff; }
 
-/* ── Bracket placeholder ── */
+/* bracket placeholder */
 .bracket-placeholder {
     padding: var(--spacing-2xl);
     text-align: center;
