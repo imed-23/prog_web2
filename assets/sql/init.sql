@@ -1,88 +1,95 @@
--- ============================================================
--- Gaming Campus — Script d'initialisation de la base de données
--- Sprint 4 : Formulaire d'inscription
---
--- Instructions :
---   1. Ouvrez phpMyAdmin (http://localhost/phpmyadmin)
---   2. Cliquez sur "SQL" dans le menu du haut
---   3. Copiez-collez tout ce fichier
---   4. Cliquez sur "Exécuter"
--- ============================================================
+-- Gaming Campus — Schema SQLite
+-- Execute automatiquement par install.php au premier lancement
 
--- Création de la base de données
-CREATE DATABASE IF NOT EXISTS `gaming_campus`
-    CHARACTER SET utf8mb4
-    COLLATE utf8mb4_unicode_ci;
+PRAGMA foreign_keys = ON;
 
-USE `gaming_campus`;
+-- Table des utilisateurs
+CREATE TABLE IF NOT EXISTS utilisateurs (
+    id            INTEGER  PRIMARY KEY AUTOINCREMENT,
+    pseudo        TEXT     NOT NULL UNIQUE,
+    prenom        TEXT     NOT NULL,
+    nom           TEXT     NOT NULL,
+    email         TEXT     NOT NULL UNIQUE,
+    mdp_hash      TEXT     NOT NULL,
+    avatar        TEXT     DEFAULT NULL,
+    jeu_principal TEXT     DEFAULT NULL,
+    role          TEXT     NOT NULL DEFAULT 'visiteur'
+                           CHECK(role IN ('visiteur', 'capitaine', 'admin')),
+    created_at    TEXT     NOT NULL DEFAULT (datetime('now')),
+    updated_at    TEXT     NOT NULL DEFAULT (datetime('now'))
+);
 
--- ============================================================
--- Table : utilisateurs
--- ============================================================
-CREATE TABLE IF NOT EXISTS `utilisateurs` (
-    `id`            INT UNSIGNED    NOT NULL AUTO_INCREMENT,
-    `pseudo`        VARCHAR(20)     NOT NULL UNIQUE,
-    `prenom`        VARCHAR(50)     NOT NULL,
-    `nom`           VARCHAR(50)     NOT NULL,
-    `email`         VARCHAR(150)    NOT NULL UNIQUE,
-    `mdp_hash`      VARCHAR(255)    NOT NULL,
-    `avatar`        VARCHAR(255)    DEFAULT NULL,
-    `jeu_principal` VARCHAR(50)     DEFAULT NULL,
-    `role`          ENUM('visiteur','capitaine','admin') NOT NULL DEFAULT 'visiteur',
-    `created_at`    TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `updated_at`    TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`),
-    INDEX `idx_email`  (`email`),
-    INDEX `idx_pseudo` (`pseudo`),
-    INDEX `idx_role`   (`role`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- Table des tournois
+CREATE TABLE IF NOT EXISTS tournois (
+    id            INTEGER  PRIMARY KEY AUTOINCREMENT,
+    nom           TEXT     NOT NULL,
+    jeu           TEXT     NOT NULL,
+    image         TEXT     DEFAULT NULL,
+    date_debut    TEXT     NOT NULL,
+    lieu          TEXT     DEFAULT 'Campus',
+    nb_places     INTEGER  NOT NULL DEFAULT 16,
+    cashprize     REAL     DEFAULT 0.00,
+    description   TEXT     DEFAULT NULL,
+    statut        TEXT     NOT NULL DEFAULT 'a-venir'
+                           CHECK(statut IN ('a-venir', 'en-cours', 'termine')),
+    created_at    TEXT     NOT NULL DEFAULT (datetime('now'))
+);
 
--- ============================================================
--- Table : tournois
--- ============================================================
-CREATE TABLE IF NOT EXISTS `tournois` (
-    `id`            INT UNSIGNED    NOT NULL AUTO_INCREMENT,
-    `nom`           VARCHAR(100)    NOT NULL,
-    `jeu`           VARCHAR(50)     NOT NULL,
-    `date_debut`    DATETIME        NOT NULL,
-    `lieu`          VARCHAR(100)    DEFAULT 'Campus',
-    `nb_places`     TINYINT UNSIGNED NOT NULL DEFAULT 16,
-    `cashprize`     DECIMAL(8,2)    DEFAULT 0.00,
-    `description`   TEXT            DEFAULT NULL,
-    `statut`        ENUM('a-venir','en-cours','termine') NOT NULL DEFAULT 'a-venir',
-    `created_at`    TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`),
-    INDEX `idx_statut` (`statut`),
-    INDEX `idx_jeu`    (`jeu`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- Table des reservations (inscriptions equipe a un tournoi)
+CREATE TABLE IF NOT EXISTS reservations (
+    id            INTEGER  PRIMARY KEY AUTOINCREMENT,
+    tournoi_id    INTEGER  NOT NULL,
+    capitaine_id  INTEGER  NOT NULL,
+    nom_equipe    TEXT     NOT NULL,
+    statut        TEXT     NOT NULL DEFAULT 'en-attente'
+                           CHECK(statut IN ('en-attente', 'confirmee', 'annulee')),
+    created_at    TEXT     NOT NULL DEFAULT (datetime('now')),
+    FOREIGN KEY (tournoi_id)   REFERENCES tournois(id)      ON DELETE CASCADE,
+    FOREIGN KEY (capitaine_id) REFERENCES utilisateurs(id)  ON DELETE CASCADE,
+    UNIQUE (tournoi_id, capitaine_id)
+);
 
--- ============================================================
--- Table : reservations
--- ============================================================
-CREATE TABLE IF NOT EXISTS `reservations` (
-    `id`            INT UNSIGNED    NOT NULL AUTO_INCREMENT,
-    `tournoi_id`    INT UNSIGNED    NOT NULL,
-    `capitaine_id`  INT UNSIGNED    NOT NULL,
-    `nom_equipe`    VARCHAR(50)     NOT NULL,
-    `statut`        ENUM('en-attente','confirmee','annulee') NOT NULL DEFAULT 'en-attente',
-    `created_at`    TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`),
-    FOREIGN KEY (`tournoi_id`)   REFERENCES `tournois`(`id`)      ON DELETE CASCADE,
-    FOREIGN KEY (`capitaine_id`) REFERENCES `utilisateurs`(`id`)  ON DELETE CASCADE,
-    UNIQUE KEY `uq_equipe_tournoi` (`tournoi_id`, `capitaine_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- Trigger : empeche l'inscription si le tournoi est complet
+CREATE TRIGGER IF NOT EXISTS prevent_overbooking
+BEFORE INSERT ON reservations
+FOR EACH ROW
+WHEN (
+    (SELECT COUNT(*) FROM reservations WHERE tournoi_id = NEW.tournoi_id AND statut <> 'annulee')
+    >= 
+    (SELECT nb_places FROM tournois WHERE id = NEW.tournoi_id)
+)
+BEGIN
+    SELECT RAISE(ABORT, 'Ce tournoi est complet.');
+END;
 
--- ============================================================
--- Compte administrateur de test (mdp : Admin1234!)
--- SUPPRIMER EN PRODUCTION
--- ============================================================
-INSERT IGNORE INTO `utilisateurs`
-    (`pseudo`, `prenom`, `nom`, `email`, `mdp_hash`, `role`)
+-- Trigger : met a jour updated_at automatiquement
+CREATE TRIGGER IF NOT EXISTS update_utilisateurs_updated_at
+    AFTER UPDATE ON utilisateurs
+    FOR EACH ROW
+BEGIN
+    UPDATE utilisateurs SET updated_at = datetime('now') WHERE id = OLD.id;
+END;
+
+-- Compte admin par defaut (mdp : Admin1234!)
+INSERT OR IGNORE INTO utilisateurs
+    (pseudo, prenom, nom, email, mdp_hash, role)
 VALUES (
     'admin',
     'Admin',
     'BDE',
     'admin@gamingcampus.fr',
-    '$2y$12$OFfwEw6G6C05CDwuSNZTmu3iBNHj3L8VGx735Cqf4ZXaE.W14h1T.', -- password: Admin1234!
+    '$2y$12$OFfwEw6G6C05CDwuSNZTmu3iBNHj3L8VGx735Cqf4ZXaE.W14h1T.',
     'admin'
 );
+CREATE TABLE IF NOT EXISTS demandes_capitaine (
+    id          INTEGER  PRIMARY KEY AUTOINCREMENT,
+    user_id     INTEGER  NOT NULL,
+    nom_equipe  TEXT     NOT NULL,
+    jeu         TEXT     NOT NULL,
+    message     TEXT     DEFAULT NULL,
+    statut      TEXT     NOT NULL DEFAULT 'en-attente'
+                         CHECK(statut IN ('en-attente', 'approuvee', 'refusee')),
+    created_at  TEXT     NOT NULL DEFAULT (datetime('now')),
+    FOREIGN KEY (user_id) REFERENCES utilisateurs(id) ON DELETE CASCADE
+);
+

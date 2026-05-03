@@ -1,24 +1,8 @@
 <?php
-/**
- * Connexion à la base de données PostgreSQL via PDO
- * Gaming Campus — Sprint 4
- *
- * Utilisation dans les autres fichiers :
- *   require_once __DIR__ . '/../config/db.php';
- *   $stmt = $pdo->prepare("SELECT ...");
- */
+// Connexion SQLite via PDO
+// La base est creee automatiquement si elle n'existe pas encore
 
-// ── Paramètres de connexion ────────────────────────────────────────────────
-// 127.0.0.1 force une connexion TCP (important sous WSL, évite l'erreur socket "No such file or directory")
-define('DB_HOST', getenv('DB_HOST') ?: '127.0.0.1');
-define('DB_PORT', (int) (getenv('DB_PORT') ?: 3306));
-define('DB_NAME', getenv('DB_NAME') ?: 'gaming_campus');
-define('DB_USER', getenv('DB_USER') ?: 'root');
-define('DB_PASS', getenv('DB_PASS') ?: '');
-define('DB_CHARSET', 'utf8mb4');
-
-// ── Connexion PDO ──────────────────────────────────────────────────────────
-$dsn = 'mysql:host=' . DB_HOST . ';port=' . DB_PORT . ';dbname=' . DB_NAME . ';charset=' . DB_CHARSET;
+define('DB_PATH', __DIR__ . '/../../../db/gaming_campus.sqlite');
 
 $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -27,11 +11,27 @@ $options = [
 ];
 
 try {
-    $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
+    $dbDir = dirname(DB_PATH);
+    if (!is_dir($dbDir)) {
+        mkdir($dbDir, 0755, true);
+    }
+
+    $isNew = !file_exists(DB_PATH);
+    $pdo   = new PDO('sqlite:' . DB_PATH, null, null, $options);
+    $pdo->exec('PRAGMA journal_mode = WAL;');
+    $pdo->exec('PRAGMA foreign_keys = ON;');
+
+    // Si la base vient d'etre creee, on initialise le schema
+    if ($isNew) {
+        $sql = file_get_contents(__DIR__ . '/../../sql/init.sql');
+        if ($sql) {
+            $pdo->exec($sql);
+        }
+    }
 } catch (PDOException $e) {
     error_log('[DB ERROR] ' . $e->getMessage());
     die(json_encode([
         'success' => false,
-        'message' => 'Connexion à la base de données impossible. Vérifiez que MySQL est démarré et que DB_HOST/DB_PORT sont corrects.',
+        'message' => 'Connexion à la base de données impossible.',
     ]));
 }
