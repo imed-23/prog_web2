@@ -3,19 +3,10 @@ require_once __DIR__ . '/../config/auth.php';
 gc_start_session();
 $currentUser = gc_current_user();
 
-/*
- * assets/php/components/footer.php
- * Composant réutilisable — Pied de page public du site
- *
- * Variables attendues (définies avant l'include) :
- *   $rootPath          (string)           : chemin vers la racine
- *   $jsSupplementaires (array, optionnel) : noms des fichiers JS à charger après main.js
- */
+// variables attendues : $rootPath, $jsSupplementaires
 ?>
 
-    <!-- ============================================ -->
-    <!-- FOOTER -->
-    <!-- ============================================ -->
+    <!-- footer -->
     <footer id="site-footer">
         <div class="footer-container">
 

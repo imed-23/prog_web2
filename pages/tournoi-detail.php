@@ -47,21 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $action = trim($_POST['action'] ?? '');
 
         if ($action === 'become_capitaine') {
-            if (!$currentUser) {
-                header('Location: connexion.php?redirect=' . urlencode('tournoi-detail.php?id=' . $tournoiId));
-                exit;
-            }
-
-            try {
-                $stmt = $pdo->prepare('UPDATE utilisateurs SET role = "capitaine" WHERE id = ? AND role = "visiteur"');
-                $stmt->execute([(int) $currentUser['id']]);
-                $_SESSION['user_role'] = 'capitaine';
-                $currentUser = gc_current_user();
-                $messageSucces = 'Ton compte est maintenant capitaine. Tu peux inscrire ton équipe.';
-            } catch (PDOException $e) {
-                error_log('[TOURNOI DETAIL ROLE] ' . $e->getMessage());
-                $messageErreur = 'Impossible de mettre à jour ton rôle pour le moment.';
-            }
+            // L'ancienne logique directe a été supprimée.
+            // On redirige vers l'espace membre (Plan A : Demande au BDE).
+            header('Location: espace-membre.php#devenir-capitaine');
+            exit;
         }
 
         if ($action === 'reserve') {
@@ -85,33 +74,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($messageErreur === '') {
                 try {
+                    $pdo->beginTransaction();
+                    
                     $stmt = $pdo->prepare('SELECT nb_places FROM tournois WHERE id = ? LIMIT 1');
                     $stmt->execute([$tournoiId]);
                     $tournoiForReserve = $stmt->fetch();
 
                     if (!$tournoiForReserve) {
                         $messageErreur = 'Tournoi introuvable.';
+                        $pdo->rollBack();
                     } else {
-                        $stmt = $pdo->prepare('SELECT COUNT(*) FROM reservations WHERE tournoi_id = ? AND statut <> "annulee"');
+                        $stmt = $pdo->prepare("SELECT COUNT(*) FROM reservations WHERE tournoi_id = ? AND statut <> 'annulee'");
                         $stmt->execute([$tournoiId]);
                         $inscrits = (int) $stmt->fetchColumn();
                         $total = (int) $tournoiForReserve['nb_places'];
 
                         if ($inscrits >= $total) {
                             $messageErreur = 'Ce tournoi est complet.';
+                            $pdo->rollBack();
                         } else {
                             $stmt = $pdo->prepare('SELECT id FROM reservations WHERE tournoi_id = ? AND capitaine_id = ? LIMIT 1');
                             $stmt->execute([$tournoiId, (int) $currentUser['id']]);
                             if ($stmt->fetch()) {
                                 $messageErreur = 'Tu as déjà une inscription pour ce tournoi.';
+                                $pdo->rollBack();
                             } else {
-                                $stmt = $pdo->prepare('INSERT INTO reservations (tournoi_id, capitaine_id, nom_equipe, statut) VALUES (?, ?, ?, "en-attente")');
+                                $stmt = $pdo->prepare("INSERT INTO reservations (tournoi_id, capitaine_id, nom_equipe, statut) VALUES (?, ?, ?, 'en-attente')");
                                 $stmt->execute([$tournoiId, (int) $currentUser['id'], $nomEquipe]);
+                                $pdo->commit();
                                 $messageSucces = 'Inscription de ton équipe enregistrée.';
                             }
                         }
                     }
                 } catch (PDOException $e) {
+                    if ($pdo->inTransaction()) {
+                        $pdo->rollBack();
+                    }
                     error_log('[TOURNOI DETAIL RESERVE] ' . $e->getMessage());
                     $messageErreur = 'Impossible d\'enregistrer la réservation pour le moment.';
                 }
@@ -122,16 +120,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 if ($tournoiId > 0) {
     try {
-        $stmt = $pdo->prepare('SELECT t.*, COALESCE(rc.inscrits, 0) AS equipes_inscrites
+        $stmt = $pdo->prepare("SELECT t.*, COALESCE(rc.inscrits, 0) AS equipes_inscrites
                                FROM tournois t
                                LEFT JOIN (
                                    SELECT tournoi_id, COUNT(*) AS inscrits
                                    FROM reservations
-                                   WHERE statut <> "annulee"
+                                   WHERE statut <> 'annulee'
                                    GROUP BY tournoi_id
                                ) rc ON rc.tournoi_id = t.id
                                WHERE t.id = ?
-                               LIMIT 1');
+                               LIMIT 1");
         $stmt->execute([$tournoiId]);
         $tournoi = $stmt->fetch();
 
@@ -173,7 +171,7 @@ include '../assets/php/components/header.php';
     <!-- CONTENU PRINCIPAL -->
     <main id="main-content">
 
-        <!-- ======== EN-TÊTE ======== -->
+        <!-- en-tete -->
         <section class="page-hero" aria-label="En-tête tournoi">
             <div class="section-container">
                 <nav aria-label="Fil d'Ariane" class="breadcrumb">
@@ -188,7 +186,7 @@ include '../assets/php/components/header.php';
             </div>
         </section>
 
-        <!-- ======== CONTENU TOURNOI ======== -->
+        <!-- contenu tournoi -->
         <section id="tournoi-detail" aria-labelledby="titre-tournoi">
             <div class="section-container">
                 <?php if ($messageSucces !== ''): ?>
@@ -346,11 +344,10 @@ include '../assets/php/components/header.php';
                                 <?php if (!$currentUser): ?>
                                 <a href="connexion.php?redirect=<?= urlencode('tournoi-detail.php?id=' . (int) $tournoi['id']) ?>" class="btn btn-primary btn-block">Se connecter pour s'inscrire</a>
                                 <?php elseif (!in_array($currentUser['role'], ['capitaine', 'admin'], true)): ?>
-                                <form method="post" action="tournoi-detail.php?id=<?= (int) $tournoi['id'] ?>">
-                                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(gc_csrf_token()) ?>">
-                                    <input type="hidden" name="action" value="become_capitaine">
-                                    <button type="submit" class="btn btn-primary btn-block">Devenir capitaine</button>
-                                </form>
+                                <p class="places-restantes" style="font-size:0.85em; margin-bottom: 0.5rem; text-align:center;">
+                                    Seuls les capitaines peuvent inscrire une équipe.
+                                </p>
+                                <a href="espace-membre.php#devenir-capitaine" class="btn btn-outline btn-block">Devenir Capitaine</a>
                                 <?php elseif ($reservationExistante): ?>
                                 <p class="places-restantes">Ton équipe <strong><?= htmlspecialchars($reservationExistante['nom_equipe']) ?></strong> est déjà inscrite.</p>
                                 <button type="button" class="btn btn-outline btn-block" disabled>Déjà inscrit</button>

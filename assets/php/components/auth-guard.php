@@ -1,14 +1,5 @@
 <?php
-/**
- * auth-guard.php — Vérification d'authentification
- * Gaming Campus — Sprint 4
- *
- * Usage :
- *   require_once __DIR__ . '/auth-guard.php';
- *   authRequire();           // connexion requise (n'importe quel rôle)
- *   authRequire('admin');    // rôle admin requis
- */
-
+// verifie l'authentification et les roles
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

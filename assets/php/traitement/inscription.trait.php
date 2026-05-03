@@ -1,23 +1,14 @@
 <?php
-/**
- * inscription.trait.php — Traitement sécurisé du formulaire d'inscription
- * Gaming Campus — Sprint 4
- *
- * Ce fichier est inclus en HAUT de inscription.php.
- * Il traite uniquement les requêtes POST.
- */
+// Traitement du formulaire d'inscription 
 
-// Inclure la connexion BDD
 require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../config/auth.php';
 gc_start_session();
 
-// Initialisation des variables partagées avec la vue
-$erreurs         = [];      // Tableau des erreurs PHP (clé = champ)
+$erreurs         = [];
 $success         = false;
-$anciennesValeurs = [];     // Pour repopuler les champs après erreur
+$anciennesValeurs = [];
 
-// ── Traitement uniquement si POST ─────────────────────────────────────────
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!gc_verify_csrf($_POST['csrf_token'] ?? null)) {
@@ -25,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         return;
     }
 
-    // ── 1. Récupération & nettoyage des données ───────────────────────────
+    // Recuperation et nettoyage des champs
     $pseudo    = trim($_POST['pseudo']          ?? '');
     $prenom    = trim($_POST['prenom']          ?? '');
     $nom       = trim($_POST['nom']             ?? '');
@@ -35,12 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $jeu       = trim($_POST['jeu_principal']   ?? '');
     $cgu       = isset($_POST['cgu']);
 
-    // Conserver les valeurs pour repopuler le formulaire
     $anciennesValeurs = compact('pseudo', 'prenom', 'nom', 'email', 'jeu');
 
-    // ── 2. Validations ────────────────────────────────────────────────────
-
-    // Pseudo
+    // Validation du pseudo
     if (empty($pseudo)) {
         $erreurs['pseudo'] = 'Le pseudo est obligatoire.';
     } elseif (strlen($pseudo) < 3 || strlen($pseudo) > 20) {
@@ -49,18 +37,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erreurs['pseudo'] = 'Le pseudo ne peut contenir que des lettres, chiffres, _ et -.';
     }
 
-    // Prénom / Nom
     if (empty($prenom)) $erreurs['prenom'] = 'Le prénom est obligatoire.';
     if (empty($nom))    $erreurs['nom']    = 'Le nom est obligatoire.';
 
-    // Email
+    // Validation email
     if (empty($email)) {
         $erreurs['email'] = 'L\'adresse email est obligatoire.';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $erreurs['email'] = 'L\'adresse email n\'est pas valide.';
     }
 
-    // Mot de passe
+    // Validation mot de passe
     if (empty($mdp)) {
         $erreurs['password'] = 'Le mot de passe est obligatoire.';
     } elseif (strlen($mdp) < 8) {
@@ -71,25 +58,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erreurs['password'] = 'Le mot de passe doit contenir au moins un chiffre.';
     }
 
-    // Confirmation mot de passe
     if (empty($mdpConfm)) {
         $erreurs['password_confirm'] = 'La confirmation du mot de passe est obligatoire.';
     } elseif ($mdp !== $mdpConfm) {
         $erreurs['password_confirm'] = 'Les mots de passe ne correspondent pas.';
     }
 
-    // CGU
     if (!$cgu) {
         $erreurs['cgu'] = 'Vous devez accepter les conditions générales d\'utilisation.';
     }
 
-    // Jeu principal — liste blanche
+    // Jeu principal : liste blanche
     $jeuxAutorises = ['lol', 'valorant', 'cs2', 'fortnite', 'rocket-league', 'autre', ''];
     if (!in_array($jeu, $jeuxAutorises, true)) {
         $jeu = '';
     }
 
-    // ── 3. Unicité email + pseudo (si pas encore d'erreurs sur ces champs) ─
+    // Verification unicite email et pseudo
     if (empty($erreurs['email']) || empty($erreurs['pseudo'])) {
         try {
             if (empty($erreurs['email'])) {
@@ -108,37 +93,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
         } catch (PDOException $e) {
-            error_log('[INSCRIPTION INSERT]' . $e->getMessage());
-            if (($e->getCode() === '23000') || str_contains(strtolower($e->getMessage()), 'duplicate')) {
-                $erreurs['db'] = 'Ce compte existe déjà (email ou pseudo déjà utilisé).';
-            } else {
-                $erreurs['db'] = 'Une erreur est survenue lors de la création du compte. Réessaie dans un moment.';
-            }
+            error_log('[INSCRIPTION] ' . $e->getMessage());
+            $erreurs['db'] = 'Une erreur est survenue. Réessaie dans un moment.';
         }
     }
 
-    // ── 4. Gestion de l'avatar ────────────────────────────────────────────
+    // Gestion de l'avatar
     $avatarPath = null;
 
-    if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
+    if (isset($_FILES['avatar']) && (int)$_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
         $allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
-        $maxSize      = 2 * 1024 * 1024; // 2 Mo
+        $maxSize      = 2 * 1024 * 1024;
 
-        $finfo    = new finfo(FILEINFO_MIME_TYPE);
-        $mimeType = $finfo->file($_FILES['avatar']['tmp_name']);
+        $mimeType = false;
+        if (class_exists('finfo')) {
+            $finfo    = new finfo(FILEINFO_MIME_TYPE);
+            $mimeType = $finfo->file($_FILES['avatar']['tmp_name']);
+        } else {
+            $mimeType = $_FILES['avatar']['type'];
+        }
+        
+        $ext = strtolower(pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION));
+        $allowedExts = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
 
-        if (!in_array($mimeType, $allowedTypes, true)) {
+        if (!$mimeType || !in_array($mimeType, $allowedTypes, true) || !in_array($ext, $allowedExts, true)) {
             $erreurs['avatar'] = 'Format d\'image non autorisé (JPG, PNG, WebP ou GIF uniquement).';
         } elseif ($_FILES['avatar']['size'] > $maxSize) {
             $erreurs['avatar'] = 'L\'image dépasse la taille maximale de 2 Mo.';
         } else {
-            // Créer le dossier si besoin
             $uploadDir = __DIR__ . '/../../../uploads/avatars/';
             if (!is_dir($uploadDir)) {
                 mkdir($uploadDir, 0755, true);
             }
 
-            $ext        = strtolower(pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION));
             $filename   = uniqid('avatar_', true) . '.' . $ext;
             $destPath   = $uploadDir . $filename;
 
@@ -150,14 +137,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // ── 5. Insertion en BDD si aucune erreur ─────────────────────────────
+    // Insertion en BDD si tout est ok
     if (empty($erreurs)) {
         try {
             $mdpHash = password_hash($mdp, PASSWORD_BCRYPT);
 
             $stmt = $pdo->prepare('
                 INSERT INTO utilisateurs (pseudo, prenom, nom, email, mdp_hash, avatar, jeu_principal, role)
-                VALUES (:pseudo, :prenom, :nom, :email, :mdp_hash, :avatar, :jeu_principal, \'capitaine\')
+                VALUES (:pseudo, :prenom, :nom, :email, :mdp_hash, :avatar, :jeu_principal, \'visiteur\')
             ');
             $stmt->execute([
                 ':pseudo'        => $pseudo,
@@ -169,12 +156,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ':jeu_principal' => $jeu ?: null,
             ]);
 
-            // Redirection vers la page de connexion avec message de succès
             header('Location: connexion.php?success=1');
             exit;
 
         } catch (PDOException $e) {
-            error_log('[INSCRIPTION INSERT]' . $e->getMessage());
+            error_log('[INSCRIPTION INSERT] ' . $e->getMessage());
             if (($e->getCode() === '23000') || str_contains(strtolower($e->getMessage()), 'duplicate')) {
                 $erreurs['db'] = 'Ce compte existe déjà (email ou pseudo déjà utilisé).';
             } else {

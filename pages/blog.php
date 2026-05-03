@@ -10,7 +10,7 @@ include '../assets/php/components/header.php';
     <!-- CONTENU PRINCIPAL -->
     <main id="main-content">
 
-        <!-- ======== EN-TÊTE ======== -->
+        <!-- en-tete -->
         <section class="page-hero" aria-label="En-tête blog">
             <div class="section-container">
                 <nav aria-label="Fil d'Ariane" class="breadcrumb">
@@ -24,7 +24,7 @@ include '../assets/php/components/header.php';
             </div>
         </section>
 
-        <!-- ======== ARTICLE MIS EN AVANT ======== -->
+        <!-- article mis en avant -->
         <section id="article-vedette" aria-labelledby="titre-vedette">
             <div class="section-container">
                 <h2 id="titre-vedette" class="sr-only">Article à la une</h2>
@@ -52,7 +52,7 @@ include '../assets/php/components/header.php';
             </div>
         </section>
 
-        <!-- ======== GRILLE D'ARTICLES ======== -->
+        <!-- grille articles -->
         <section id="articles" aria-labelledby="titre-articles">
             <div class="section-container">
                 <h2 id="titre-articles">📰 Derniers articles</h2>

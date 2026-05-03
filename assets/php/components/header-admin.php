@@ -1,19 +1,9 @@
 <?php
 require_once __DIR__ . '/../config/auth.php';
-gc_require_login($rootPath . 'pages/connexion.php');
+gc_require_admin($rootPath . 'pages/connexion.php');
 $currentUser = gc_current_user();
 
-/*
- * assets/php/components/header-admin.php
- * Composant réutilisable — En-tête interface d'administration
- *
- * Variables attendues :
- *   $rootPath        (string) : chemin vers la racine. Ex: '../../'
- *   $pageTitle       (string) : contenu du <title>
- *   $metaDescription (string) : contenu de la meta description
- *   $cssSpecifique   (string) : nom du fichier CSS spécifique (ex: 'admin.css')
- *   $adminActivePage (string) : page active admin ('dashboard','tournois','utilisateurs','reservations')
- */
+// variables attendues : $rootPath, $pageTitle, $metaDescription, $cssSpecifique, $adminActivePage
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -39,9 +29,7 @@ $currentUser = gc_current_user();
 </head>
 <body>
 
-    <!-- ============================================ -->
-    <!-- HEADER ADMIN -->
-    <!-- ============================================ -->
+    <!-- header admin -->
     <header id="site-header" class="header-admin">
         <div class="header-container">
             <a href="<?= $rootPath ?>index.php" class="logo" aria-label="Accueil Gaming Campus">
@@ -51,11 +39,17 @@ $currentUser = gc_current_user();
             </a>
 
             <nav aria-label="Navigation administration">
+                <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="admin-nav">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
                 <ul id="admin-nav" class="nav-list">
                     <li><a href="<?= $rootPath ?>pages/admin/dashboard.php" class="nav-link<?= (($adminActivePage ?? '') === 'dashboard') ? ' active' : '' ?>"<?= (($adminActivePage ?? '') === 'dashboard') ? ' aria-current="page"' : '' ?>>📊 Dashboard</a></li>
                     <li><a href="<?= $rootPath ?>pages/admin/tournois.php" class="nav-link<?= (($adminActivePage ?? '') === 'tournois') ? ' active' : '' ?>"<?= (($adminActivePage ?? '') === 'tournois') ? ' aria-current="page"' : '' ?>>🎮 Tournois</a></li>
                     <li><a href="<?= $rootPath ?>pages/admin/utilisateurs.php" class="nav-link<?= (($adminActivePage ?? '') === 'utilisateurs') ? ' active' : '' ?>"<?= (($adminActivePage ?? '') === 'utilisateurs') ? ' aria-current="page"' : '' ?>>👥 Utilisateurs</a></li>
                     <li><a href="<?= $rootPath ?>pages/admin/reservations.php" class="nav-link<?= (($adminActivePage ?? '') === 'reservations') ? ' active' : '' ?>"<?= (($adminActivePage ?? '') === 'reservations') ? ' aria-current="page"' : '' ?>>📋 Réservations</a></li>
+                    <li><a href="<?= $rootPath ?>pages/admin/demandes.php" class="nav-link<?= (($adminActivePage ?? '') === 'demandes') ? ' active' : '' ?>"<?= (($adminActivePage ?? '') === 'demandes') ? ' aria-current="page"' : '' ?>>🏆 Demandes</a></li>
                 </ul>
             </nav>
 

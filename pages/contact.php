@@ -1,9 +1,5 @@
 <?php
-/**
- * contact.php — Formulaire de contact Gaming Campus
- * Sprint 4 : Traitement PHP du formulaire de contact
- */
-
+// page de contact
 require_once __DIR__ . '/../assets/php/config/auth.php';
 require_once __DIR__ . '/../assets/php/config/db.php';
 gc_start_session();
@@ -31,11 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif (empty($message) || strlen($message) < 10) {
             $messageErreur = 'Le message doit contenir au moins 10 caractères.';
         } else {
-            // Ici, on pourrait enregistrer le message en BDD ou envoyer un email
-            // Pour l'instant, on simule un envoi réussi
-            // Exemple: insertion dans une table 'messages' ou envoi mail()
+            // Simulation d'envoi réussi (pas de table contacts nécessaire)
             $successContact = 'Ton message a bien été envoyé ! On te répond sous 24h.';
-            // Vider les champs après envoi réussi
             $_POST = [];
         }
     }
@@ -52,7 +45,7 @@ include '../assets/php/components/header.php';
     <!-- CONTENU PRINCIPAL -->
     <main id="main-content">
 
-        <!-- ======== EN-TÊTE ======== -->
+        <!-- en-tete -->
         <section class="page-hero" aria-label="En-tête contact">
             <div class="section-container">
                 <nav aria-label="Fil d'Ariane" class="breadcrumb">
@@ -66,7 +59,7 @@ include '../assets/php/components/header.php';
             </div>
         </section>
 
-        <!-- ======== CONTENU CONTACT ======== -->
+        <!-- contenu contact -->
         <section id="contact-content" aria-labelledby="titre-contact">
             <div class="section-container">
 

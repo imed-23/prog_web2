@@ -10,7 +10,7 @@ include '../assets/php/components/header.php';
     <!-- CONTENU PRINCIPAL -->
     <main id="main-content">
 
-        <!-- ======== EN-TÊTE ======== -->
+        <!--  EN-TÊTE  -->
         <section class="page-hero" aria-label="En-tête article">
             <div class="section-container">
                 <nav aria-label="Fil d'Ariane" class="breadcrumb">
@@ -23,7 +23,7 @@ include '../assets/php/components/header.php';
             </div>
         </section>
 
-        <!-- ======== CONTENU ARTICLE ======== -->
+        <!--  CONTENU ARTICLE  -->
         <section id="article-content" aria-labelledby="titre-article">
             <div class="section-container">
                 <div class="article-layout">

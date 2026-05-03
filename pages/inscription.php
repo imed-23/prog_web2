@@ -1,13 +1,10 @@
 <?php
-/**
- * inscription.php — Formulaire d'inscription Gaming Campus
- * Sprint 4 : traitement PHP sécurisé + validation JS front-end
- */
+// page d'inscription
 
 require_once __DIR__ . '/../assets/php/config/auth.php';
 gc_start_session();
 
-// ── Traitement du formulaire (POST uniquement) ─────────────────────────────
+// traitement de l'inscription
 $erreurs          = [];
 $anciennesValeurs = [];
 
@@ -16,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Si pas de redirection (des erreurs existent), on continue vers la vue
 }
 
-// ── Variables de la page ───────────────────────────────────────────────────
+// configuration de la page
 $rootPath          = '../';
 $pageTitle         = 'Inscription - Gaming Campus';
 $metaDescription   = 'Créer un compte sur Gaming Campus. Inscris-toi pour rejoindre les tournois et inscrire ton équipe.';

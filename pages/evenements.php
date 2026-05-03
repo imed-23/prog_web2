@@ -43,7 +43,7 @@ include '../assets/php/components/header.php';
     <!-- CONTENU PRINCIPAL -->
     <main id="main-content">
 
-        <!-- ======== EN-TÊTE ======== -->
+        <!-- en-tete -->
         <section class="page-hero" aria-label="En-tête événements">
             <div class="section-container">
                 <nav aria-label="Fil d'Ariane" class="breadcrumb">
@@ -57,7 +57,7 @@ include '../assets/php/components/header.php';
             </div>
         </section>
 
-        <!-- ======== CALENDRIER INTERACTIF ======== -->
+        <!-- calendrier interactif -->
         <section id="calendrier" aria-labelledby="titre-calendrier">
             <div class="section-container">
                 <h2 id="titre-calendrier">📅 Calendrier</h2>
@@ -75,7 +75,7 @@ include '../assets/php/components/header.php';
             </div>
         </section>
 
-        <!-- ======== LISTE DES ÉVÉNEMENTS ======== -->
+        <!-- liste des evenements -->
         <section id="liste-evenements" aria-labelledby="titre-evenements">
             <div class="section-container">
                 <h2 id="titre-evenements">🎯 Événements à venir</h2>

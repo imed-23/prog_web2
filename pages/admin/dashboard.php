@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../assets/php/config/auth.php';
-gc_require_login('../../pages/connexion.php');
+gc_require_admin('../../pages/connexion.php');
 
 require_once __DIR__ . '/../../assets/php/config/db.php';
 
@@ -13,9 +13,9 @@ $stats = [
 
 try {
     $stats['users'] = (int) $pdo->query('SELECT COUNT(*) FROM utilisateurs')->fetchColumn();
-    $stats['active_tournois'] = (int) $pdo->query('SELECT COUNT(*) FROM tournois WHERE statut IN ("a-venir", "en-cours")')->fetchColumn();
+    $stats['active_tournois'] = (int) $pdo->query("SELECT COUNT(*) FROM tournois WHERE statut IN ('a-venir', 'en-cours')")->fetchColumn();
     $stats['reservations'] = (int) $pdo->query('SELECT COUNT(*) FROM reservations')->fetchColumn();
-    $stats['finished'] = (int) $pdo->query('SELECT COUNT(*) FROM tournois WHERE statut = "termine"')->fetchColumn();
+    $stats['finished'] = (int) $pdo->query("SELECT COUNT(*) FROM tournois WHERE statut = 'termine'")->fetchColumn();
 } catch (PDOException $e) {
     error_log('[ADMIN DASHBOARD] ' . $e->getMessage());
 }

@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__ . '/../assets/php/config/auth.php';
+gc_require_login('connexion.php');
+
 $rootPath        = '../';
 $pageTitle       = 'Profil Joueur - Gaming Campus';
 $metaDescription = 'Profil d\'un joueur Gaming Campus. Statistiques, trophées et historique des participations.';
@@ -10,7 +13,7 @@ include '../assets/php/components/header.php';
     <!-- CONTENU PRINCIPAL -->
     <main id="main-content">
 
-        <!-- ======== EN-TÊTE ======== -->
+        <!-- en-tete -->
         <section class="page-hero" aria-label="En-tête profil">
             <div class="section-container">
                 <nav aria-label="Fil d'Ariane" class="breadcrumb">
@@ -23,7 +26,7 @@ include '../assets/php/components/header.php';
             </div>
         </section>
 
-        <!-- ======== CARTE PROFIL ======== -->
+        <!-- carte profil -->
         <section id="profil-card" aria-labelledby="titre-profil">
             <div class="section-container">
 

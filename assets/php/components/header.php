@@ -3,17 +3,7 @@ require_once __DIR__ . '/../config/auth.php';
 gc_start_session();
 $currentUser = gc_current_user();
 
-/*
- * assets/php/components/header.php
- * Composant réutilisable — En-tête public du site
- *
- * Variables attendues (à définir avant l'include) :
- *   $rootPath        (string) : chemin vers la racine. Ex: '../', '../../', ''
- *   $pageTitle       (string) : contenu du <title>
- *   $metaDescription (string) : contenu de la meta description
- *   $cssSpecifique   (string) : nom du fichier CSS spécifique (ex: 'tournois.css')
- *   $jsSupplementaires (array) : noms des fichiers JS à ajouter en fin de page
- */
+/* variables attendues : $rootPath, $pageTitle, $metaDescription, $cssSpecifique, $jsSupplementaires */
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -46,9 +36,7 @@ $_userPseudo = $_SESSION['user_pseudo'] ?? '';
 </head>
 <body>
 
-    <!-- ============================================ -->
-    <!-- HEADER / NAVIGATION -->
-    <!-- ============================================ -->
+    <!-- header -->
     <header id="site-header">
         <div class="header-container">
             <a href="<?= $rootPath ?>index.php" class="logo" aria-label="Accueil Gaming Campus">
@@ -83,6 +71,9 @@ $_userPseudo = $_SESSION['user_pseudo'] ?? '';
                     <span class="theme-toggle-label">Dark</span>
                 </button>
                 <?php if ($currentUser): ?>
+                <?php if (($currentUser['role'] ?? '') === 'admin'): ?>
+                <a href="<?= $rootPath ?>pages/admin/dashboard.php" class="btn btn-danger btn-sm" style="background-color: var(--danger-color); color: white; border: none;">⚙️ Admin</a>
+                <?php endif; ?>
                 <a href="<?= $rootPath ?>pages/espace-membre.php" class="btn btn-outline"><?= htmlspecialchars($currentUser['pseudo']) ?></a>
                 <a href="<?= $rootPath ?>pages/logout.php" class="btn btn-primary">Déconnexion</a>
                 <?php else: ?>

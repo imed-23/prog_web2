@@ -1,13 +1,9 @@
 <?php
-/**
- * connexion.php — Formulaire de connexion Gaming Campus
- * Sprint 4 : traitement PHP + message succès post-inscription
- */
-
+// page de connexion
 require_once __DIR__ . '/../assets/php/config/auth.php';
 gc_start_session();
 
-// ── Variables ──────────────────────────────────────────────────────────────
+// variables initiales
 $erreurConnexion = '';
 $successMessage  = '';
 $redirectPath    = trim($_GET['redirect'] ?? '');
@@ -46,7 +42,7 @@ if (isset($_GET['logout']) && $_GET['logout'] === '1') {
     $successMessage = 'Déconnexion réussie.';
 }
 
-// ── Traitement POST ────────────────────────────────────────────────────────
+// traitement du login
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!gc_verify_csrf($_POST['csrf_token'] ?? null)) {
         $erreurConnexion = 'Session expirée. Recharge la page puis réessaie.';
@@ -97,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// ── En-tête de la page ────────────────────────────────────────────────────
+// affichage de la page
 $rootPath          = '../';
 $pageTitle         = 'Connexion - Gaming Campus';
 $metaDescription   = 'Connecte-toi à ton espace membre Gaming Campus.';
@@ -154,7 +150,7 @@ include '../assets/php/components/header.php';
                                 <input type="checkbox" id="remember" name="remember">
                                 <label for="remember">Se souvenir de moi</label>
                             </div>
-                            <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+                            <span class="forgot-password" title="Cette fonctionnalité arrive bientôt" style="opacity:0.5;cursor:not-allowed;">Mot de passe oublié ? (bientôt)</span>
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-lg btn-block">Se connecter</button>

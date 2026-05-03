@@ -10,7 +10,7 @@ include '../assets/php/components/header.php';
     <!-- CONTENU PRINCIPAL -->
     <main id="main-content">
 
-        <!-- ======== EN-TÊTE ======== -->
+        <!-- en-tete -->
         <section class="page-hero" aria-label="En-tête FAQ">
             <div class="section-container">
                 <nav aria-label="Fil d'Ariane" class="breadcrumb">
@@ -24,7 +24,7 @@ include '../assets/php/components/header.php';
             </div>
         </section>
 
-        <!-- ======== RECHERCHE FAQ ======== -->
+        <!-- recherche faq -->
         <section class="search-section" aria-label="Recherche FAQ">
             <div class="section-container">
                 <form class="search-form" method="get" action="faq.php" role="search">
@@ -35,7 +35,7 @@ include '../assets/php/components/header.php';
             </div>
         </section>
 
-        <!-- ======== CATÉGORIES FAQ ======== -->
+        <!-- categories faq -->
         <section id="faq-content" aria-labelledby="titre-faq">
             <div class="section-container">
 

@@ -6,9 +6,9 @@ $participants = [];
 $dbError = '';
 
 try {
-    $sql = 'SELECT id, pseudo, prenom, nom, avatar, jeu_principal, role, created_at
+    $sql = "SELECT id, pseudo, prenom, nom, avatar, jeu_principal, role, created_at
             FROM utilisateurs
-            WHERE role <> "admin"';
+            WHERE role <> 'admin'";
     $params = [];
 
     if ($search !== '') {
@@ -45,7 +45,7 @@ include '../assets/php/components/header.php';
     <!-- CONTENU PRINCIPAL -->
     <main id="main-content">
 
-        <!-- ======== EN-TÊTE ======== -->
+        <!-- en-tete -->
         <section class="page-hero" aria-label="En-tête participants">
             <div class="section-container">
                 <nav aria-label="Fil d'Ariane" class="breadcrumb">
@@ -59,7 +59,7 @@ include '../assets/php/components/header.php';
             </div>
         </section>
 
-        <!-- ======== SEARCH ======== -->
+        <!-- recherche -->
         <section class="search-section" aria-label="Recherche participants">
             <div class="section-container">
                 <form class="search-form" method="get" action="participants.php" role="search">
@@ -70,7 +70,7 @@ include '../assets/php/components/header.php';
             </div>
         </section>
 
-        <!-- ======== LISTE PARTICIPANTS ======== -->
+        <!-- liste des participants -->
         <section id="liste-participants" aria-labelledby="titre-participants">
             <div class="section-container">
                 <h2 id="titre-participants">Joueurs inscrits</h2>

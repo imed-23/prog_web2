@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../assets/php/config/auth.php';
-gc_require_login('../../pages/connexion.php');
+gc_require_admin('../../pages/connexion.php');
 
 require_once __DIR__ . '/../../assets/php/config/db.php';
 
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $target = $stmt->fetch();
 
                         if ($target && $target['role'] === 'admin') {
-                            $adminCount = (int) $pdo->query('SELECT COUNT(*) FROM utilisateurs WHERE role = "admin"')->fetchColumn();
+                            $adminCount = (int) $pdo->query("SELECT COUNT(*) FROM utilisateurs WHERE role = 'admin'")->fetchColumn();
                             if ($adminCount <= 1) {
                                 $messageErreur = 'Impossible de supprimer le dernier administrateur.';
                             }
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     } else {
                         $selfId = (int) (gc_current_user()['id'] ?? 0);
                         if ($target['role'] === 'admin' && $newRole !== 'admin') {
-                            $adminCount = (int) $pdo->query('SELECT COUNT(*) FROM utilisateurs WHERE role = "admin"')->fetchColumn();
+                            $adminCount = (int) $pdo->query("SELECT COUNT(*) FROM utilisateurs WHERE role = 'admin'")->fetchColumn();
                             if ($adminCount <= 1) {
                                 $messageErreur = 'Impossible de rétrograder le dernier administrateur.';
                             }
@@ -145,17 +145,17 @@ include '../../assets/php/components/header-admin.php';
             <!-- Formulaire d'ajout -->
             <section id="ajouter-utilisateur" aria-labelledby="titre-ajout-user">
                 <h2 id="titre-ajout-user">➕ Ajouter un utilisateur</h2>
-                <form class="admin-form" method="post" action="utilisateurs.php">
+                <form class="admin-form" method="post" action="utilisateurs.php" autocomplete="off">
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(gc_csrf_token()) ?>">
                     <input type="hidden" name="action" value="create">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="user-pseudo">Pseudo <span class="required">*</span></label>
-                            <input type="text" id="user-pseudo" name="pseudo" required>
+                            <input type="text" id="user-pseudo" name="pseudo" required autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="user-email">Email <span class="required">*</span></label>
-                            <input type="email" id="user-email" name="email" required>
+                            <input type="email" id="user-email" name="email" required autocomplete="off">
                         </div>
                     </div>
                     <div class="form-row">
@@ -169,7 +169,7 @@ include '../../assets/php/components/header-admin.php';
                         </div>
                         <div class="form-group">
                             <label for="user-password">Mot de passe temporaire <span class="required">*</span></label>
-                            <input type="password" id="user-password" name="password" required>
+                            <input type="password" id="user-password" name="password" required autocomplete="new-password">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Ajouter l'utilisateur</button>
